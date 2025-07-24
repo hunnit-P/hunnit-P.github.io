@@ -1,0 +1,202 @@
+import folium
+from folium.plugins import HeatMap, MarkerCluster
+import pandas as pd
+import numpy as np
+import random
+from datetime import datetime, timedelta
+
+
+# 더미 데이터 생성
+def generate_dummy_data():
+    """포트홀 관련 더미 데이터 생성"""
+
+    # 서울 중심 좌표 (예시)
+    center_lat, center_lon = 37.5665, 126.9780
+
+    data = []
+
+    # 1. 딥러닝으로 인식한 포트홀 의심 위치 (200개)
+    for i in range(200):
+        lat = center_lat + random.uniform(-0.05, 0.05)  # 약 5km 반경
+        lon = center_lon + random.uniform(-0.05, 0.05)
+        confidence = random.uniform(0.3, 0.95)  # 딥러닝 신뢰도
+        timestamp = datetime.now() - timedelta(hours=random.randint(1, 168))  # 최근 7일
+
+        data.append({
+            'lat': lat,
+            'lon': lon,
+            'type': 'deeplearning',
+            'confidence': confidence,
+            'z_change': None,
+            'timestamp': timestamp,
+            'severity': confidence  # 시각화용 가중치
+        })
+
+    # 2. Z축 하락→상승 패턴으로 감지된 포트홀 의심 위치 (150개)
+    for i in range(150):
+        lat = center_lat + random.uniform(-0.05, 0.05)
+        lon = center_lon + random.uniform(-0.05, 0.05)
+        z_drop = random.uniform(-15, -5)  # 하락량 (음수)
+        z_rise = random.uniform(5, 12)  # 상승량 (양수)
+        z_change_magnitude = abs(z_drop) + z_rise  # 총 변화량
+        timestamp = datetime.now() - timedelta(hours=random.randint(1, 168))
+
+        # Z축 변화량을 0-1 스케일로 정규화 (시각화용)
+        severity = min(z_change_magnitude / 25.0, 1.0)
+
+        data.append({
+            'lat': lat,
+            'lon': lon,
+            'type': 'z_axis',
+            'confidence': None,
+            'z_change': z_change_magnitude,
+            'timestamp': timestamp,
+            'severity': severity
+        })
+
+    # 3. 두 방법 모두에서 감지된 고위험 지역 (50개)
+    for i in range(50):
+        lat = center_lat + random.uniform(-0.03, 0.03)
+        lon = center_lon + random.uniform(-0.03, 0.03)
+        confidence = random.uniform(0.7, 0.95)
+        z_change_magnitude = random.uniform(15, 25)
+        severity = min((confidence + z_change_magnitude / 25.0) / 2.0, 1.0)
+        timestamp = datetime.now() - timedelta(hours=random.randint(1, 72))
+
+        data.append({
+            'lat': lat,
+            'lon': lon,
+            'type': 'both',
+            'confidence': confidence,
+            'z_change': z_change_magnitude,
+            'timestamp': timestamp,
+            'severity': severity * 1.3  # 고위험 가중치 추가
+        })
+
+    return pd.DataFrame(data)
+
+
+def create_pothole_heatmap(df, save_path='pothole_heatmap.html'):
+    """포트홀 히트맵 생성"""
+
+    # 지도 중심점 설정
+    center_lat = df['lat'].mean()
+    center_lon = df['lon'].mean()
+
+    # 기본 지도 생성
+    m = folium.Map(
+        location=[center_lat, center_lon],
+        zoom_start=12,
+        tiles='OpenStreetMap'
+    )
+
+    # 1. 전체 포트홀 의심 지역 히트맵
+    heat_data = []
+    for idx, row in df.iterrows():
+        # [위도, 경도, 가중치]
+        heat_data.append([row['lat'], row['lon'], row['severity']])
+
+    # 히트맵 레이어 추가
+    HeatMap(
+        heat_data,
+        min_opacity=0.2,
+        max_zoom=18,
+        radius=15,
+        blur=10,
+        gradient={
+            0.0: 'blue',  # 낮은 위험도
+            0.3: 'cyan',
+            0.5: 'lime',
+            0.7: 'yellow',
+            1.0: 'red'  # 높은 위험도
+        }
+    ).add_to(m)
+
+    # 2. 상세 정보를 위한 마커 클러스터
+    marker_cluster = MarkerCluster(name='포트홀 상세정보').add_to(m)
+
+    for idx, row in df.iterrows():
+        # 타입별 색상 구분
+        if row['type'] == 'deeplearning':
+            color = 'blue'
+            icon = 'eye-open'
+        elif row['type'] == 'z_axis':
+            color = 'green'
+            icon = 'stats'
+        else:  # both
+            color = 'red'
+            icon = 'warning-sign'
+
+        # 팝업 내용 생성
+        popup_text = f"""
+        <b>포트홀 의심 지역</b><br>
+        <b>감지 방법:</b> {row['type']}<br>
+        <b>위험도:</b> {row['severity']:.2f}<br>
+        """
+
+        if row['confidence'] is not None:
+            popup_text += f"<b>딥러닝 신뢰도:</b> {row['confidence']:.2f}<br>"
+
+        if row['z_change'] is not None:
+            popup_text += f"<b>Z축 변화량:</b> {row['z_change']:.2f}<br>"
+
+        popup_text += f"<b>감지 시간:</b> {row['timestamp'].strftime('%Y-%m-%d %H:%M')}"
+
+        folium.Marker(
+            location=[row['lat'], row['lon']],
+            popup=folium.Popup(popup_text, max_width=200),
+            icon=folium.Icon(color=color, icon=icon)
+        ).add_to(marker_cluster)
+
+    # 3. 범례 추가
+    legend_html = '''
+    <div style="position: fixed; 
+                bottom: 50px; left: 50px; width: 200px; height: 120px; 
+                background-color: white; border:2px solid grey; z-index:9999; 
+                font-size:14px; padding: 10px">
+    <p><b>포트홀 감지 방법</b></p>
+    <p><i class="fa fa-circle" style="color:blue"></i> 딥러닝 인식</p>
+    <p><i class="fa fa-circle" style="color:green"></i> Z축 변화 패턴</p>
+    <p><i class="fa fa-circle" style="color:red"></i> 두 방법 모두 감지</p>
+    <p><b>히트맵:</b> 파랑(안전) → 빨강(위험)</p>
+    </div>
+    '''
+    m.get_root().html.add_child(folium.Element(legend_html))
+
+    # 레이어 컨트롤 추가
+    folium.LayerControl().add_to(m)
+
+    # 저장
+    m.save(save_path)
+    print(f"히트맵이 {save_path}에 저장되었습니다.")
+
+    return m
+
+
+def analyze_data(df):
+    """데이터 분석 결과 출력"""
+    print("=== 포트홀 데이터 분석 결과 ===")
+    print(f"총 데이터 포인트: {len(df)}개")
+    print(f"딥러닝 감지: {len(df[df['type'] == 'deeplearning'])}개")
+    print(f"Z축 패턴 감지: {len(df[df['type'] == 'z_axis'])}개")
+    print(f"두 방법 모두 감지: {len(df[df['type'] == 'both'])}개")
+    print(f"평균 위험도: {df['severity'].mean():.3f}")
+    print(f"고위험 지역 (위험도 0.7 이상): {len(df[df['severity'] >= 0.7])}개")
+
+
+# 실행 코드
+if __name__ == "__main__":
+    # 더미 데이터 생성
+    df = generate_dummy_data()
+
+    # 데이터 분석
+    analyze_data(df)
+
+    # 히트맵 생성
+    map_obj = create_pothole_heatmap(df)
+
+    print("\n=== 사용법 ===")
+    print("1. 생성된 HTML 파일을 브라우저에서 열어보세요")
+    print("2. 히트맵에서 빨간 영역일수록 포트홀 위험도가 높습니다")
+    print("3. 마커를 클릭하면 상세 정보를 볼 수 있습니다")
+    print("4. 레이어 컨트롤로 마커 표시/숨김을 조절할 수 있습니다")
