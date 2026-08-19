@@ -225,6 +225,8 @@ LETTER_INDEX = {c: i for i, c in enumerate(CIRCLED)}
 
 HANGUL_RE = re.compile(r"[가-힣]")
 EQUALS_BAR_RE = re.compile(r"^=+$")
+MATH_SIGNAL_RE = re.compile(r"[\\^_]")
+WORD_RE = re.compile(r"[A-Za-z]{3,}")
 
 
 def join_math_block(lines):
@@ -258,8 +260,12 @@ def join_math_block(lines):
 def convert_inline_parens(line):
     """
     괄호로 감싼 인라인 수식 '(...)' 을 KaTeX가 인식하는 '\\(...\\)' 로 바꾼다.
-    중첩 괄호(예: '((X^TX)^{-1}X^Ty)')는 깊이를 추적해 가장 바깥쪽 괄호만 변환하고,
-    한글이 포함된 괄호(예: '(과적합)')는 수식이 아니라 용어 설명이므로 그대로 둔다.
+    중첩 괄호(예: '((X^TX)^{-1}X^Ty)')는 깊이를 추적해 가장 바깥쪽 괄호만 변환한다.
+    다음은 수식이 아니라 용어 설명/병기이므로 그대로 둔다:
+      - 한글이 포함된 괄호 (예: '(과적합)')
+      - 수식 기호(\\, ^, _)가 하나도 없으면서 3글자 이상 영단어가 들어있는 괄호
+        (예: '(Foundation Model)', '(VLM)', '(SoM)') - 이런 걸 수식으로 렌더링하면
+        영단어가 붙어버리는 이탤릭 수식체로 뭉개진다.
     """
     result = []
     i, n = 0, len(line)
@@ -276,7 +282,10 @@ def convert_inline_parens(line):
                 j += 1
             if depth == 0:
                 inner = line[i + 1 : j - 1]
-                if inner and not HANGUL_RE.search(inner):
+                looks_like_math = bool(inner) and not HANGUL_RE.search(inner) and (
+                    MATH_SIGNAL_RE.search(inner) or not WORD_RE.search(inner)
+                )
+                if looks_like_math:
                     result.append("\\(" + inner + "\\)")
                 else:
                     result.append(line[i:j])

@@ -582,7 +582,7 @@
         "역전파"
       ],
       "answerIndex": 0,
-      "explanation": "독립변수끼리 강하게 상관되어 있는 현상이 **다중공선성\\(multicollinearity\\)**이다."
+      "explanation": "독립변수끼리 강하게 상관되어 있는 현상이 **다중공선성(multicollinearity)**이다."
     },
     {
       "id": 31,
@@ -629,7 +629,7 @@
         "name": "분류와 로지스틱 회귀"
       },
       "star": 0,
-      "stem": "분류\\(Classification\\)는?",
+      "stem": "분류(Classification)는?",
       "choices": [
         "연속적인 숫자를 예측하는 것만 의미한다.",
         "정해진 범주 중 하나를 지정하는 문제이다.",
@@ -1218,7 +1218,7 @@
         "상관계수"
       ],
       "answerIndex": 0,
-      "explanation": "앞 네트워크의 출력을 다음 네트워크 입력으로 넣는 것이므로 **함수 합성\\(composition\\)**이다."
+      "explanation": "앞 네트워크의 출력을 다음 네트워크 입력으로 넣는 것이므로 **함수 합성(composition)**이다."
     },
     {
       "id": 66,
@@ -1264,7 +1264,7 @@
         "name": "손실함수 / Gradient Descent / Backpropagation"
       },
       "star": 1,
-      "stem": "손실함수\\(loss function\\)는?",
+      "stem": "손실함수(loss function)는?",
       "choices": [
         "모델이 얼마나 잘못 예측하는지를 측정",
         "입력변수 개수를 측정",
@@ -1308,7 +1308,7 @@
         "parameter를 미분 없이 갱신한다.",
         "순전파와 완전히 같은 계산만 반복한다."
       ],
-      "note": "자료에서는 역전파를 출력 오차에서 시작해 계산 그래프를 거꾸로 따라가며 **연쇄법칙\\(chain rule\\)**으로 각 parameter의 미분값을 계산하는 과정으로 정의한다.",
+      "note": "자료에서는 역전파를 출력 오차에서 시작해 계산 그래프를 거꾸로 따라가며 **연쇄법칙(chain rule)**으로 각 parameter의 미분값을 계산하는 과정으로 정의한다.",
       "answerIndex": 0,
       "explanation": "Backpropagation은 loss에서 시작해서 네트워크를 **역방향으로 따라가며 chain rule로 각 parameter의 gradient를 계산**한다."
     },
@@ -1515,7 +1515,7 @@
       "part": "short",
       "section": null,
       "star": 0,
-      "stem": "보편적 근사 정리\\(Universal Approximation Theorem\\)의 핵심 내용을 쓰시오.",
+      "stem": "보편적 근사 정리(Universal Approximation Theorem)의 핵심 내용을 쓰시오.",
       "choices": [],
       "answerText": "충분히 많은 hidden unit을 가진 신경망은 임의의 연속함수를 원하는 정밀도로 근사할 수 있다는 정리이다."
     },
@@ -1580,7 +1580,7 @@
       "star": 0,
       "stem": "훈련 데이터에서 매우 좋은 성능을 보이는 모델이 새로운 데이터에서 반드시 좋은 성능을 보이지 않는 이유를 설명하고, 테스트셋이 필요한 이유를 함께 설명하시오.",
       "choices": [],
-      "answerText": "훈련 데이터는 이미 모델이 학습 과정에서 본 데이터이므로 훈련 데이터에 대한 성능이 좋아도 새로운 데이터에 대한 성능이 반드시 좋은 것은 아니다.\n\n특히 모델이 지나치게 복잡하면 훈련 데이터의 일반적인 패턴뿐 아니라 잡음까지 학습하는 **과적합\\(overfitting\\)**이 발생할 수 있다.\n\n따라서 학습에 사용하지 않은 테스트 데이터를 이용해 모델이 새로운 데이터에서도 잘 작동하는지, 즉 **일반화 성능**을 평가해야 한다."
+      "answerText": "훈련 데이터는 이미 모델이 학습 과정에서 본 데이터이므로 훈련 데이터에 대한 성능이 좋아도 새로운 데이터에 대한 성능이 반드시 좋은 것은 아니다.\n\n특히 모델이 지나치게 복잡하면 훈련 데이터의 일반적인 패턴뿐 아니라 잡음까지 학습하는 **과적합(overfitting)**이 발생할 수 있다.\n\n따라서 학습에 사용하지 않은 테스트 데이터를 이용해 모델이 새로운 데이터에서도 잘 작동하는지, 즉 **일반화 성능**을 평가해야 한다."
     },
     {
       "id": 101,
@@ -1616,7 +1616,7 @@
       "star": 3,
       "stem": "로지스틱 회귀에서 MLE를 이용하여 모수를 추정하는 과정을 설명하시오.\n답안에 반드시 다음을 포함할 것.\n**Likelihood → 최대화 → log-likelihood → 곱을 합으로 변환 → 반복적인 수치 최적화**\n자료에서 MLE 부분은 연속해서 `HARD`로 표시되어 있다.",
       "choices": [],
-      "answerText": "로지스틱 회귀에서는 입력 X에 대해 관측된 실제 label이 나타날 가능성을 나타내는 **likelihood**를 정의한다.\n\n학습의 목표는 likelihood를 최대화하는 \\(\\beta\\)를 찾는 것이며 이를 **Maximum Likelihood Estimation\\(MLE\\)**이라고 한다.\n\nLikelihood는 여러 데이터의 확률이 곱해진 형태이므로 계산과 미분이 불편하다. 그래서 log를 취하여 **log-likelihood**를 사용한다.\n\n로그를 취하면 곱셈이 덧셈으로 변해 계산이 쉬워지고, log 함수는 단조증가하므로 likelihood를 최대화하는 \\(\\beta\\)와 log-likelihood를 최대화하는 \\(\\beta\\)는 동일하다.\n\n이후 log-likelihood의 미분값을 이용해 반복적인 수치 최적화를 수행하여 최적의 \\(\\beta\\)를 찾는다."
+      "answerText": "로지스틱 회귀에서는 입력 X에 대해 관측된 실제 label이 나타날 가능성을 나타내는 **likelihood**를 정의한다.\n\n학습의 목표는 likelihood를 최대화하는 \\(\\beta\\)를 찾는 것이며 이를 **Maximum Likelihood Estimation(MLE)**이라고 한다.\n\nLikelihood는 여러 데이터의 확률이 곱해진 형태이므로 계산과 미분이 불편하다. 그래서 log를 취하여 **log-likelihood**를 사용한다.\n\n로그를 취하면 곱셈이 덧셈으로 변해 계산이 쉬워지고, log 함수는 단조증가하므로 likelihood를 최대화하는 \\(\\beta\\)와 log-likelihood를 최대화하는 \\(\\beta\\)는 동일하다.\n\n이후 log-likelihood의 미분값을 이용해 반복적인 수치 최적화를 수행하여 최적의 \\(\\beta\\)를 찾는다."
     },
     {
       "id": 105,
