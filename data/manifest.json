@@ -42,13 +42,13 @@
     },
     {
       "id": "3-1",
-      "title": "",
+      "title": "CNN과 FCN 기초 · CNN 구조, 풀링, 수용영역 · AlexNet과 계산 문제 · VGGNet, ResNet, MobileNet · RNN과 LSTM · Attention과 ViT · 활성화, 초기화, 정규화, 학습 전략",
       "counts": {
-        "mc": 0,
-        "short": 0,
-        "essay": 0
+        "mc": 75,
+        "short": 15,
+        "essay": 30
       },
-      "available": false
+      "available": true
     },
     {
       "id": "3-2",

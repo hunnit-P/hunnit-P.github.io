@@ -1668,7 +1668,7 @@
       "part": "essay",
       "section": null,
       "star": 3,
-      "stem": "다음 흐름을 하나의 머신러닝 학습 과정으로 연결하여 설명하시오.\n**입력 데이터\n→ 모델\n→ parameter\n→ 예측값\n→ loss\n→ gradient\n→ backpropagation\n→ parameter update\n→ 반복 학습**\n마지막으로 **SGD가 전체 데이터가 아니라 일부 mini-batch를 사용할 수 있는 이유와 장점**까지 설명하시오.\n자료의 최종 정리에서도 Gradient Descent는 전체 손실의 기울기를 계산하는 반면, SGD는 일부 mini-batch로 기울기를 계산하여 **계산 비용이 작고 큰 데이터셋에 적용하기 쉽다**고 정리한다.",
+      "stem": "종합\n다음 흐름을 하나의 머신러닝 학습 과정으로 연결하여 설명하시오.\n**입력 데이터\n→ 모델\n→ parameter\n→ 예측값\n→ loss\n→ gradient\n→ backpropagation\n→ parameter update\n→ 반복 학습**\n마지막으로 **SGD가 전체 데이터가 아니라 일부 mini-batch를 사용할 수 있는 이유와 장점**까지 설명하시오.\n자료의 최종 정리에서도 Gradient Descent는 전체 손실의 기울기를 계산하는 반면, SGD는 일부 mini-batch로 기울기를 계산하여 **계산 비용이 작고 큰 데이터셋에 적용하기 쉽다**고 정리한다.",
       "choices": [],
       "answerText": "1. **입력 데이터** X가 모델에 들어간다.\n2. 모델의 현재 **parameter**를 이용해 **Forward propagation**을 수행한다.\n3. 모델에서 **예측값** \\(\\hat y\\) 를 얻는다.\n4. 실제값 y와 예측값을 비교하여 **loss**를 계산한다.\n5. 각 parameter가 loss에 미치는 영향을 나타내는 **gradient**가 필요하다.\n6. 신경망에서는 **backpropagation**을 통해 chain rule을 이용해 gradient를 계산한다.\n7. Gradient Descent를 이용해\n\n\\[\\phi\\leftarrow\\phi-\\alpha\\nabla_\\phi L\\]\n\n로 parameter를 업데이트한다.\n8. 이 과정을 여러 번 반복하면서 loss가 작아지는 parameter를 학습한다.\n\n일반 Gradient Descent는 전체 데이터의 gradient를 계산한다.\n\n반면 **SGD 또는 mini-batch SGD**는 전체 데이터가 아니라 일부 데이터만 이용해 gradient를 근사한다.\n\n따라서 한 번의 업데이트에 필요한 계산량과 메모리가 줄어 **큰 데이터셋에 효율적**이며 parameter를 더 자주 업데이트할 수 있다.\n\n다만 일부 데이터로 계산하기 때문에 gradient에 노이즈가 존재해 업데이트 방향이 흔들릴 수 있다. 이 노이즈 때문에 오히려 특정 local minimum이나 saddle point 부근에서 빠져나오는 데 도움이 될 수도 있다. 자료에서도 SGD의 핵심 장점으로 일부 mini-batch를 이용해 계산 비용을 줄이고 큰 데이터셋에 적용하기 쉽다는 점을 강조한다."
     }

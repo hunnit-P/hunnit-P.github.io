@@ -126,12 +126,17 @@ def parse_questions(md_path: Path):
             qid = int(m_q.group(1))
             rest = m_q.group(2)
             star = rest.count("★")
+            # 일부 소스는 "### 1. 문제 본문..."처럼 헤더 줄에 바로 문제
+            # 텍스트를 이어 쓴다 (별표가 있으면 "### 34. ★ 문제..."). 그 경우
+            # 지금 안 담으면 문제 본문이 통째로 사라지므로 별표를 뗀 나머지를
+            # 첫 줄로 살려둔다.
+            inline_stem = re.sub(r"^[★\s]+", "", rest).strip()
             current_q = {
                 "id": qid,
                 "part": current_part,
                 "section": current_section,
                 "star": star,
-                "stem_lines": [],
+                "stem_lines": [inline_stem] if inline_stem else [],
                 "choices": [],
                 "note_lines": [],
             }
@@ -309,6 +314,9 @@ def fix_bare_math_functions(s):
     return s
 
 
+HANGING_SUBSCRIPT_RE = re.compile(r"([A-Za-z])_\(([^()]+)\)")
+
+
 def convert_inline_parens(line):
     """
     괄호로 감싼 인라인 수식 '(...)' 을 KaTeX가 인식하는 '\\(...\\)' 로 바꾼다.
@@ -318,7 +326,14 @@ def convert_inline_parens(line):
       - 수식 기호(\\, ^, _)가 하나도 없으면서 3글자 이상 영단어가 들어있는 괄호
         (예: '(Foundation Model)', '(VLM)', '(SoM)') - 이런 걸 수식으로 렌더링하면
         영단어가 붙어버리는 이탤릭 수식체로 뭉개진다.
+
+    일부 소스는 아래첨자를 중괄호 대신 소괄호로 쓴다(예: 'h_(t-1)'). 그대로
+    두면 'h_'는 텍스트로, '(t-1)'만 따로 떨어진 작은 수식 박스로 렌더링돼
+    이상하게 붙어 보이므로, 괄호 스캔 전에 미리 중괄호로 바꿔둔다
+    (수식으로 감싸지는 것은 그 뒤 일반 로직에 맡긴다 - 여기서는 괄호
+    종류만 바로잡는다).
     """
+    line = HANGING_SUBSCRIPT_RE.sub(r"\1_{\2}", line)
     result = []
     i, n = 0, len(line)
     while i < n:
