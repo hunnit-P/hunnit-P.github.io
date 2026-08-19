@@ -203,6 +203,8 @@ async function main() {
     })
     .join("");
 
+  renderMath(root); // 학습 가이드/부록 등 카드 밖 수식 렌더링 (카드 안 수식은 renderCardState에서 처리)
+
   function updateScore() {
     const mcTotal = chapter.counts.mc;
     let mcAnswered = 0;
@@ -240,6 +242,7 @@ async function main() {
     renderStatusChip(card, q, progress);
     if (q.part === "mc") applyMcResult(card, q, progress);
     else applyShortEssayResult(card, q, progress);
+    renderMath(card);
   }
 
   document.querySelectorAll(".card").forEach((card) => {

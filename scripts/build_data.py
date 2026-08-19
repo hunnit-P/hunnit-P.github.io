@@ -192,9 +192,12 @@ def parse_answers(md_path: Path):
             body_lines = []
             continue
 
-        # h1('# ...')은 중간 구간을 나누는 장식용 제목(예: "# 다중선형회귀")이거나
-        # 맨 위 인트로 문장이므로 그냥 무시한다 (부록 트리거 아님).
+        # h1('# ...')은 대부분 중간 구간을 나누는 장식용 제목(예: "# 다중선형회귀")이거나
+        # 맨 위 인트로 문장이라 무시한다. 단, 수식(백슬래시 포함) 줄이 우연히
+        # '#'으로 시작하는 경우(예: "# \sum_{...}")는 본문 내용이므로 살려서 담는다.
         if re.match(r"^#\s+\S", line):
+            if "\\" in line and current_id is not None:
+                body_lines.append(re.sub(r"^#\s+", "", line))
             continue
 
         # 숫자가 없는 h2/h3(예: "### 시험 직전에 이것만은 외워")가 나오면
@@ -220,6 +223,94 @@ def parse_answers(md_path: Path):
 
 LETTER_INDEX = {c: i for i, c in enumerate(CIRCLED)}
 
+HANGUL_RE = re.compile(r"[가-힣]")
+EQUALS_BAR_RE = re.compile(r"^=+$")
+
+
+def join_math_block(lines):
+    """
+    '[' ... ']' 사이에 있던 줄들을 하나의 LaTeX 식으로 합친다.
+    원본이 markdown setext 제목으로 깨지면서 'LHS\\n====\\n\\nRHS' 형태로
+    풀려버린 '=' 기호를 복원하고, \\frac{a}\\n{b} 처럼 단순히 줄바꿈만 된
+    경우는 그대로 이어붙인다.
+    """
+    result = ""
+    pending_eq = False
+    started = False
+    for raw in lines:
+        stripped = raw.strip()
+        if EQUALS_BAR_RE.match(stripped) and len(stripped) >= 3:
+            pending_eq = True
+            continue
+        if stripped == "":
+            if started:
+                pending_eq = True
+            continue
+        if not started:
+            result = stripped
+            started = True
+        else:
+            result += (" = " if pending_eq else "") + stripped
+            pending_eq = False
+    return result
+
+
+def convert_inline_parens(line):
+    """
+    괄호로 감싼 인라인 수식 '(...)' 을 KaTeX가 인식하는 '\\(...\\)' 로 바꾼다.
+    중첩 괄호(예: '((X^TX)^{-1}X^Ty)')는 깊이를 추적해 가장 바깥쪽 괄호만 변환하고,
+    한글이 포함된 괄호(예: '(과적합)')는 수식이 아니라 용어 설명이므로 그대로 둔다.
+    """
+    result = []
+    i, n = 0, len(line)
+    while i < n:
+        ch = line[i]
+        if ch == "(":
+            depth = 1
+            j = i + 1
+            while j < n and depth > 0:
+                if line[j] == "(":
+                    depth += 1
+                elif line[j] == ")":
+                    depth -= 1
+                j += 1
+            if depth == 0:
+                inner = line[i + 1 : j - 1]
+                if inner and not HANGUL_RE.search(inner):
+                    result.append("\\(" + inner + "\\)")
+                else:
+                    result.append(line[i:j])
+                i = j
+                continue
+        result.append(ch)
+        i += 1
+    return "".join(result)
+
+
+def normalize_math(text):
+    """
+    텍스트 안의 '[' 단독 줄 ~ ']' 단독 줄 구간은 디스플레이 수식(\\[...\\])으로,
+    그 밖의 줄에 있는 '(...)' 인라인 수식은 \\(...\\) 로 변환한다.
+    """
+    if not text:
+        return text
+    lines = text.split("\n")
+    out = []
+    i = 0
+    while i < len(lines):
+        if lines[i].strip() == "[":
+            j = i + 1
+            block_lines = []
+            while j < len(lines) and lines[j].strip() != "]":
+                block_lines.append(lines[j])
+                j += 1
+            out.append("\\[" + join_math_block(block_lines) + "\\]")
+            i = j + 1
+        else:
+            out.append(convert_inline_parens(lines[i]))
+            i += 1
+    return "\n".join(out)
+
 
 def build_chapter(chapter_id: str, problem_path: Path, answer_path: Path):
     questions, guide_text = parse_questions(problem_path)
@@ -236,12 +327,17 @@ def build_chapter(chapter_id: str, problem_path: Path, answer_path: Path):
             seen.add(q["section"]["key"])
             sections.append(q["section"])
 
+        item["stem"] = normalize_math(item["stem"])
+        item["choices"] = [normalize_math(c) for c in item["choices"]]
+        if item.get("note"):
+            item["note"] = normalize_math(item["note"])
+
         if q["part"] == "mc":
             letter = a.get("answer_letter")
             item["answerIndex"] = LETTER_INDEX.get(letter, None)
-            item["explanation"] = a.get("explanation", "")
+            item["explanation"] = normalize_math(a.get("explanation", ""))
         else:
-            item["answerText"] = a.get("explanation", "")
+            item["answerText"] = normalize_math(a.get("explanation", ""))
         merged.append(item)
 
     counts = {
@@ -255,8 +351,8 @@ def build_chapter(chapter_id: str, problem_path: Path, answer_path: Path):
         "sections": sections,
         "counts": counts,
         "questions": merged,
-        "studyGuide": guide_text,
-        "appendix": appendix_text,
+        "studyGuide": normalize_math(guide_text),
+        "appendix": normalize_math(appendix_text),
     }
     return chapter
 

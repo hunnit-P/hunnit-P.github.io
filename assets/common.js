@@ -25,3 +25,16 @@ async function loadJson(path) {
 }
 
 const CIRCLED = ["①", "②", "③", "④"];
+
+// data/*.json 은 인라인 수식을 \(...\), 블록 수식을 \[...\] 로 담고 있다.
+// KaTeX auto-render가 로드돼 있으면 해당 구간을 실제 수식으로 렌더링한다.
+function renderMath(el) {
+  if (!window.renderMathInElement) return;
+  renderMathInElement(el, {
+    delimiters: [
+      { left: "\\[", right: "\\]", display: true },
+      { left: "\\(", right: "\\)", display: false },
+    ],
+    throwOnError: false,
+  });
+}

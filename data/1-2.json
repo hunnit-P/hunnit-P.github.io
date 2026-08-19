@@ -68,13 +68,13 @@
       "star": 0,
       "stem": "단순선형회귀 모형으로 옳은 것은?",
       "choices": [
-        "(Y=\\beta_0+\\beta_1X+\\epsilon)",
-        "(Y=\\beta_0X^2+\\epsilon)",
-        "(Y=\\frac1{1+e^{-X}})",
-        "(Y=\\beta_0/\\beta_1X)"
+        "\\(Y=\\beta_0+\\beta_1X+\\epsilon\\)",
+        "\\(Y=\\beta_0X^2+\\epsilon\\)",
+        "\\(Y=\\frac1{1+e^{-X}}\\)",
+        "\\(Y=\\beta_0/\\beta_1X\\)"
       ],
       "answerIndex": 0,
-      "explanation": "단순선형회귀의 기본식은\n\n[\nY=\\beta_0+\\beta_1X+\\epsilon\n]\n\n이다."
+      "explanation": "단순선형회귀의 기본식은\n\n\\[Y=\\beta_0+\\beta_1X+\\epsilon\\]\n\n이다."
     },
     {
       "id": 3,
@@ -84,7 +84,7 @@
         "name": "선형회귀"
       },
       "star": 0,
-      "stem": "단순선형회귀에서 (\\beta_0)는?",
+      "stem": "단순선형회귀에서 \\(\\beta_0\\)는?",
       "choices": [
         "기울기",
         "X=0일 때 Y의 평균적인 값",
@@ -92,7 +92,7 @@
         "결정계수"
       ],
       "answerIndex": 1,
-      "explanation": "(\\beta_0)는 **절편**, 즉 (X=0)일 때 Y의 평균적인 값을 의미한다."
+      "explanation": "\\(\\beta_0\\)는 **절편**, 즉 \\(X=0\\)일 때 Y의 평균적인 값을 의미한다."
     },
     {
       "id": 4,
@@ -102,7 +102,7 @@
         "name": "선형회귀"
       },
       "star": 0,
-      "stem": "(\\beta_1)의 의미로 옳은 것은?",
+      "stem": "\\(\\beta_1\\)의 의미로 옳은 것은?",
       "choices": [
         "X가 1 증가할 때 Y의 평균 변화량",
         "X=0일 때 Y",
@@ -110,7 +110,7 @@
         "잔차"
       ],
       "answerIndex": 0,
-      "explanation": "(\\beta_1)은 기울기로, **X가 1단위 증가할 때 Y가 평균적으로 얼마나 변하는지** 나타낸다."
+      "explanation": "\\(\\beta_1\\)은 기울기로, **X가 1단위 증가할 때 Y가 평균적으로 얼마나 변하는지** 나타낸다."
     },
     {
       "id": 5,
@@ -120,16 +120,16 @@
         "name": "선형회귀"
       },
       "star": 0,
-      "stem": "모형의 (\\epsilon)은?",
+      "stem": "모형의 \\(\\epsilon\\)은?",
       "choices": [
         "잔차 그 자체",
         "관측오차",
         "추정 기울기",
         "예측값"
       ],
-      "note": "자료에서는 (\\epsilon)을 **모델이 설명하지 못하는 관측오차이며 잔차와 동일한 개념은 아니라고** 구분한다.",
+      "note": "자료에서는 \\(\\epsilon\\)을 **모델이 설명하지 못하는 관측오차이며 잔차와 동일한 개념은 아니라고** 구분한다.",
       "answerIndex": 1,
-      "explanation": "(\\epsilon)은 **관측오차**, 즉 모형이 설명하지 못하는 부분이다.\n\n주의: (\\epsilon)과 실제 데이터에서 계산한 잔차 (e_i)를 완전히 동일하게 생각하면 안 된다."
+      "explanation": "\\(\\epsilon\\)은 **관측오차**, 즉 모형이 설명하지 못하는 부분이다.\n\n주의: \\(\\epsilon\\)과 실제 데이터에서 계산한 잔차 \\(e_i\\)를 완전히 동일하게 생각하면 안 된다."
     },
     {
       "id": 6,
@@ -139,7 +139,7 @@
         "name": "선형회귀"
       },
       "star": 0,
-      "stem": "hat((\\hat{})) 표기가 의미하는 것은?",
+      "stem": "hat\\((\\hat{})\\) 표기가 의미하는 것은?",
       "choices": [
         "실제 모수",
         "추정값",
@@ -147,7 +147,7 @@
         "확률"
       ],
       "answerIndex": 1,
-      "explanation": "hat((\\hat{}))은 **데이터를 이용하여 추정한 값**을 의미한다.\n\n예:\n\n[\n\\beta_1 \\rightarrow \\text{진짜 모수}\n]\n\n[\n\\hat\\beta_1 \\rightarrow \\text{데이터로 추정한 모수}\n]"
+      "explanation": "hat\\((\\hat{})\\)은 **데이터를 이용하여 추정한 값**을 의미한다.\n\n예:\n\n\\[\\beta_1 \\rightarrow \\text{진짜 모수}\\]\n\n\\[\\hat\\beta_1 \\rightarrow \\text{데이터로 추정한 모수}\\]"
     },
     {
       "id": 7,
@@ -157,15 +157,15 @@
         "name": "선형회귀"
       },
       "star": 0,
-      "stem": "잔차 (e_i)의 식은?",
+      "stem": "잔차 \\(e_i\\)의 식은?",
       "choices": [
-        "(y_i+\\hat y_i)",
-        "(y_i-\\hat y_i)",
-        "(\\hat y_i/y_i)",
-        "(y_i^2-\\hat y_i)"
+        "\\(y_i+\\hat y_i\\)",
+        "\\(y_i-\\hat y_i\\)",
+        "\\(\\hat y_i/y_i\\)",
+        "\\(y_i^2-\\hat y_i\\)"
       ],
       "answerIndex": 1,
-      "explanation": "잔차는\n\n[\ne_i=y_i-\\hat y_i\n]\n\n즉 **실제값 - 예측값**이다."
+      "explanation": "잔차는\n\n\\[e_i=y_i-\\hat y_i\\]\n\n즉 **실제값 - 예측값**이다."
     },
     {
       "id": 8,
@@ -180,7 +180,7 @@
         "잔차합 최대화",
         "잔차제곱합 최소화",
         "p-value 최대화",
-        "(R^2) 최소화"
+        "\\(R^2\\) 최소화"
       ],
       "answerIndex": 1,
       "explanation": "최소제곱법은 **잔차들을 제곱해서 모두 더한 RSS를 최소화**한다."
@@ -195,13 +195,13 @@
       "star": 0,
       "stem": "RSS는?",
       "choices": [
-        "(\\sum e_i)",
-        "(\\sum e_i^2)",
-        "(\\sum |e_i|)",
-        "((\\sum e_i)^2)"
+        "\\(\\sum e_i\\)",
+        "\\(\\sum e_i^2\\)",
+        "\\(\\sum |e_i|\\)",
+        "\\((\\sum e_i)^2\\)"
       ],
       "answerIndex": 1,
-      "explanation": "[\nRSS=\\sum_{i=1}^{n}e_i^2\n=\\sum_{i=1}^{n}(y_i-\\hat y_i)^2\n]\n\n이다."
+      "explanation": "\\[RSS=\\sum_{i=1}^{n}e_i^2=\\sum_{i=1}^{n}(y_i-\\hat y_i)^2\\]\n\n이다."
     },
     {
       "id": 10,
@@ -213,13 +213,13 @@
       "star": 1,
       "stem": "단순선형회귀의 최소제곱 기울기 추정량은?",
       "choices": [
-        "(\\frac{\\sum(x_i-\\bar x)(y_i-\\bar y)}{\\sum(x_i-\\bar x)^2})",
-        "(\\frac{\\sum(x_i-\\bar x)^2}{\\sum(y_i-\\bar y)^2})",
-        "(\\bar y-\\beta_1\\bar x)",
-        "(\\bar x/\\bar y)"
+        "\\(\\frac{\\sum(x_i-\\bar x)(y_i-\\bar y)}{\\sum(x_i-\\bar x)^2}\\)",
+        "\\(\\frac{\\sum(x_i-\\bar x)^2}{\\sum(y_i-\\bar y)^2}\\)",
+        "\\(\\bar y-\\beta_1\\bar x\\)",
+        "\\(\\bar x/\\bar y\\)"
       ],
       "answerIndex": 0,
-      "explanation": "[\n\\hat\\beta_1=\n\\frac{\\sum(x_i-\\bar x)(y_i-\\bar y)}\n{\\sum(x_i-\\bar x)^2}\n]\n\n단순선형회귀의 최소제곱 기울기 공식이다. 자료에서도 HARD로 표시된 부분이다."
+      "explanation": "\\[\\hat\\beta_1=\\frac{\\sum(x_i-\\bar x)(y_i-\\bar y)}{\\sum(x_i-\\bar x)^2}\\]\n\n단순선형회귀의 최소제곱 기울기 공식이다. 자료에서도 HARD로 표시된 부분이다."
     },
     {
       "id": 11,
@@ -231,13 +231,13 @@
       "star": 0,
       "stem": "절편 추정량은?",
       "choices": [
-        "(\\hat\\beta_0=\\bar y-\\hat\\beta_1\\bar x)",
-        "(\\hat\\beta_0=\\bar x-\\hat\\beta_1\\bar y)",
-        "(\\hat\\beta_0=\\bar x+\\bar y)",
-        "(\\hat\\beta_0=\\hat\\beta_1/\\bar x)"
+        "\\(\\hat\\beta_0=\\bar y-\\hat\\beta_1\\bar x\\)",
+        "\\(\\hat\\beta_0=\\bar x-\\hat\\beta_1\\bar y\\)",
+        "\\(\\hat\\beta_0=\\bar x+\\bar y\\)",
+        "\\(\\hat\\beta_0=\\hat\\beta_1/\\bar x\\)"
       ],
       "answerIndex": 0,
-      "explanation": "[\n\\hat\\beta_0=\\bar y-\\hat\\beta_1\\bar x\n]\n\n이다."
+      "explanation": "\\[\\hat\\beta_0=\\bar y-\\hat\\beta_1\\bar x\\]\n\n이다."
     },
     {
       "id": 12,
@@ -289,10 +289,10 @@
         "coefficient / standard error",
         "standard error / coefficient",
         "RSS / coefficient",
-        "(R^2) / p-value"
+        "\\(R^2\\) / p-value"
       ],
       "answerIndex": 0,
-      "explanation": "[\nt\\text{-statistic}\n==================\n\n\\frac{\\text{coefficient}}{\\text{standard error}}\n]\n\n이다."
+      "explanation": "\\[t\\text{-statistic} = \\frac{\\text{coefficient}}{\\text{standard error}}\\]\n\n이다."
     },
     {
       "id": 15,
@@ -302,15 +302,15 @@
         "name": "선형회귀"
       },
       "star": 0,
-      "stem": "TV 계수의 p-value가 (<0.0001)일 때 자료의 해석으로 가장 적절한 것은?",
+      "stem": "TV 계수의 p-value가 \\(<0.0001\\)일 때 자료의 해석으로 가장 적절한 것은?",
       "choices": [
         "통계적으로 유의하지 않다.",
         "TV 광고비와 매출 간 관계가 통계적으로 매우 유의하다.",
         "TV 광고가 매출의 원인임이 증명된다.",
-        "(R^2=1)이다."
+        "\\(R^2=1\\)이다."
       ],
       "answerIndex": 1,
-      "explanation": "p-value가 (0.0001)보다 작다면 일반적인 유의수준 0.05보다 훨씬 작으므로 **TV 계수는 통계적으로 매우 유의하다.**\n\n단, **인과관계가 증명됐다는 뜻은 아니다.**"
+      "explanation": "p-value가 \\(0.0001\\)보다 작다면 일반적인 유의수준 0.05보다 훨씬 작으므로 **TV 계수는 통계적으로 매우 유의하다.**\n\n단, **인과관계가 증명됐다는 뜻은 아니다.**"
     },
     {
       "id": 16,
@@ -320,7 +320,7 @@
         "name": "선형회귀"
       },
       "star": 0,
-      "stem": "(R^2=0.612)의 의미는?",
+      "stem": "\\(R^2=0.612\\)의 의미는?",
       "choices": [
         "오차율이 61.2%",
         "판매량 변동의 약 61.2%를 모형이 설명",
@@ -328,7 +328,7 @@
         "계수가 0일 확률이 61.2%"
       ],
       "answerIndex": 1,
-      "explanation": "[\nR^2=0.612\n]\n\n이면 **판매량 변동의 약 61.2%를 해당 회귀모형이 설명한다**는 뜻이다."
+      "explanation": "\\[R^2=0.612\\]\n\n이면 **판매량 변동의 약 61.2%를 해당 회귀모형이 설명한다**는 뜻이다."
     },
     {
       "id": 17,
@@ -358,13 +358,13 @@
       "star": 0,
       "stem": "다중선형회귀 모형은?",
       "choices": [
-        "(Y=\\beta_0+\\sum_{j=1}^{p}\\beta_jX_j+\\epsilon)",
-        "(Y=\\beta_0+\\epsilon)",
-        "(Y=X^2)",
-        "(Y=\\sigma(X))"
+        "\\(Y=\\beta_0+\\sum_{j=1}^{p}\\beta_jX_j+\\epsilon\\)",
+        "\\(Y=\\beta_0+\\epsilon\\)",
+        "\\(Y=X^2\\)",
+        "\\(Y=\\sigma(X)\\)"
       ],
       "answerIndex": 0,
-      "explanation": "[\nY=\\beta_0+\\beta_1X_1+\\cdots+\\beta_pX_p+\\epsilon\n]\n\n이다."
+      "explanation": "\\[Y=\\beta_0+\\beta_1X_1+\\cdots+\\beta_pX_p+\\epsilon\\]\n\n이다."
     },
     {
       "id": 19,
@@ -374,15 +374,15 @@
         "name": "다중선형회귀"
       },
       "star": 1,
-      "stem": "다중회귀에서 (\\beta_j)의 올바른 해석은?",
+      "stem": "다중회귀에서 \\(\\beta_j\\)의 올바른 해석은?",
       "choices": [
         "모든 독립변수가 동시에 증가할 때 변화량",
-        "다른 변수를 고정하고 (X_j)가 1 증가할 때 Y의 평균 변화량",
-        "(X_j)와 Y의 상관계수",
-        "(X_j)의 분산"
+        "다른 변수를 고정하고 \\(X_j\\)가 1 증가할 때 Y의 평균 변화량",
+        "\\(X_j\\)와 Y의 상관계수",
+        "\\(X_j\\)의 분산"
       ],
       "answerIndex": 1,
-      "explanation": "다중회귀 계수 해석에서 가장 중요한 말은:\n\n> **다른 변수들을 고정했을 때**\n\n이다.\n\n즉 (X_j)가 1 증가할 때 Y가 평균적으로 (\\beta_j)만큼 변화한다."
+      "explanation": "다중회귀 계수 해석에서 가장 중요한 말은:\n\n> **다른 변수들을 고정했을 때**\n\n이다.\n\n즉 \\(X_j\\)가 1 증가할 때 Y가 평균적으로 \\(\\beta_j\\)만큼 변화한다."
     },
     {
       "id": 20,
@@ -418,7 +418,7 @@
         "원"
       ],
       "answerIndex": 2,
-      "explanation": "입력변수가 2개라면\n\n[\ny=\\beta_0+\\beta_1x_1+\\beta_2x_2\n]\n\n이므로 3차원에서는 **평면**으로 표현할 수 있다."
+      "explanation": "입력변수가 2개라면\n\n\\[y=\\beta_0+\\beta_1x_1+\\beta_2x_2\\]\n\n이므로 3차원에서는 **평면**으로 표현할 수 있다."
     },
     {
       "id": 22,
@@ -430,13 +430,13 @@
       "star": 1,
       "stem": "행렬 형태의 다중선형회귀는?",
       "choices": [
-        "(y=X\\beta+\\epsilon)",
-        "(y=X+\\beta)",
-        "(X=y\\beta)",
-        "(\\beta=X/y)"
+        "\\(y=X\\beta+\\epsilon\\)",
+        "\\(y=X+\\beta\\)",
+        "\\(X=y\\beta\\)",
+        "\\(\\beta=X/y\\)"
       ],
       "answerIndex": 0,
-      "explanation": "[\ny=X\\beta+\\epsilon\n]\n\n이 다중선형회귀의 행렬표현이다."
+      "explanation": "\\[y=X\\beta+\\epsilon\\]\n\n이 다중선형회귀의 행렬표현이다."
     },
     {
       "id": 23,
@@ -448,14 +448,14 @@
       "star": 2,
       "stem": "다중선형회귀의 closed-form solution은?",
       "choices": [
-        "((X^TX)^{-1}X^Ty)",
-        "(X^TXy)",
-        "(X^{-1}y)",
-        "(X^Ty^{-1})"
+        "\\((X^TX)^{-1}X^Ty\\)",
+        "\\(X^TXy\\)",
+        "\\(X^{-1}y\\)",
+        "\\(X^Ty^{-1}\\)"
       ],
       "note": "자료에서 이 행렬 유도 부분 자체가 `HARD`로 표시돼 있다.",
       "answerIndex": 0,
-      "explanation": "[\n\\hat\\beta=(X^TX)^{-1}X^Ty\n]\n\n이다. RSS를 최소화해서 얻는 정규방정식의 해이다."
+      "explanation": "\\[\\hat\\beta=(X^TX)^{-1}X^Ty\\]\n\n이다. RSS를 최소화해서 얻는 정규방정식의 해이다."
     },
     {
       "id": 24,
@@ -473,7 +473,7 @@
         "인과관계 증명"
       ],
       "answerIndex": 1,
-      "explanation": "Newspaper의 p-value가 0.8599이므로\n\n[\n0.8599>0.05\n]\n\n통계적으로 유의하지 않다."
+      "explanation": "Newspaper의 p-value가 0.8599이므로\n\n\\[0.8599>0.05\\]\n\n통계적으로 유의하지 않다."
     },
     {
       "id": 25,
@@ -501,16 +501,16 @@
         "name": "다중선형회귀"
       },
       "star": 0,
-      "stem": "다중회귀 (R^2=0.897)의 해석은?",
+      "stem": "다중회귀 \\(R^2=0.897\\)의 해석은?",
       "choices": [
         "종속변수 변동의 약 89.7%를 모형이 설명",
         "오차율 89.7%",
         "모든 계수가 유의함",
         "인과관계가 89.7%"
       ],
-      "note": "실제 광고 다중회귀 결과가 TV 0.046, Radio 0.189, Newspaper -0.001, (R^2=0.897)로 제시된다.",
+      "note": "실제 광고 다중회귀 결과가 TV 0.046, Radio 0.189, Newspaper -0.001, \\(R^2=0.897\\)로 제시된다.",
       "answerIndex": 0,
-      "explanation": "(R^2=0.897)이면 종속변수 변동의 약 89.7%를 설명한다."
+      "explanation": "\\(R^2=0.897\\)이면 종속변수 변동의 약 89.7%를 설명한다."
     },
     {
       "id": 27,
@@ -582,7 +582,7 @@
         "역전파"
       ],
       "answerIndex": 0,
-      "explanation": "독립변수끼리 강하게 상관되어 있는 현상이 **다중공선성(multicollinearity)**이다."
+      "explanation": "독립변수끼리 강하게 상관되어 있는 현상이 **다중공선성\\(multicollinearity\\)**이다."
     },
     {
       "id": 31,
@@ -596,7 +596,7 @@
       "choices": [
         "계수 분산 증가 및 추정 불안정",
         "모든 계수 0",
-        "(R^2) 항상 0",
+        "\\(R^2\\) 항상 0",
         "데이터 개수 증가"
       ],
       "answerIndex": 0,
@@ -629,7 +629,7 @@
         "name": "분류와 로지스틱 회귀"
       },
       "star": 0,
-      "stem": "분류(Classification)는?",
+      "stem": "분류\\(Classification\\)는?",
       "choices": [
         "연속적인 숫자를 예측하는 것만 의미한다.",
         "정해진 범주 중 하나를 지정하는 문제이다.",
@@ -649,14 +649,14 @@
       "star": 0,
       "stem": "분류 함수의 목표는?",
       "choices": [
-        "(f(X))를 학습하여 X가 속할 범주 또는 그 확률을 예측",
+        "\\(f(X)\\)를 학습하여 X가 속할 범주 또는 그 확률을 예측",
         "RSS만 계산",
         "입력 데이터를 제거",
         "회귀계수를 0으로 설정"
       ],
-      "note": "자료는 직접 범주를 예측하는 것보다 (P(Y=k|X))와 같은 **범주별 확률을 추정하는 것이 더 유용할 때가 많다**고 설명한다.",
+      "note": "자료는 직접 범주를 예측하는 것보다 \\(P(Y=k|X)\\)와 같은 **범주별 확률을 추정하는 것이 더 유용할 때가 많다**고 설명한다.",
       "answerIndex": 0,
-      "explanation": "분류 함수 (f(X))를 학습해 X가 속할 범주 또는 범주별 확률을 예측한다."
+      "explanation": "분류 함수 \\(f(X)\\)를 학습해 X가 속할 범주 또는 범주별 확률을 예측한다."
     },
     {
       "id": 35,
@@ -722,13 +722,13 @@
       "star": 0,
       "stem": "Sigmoid 함수는?",
       "choices": [
-        "(\\frac{1}{1+e^{-z}})",
-        "(z^2)",
-        "(\\max(0,z))",
-        "(\\log z)"
+        "\\(\\frac{1}{1+e^{-z}}\\)",
+        "\\(z^2\\)",
+        "\\(\\max(0,z)\\)",
+        "\\(\\log z\\)"
       ],
       "answerIndex": 0,
-      "explanation": "[\n\\sigma(z)=\\frac1{1+e^{-z}}\n]"
+      "explanation": "\\[\\sigma(z)=\\frac1{1+e^{-z}}\\]"
     },
     {
       "id": 39,
@@ -740,13 +740,13 @@
       "star": 0,
       "stem": "Sigmoid의 출력 범위는?",
       "choices": [
-        "((-\\infty,\\infty))",
-        "((0,1))",
-        "((-1,1))",
-        "((0,\\infty))"
+        "\\((-\\infty,\\infty)\\)",
+        "\\((0,1)\\)",
+        "\\((-1,1)\\)",
+        "\\((0,\\infty)\\)"
       ],
       "answerIndex": 1,
-      "explanation": "Sigmoid의 출력은\n\n[\n0<\\sigma(z)<1\n]\n\n이다."
+      "explanation": "Sigmoid의 출력은\n\n\\[0<\\sigma(z)<1\\]\n\n이다."
     },
     {
       "id": 40,
@@ -756,7 +756,7 @@
         "name": "분류와 로지스틱 회귀"
       },
       "star": 0,
-      "stem": "(z=0)에서 sigmoid는?",
+      "stem": "\\(z=0\\)에서 sigmoid는?",
       "choices": [
         "0",
         "0.5",
@@ -764,7 +764,7 @@
         "-1"
       ],
       "answerIndex": 1,
-      "explanation": "[\n\\sigma(0)=\\frac1{1+1}=0.5\n]"
+      "explanation": "\\[\\sigma(0)=\\frac1{1+1}=0.5\\]"
     },
     {
       "id": 41,
@@ -776,13 +776,13 @@
       "star": 1,
       "stem": "확률 p의 odds는?",
       "choices": [
-        "(p/(1-p))",
-        "(1/p)",
-        "(p(1-p))",
-        "(1-p)"
+        "\\(p/(1-p)\\)",
+        "\\(1/p\\)",
+        "\\(p(1-p)\\)",
+        "\\(1-p\\)"
       ],
       "answerIndex": 0,
-      "explanation": "[\nOdds=\\frac{p}{1-p}\n]\n\n이다."
+      "explanation": "\\[Odds=\\frac{p}{1-p}\\]\n\n이다."
     },
     {
       "id": 42,
@@ -800,7 +800,7 @@
         "5"
       ],
       "answerIndex": 2,
-      "explanation": "[\n\\frac{0.8}{1-0.8}\n=================\n\n\\frac{0.8}{0.2}=4\n]"
+      "explanation": "\\[\\frac{0.8}{1-0.8} = \\frac{0.8}{0.2}=4\\]"
     },
     {
       "id": 43,
@@ -812,13 +812,13 @@
       "star": 1,
       "stem": "logit은?",
       "choices": [
-        "(\\log p)",
-        "(\\log\\frac{p}{1-p})",
-        "(e^p)",
-        "(1-p)"
+        "\\(\\log p\\)",
+        "\\(\\log\\frac{p}{1-p}\\)",
+        "\\(e^p\\)",
+        "\\(1-p\\)"
       ],
       "answerIndex": 1,
-      "explanation": "[\nlogit(p)\n========\n\n\\log\\frac{p}{1-p}\n]\n\n이다."
+      "explanation": "\\[logit(p) = \\log\\frac{p}{1-p}\\]\n\n이다."
     },
     {
       "id": 44,
@@ -830,14 +830,14 @@
       "star": 1,
       "stem": "로지스틱 회귀를 logit 변환하면?",
       "choices": [
-        "(\\log\\frac{p}{1-p}=\\beta_0+\\beta_1x)",
-        "(p=x^2)",
-        "(p=\\beta_0+\\epsilon)",
-        "(p=1/x)"
+        "\\(\\log\\frac{p}{1-p}=\\beta_0+\\beta_1x\\)",
+        "\\(p=x^2\\)",
+        "\\(p=\\beta_0+\\epsilon\\)",
+        "\\(p=1/x\\)"
       ],
       "note": "즉 자료의 표현대로 로지스틱 모형은 **선형 모형 + sigmoid**, 그리고 로짓 변환된 로지스틱 모형은 선형식으로 표현할 수 있다.",
       "answerIndex": 0,
-      "explanation": "[\n\\log\\frac{p}{1-p}\n=================\n\n\\beta_0+\\beta_1x\n]\n\n로 변환된다.\n\n이게 핵심이다:\n\n**확률 p 자체는 비선형이지만 log-odds는 X와 선형관계**가 된다."
+      "explanation": "\\[\\log\\frac{p}{1-p} = \\beta_0+\\beta_1x\\]\n\n로 변환된다.\n\n이게 핵심이다:\n\n**확률 p 자체는 비선형이지만 log-odds는 X와 선형관계**가 된다."
     },
     {
       "id": 45,
@@ -852,7 +852,7 @@
         "현재 확률함수가 관측 데이터를 얼마나 잘 설명하는지",
         "독립변수 개수",
         "모델 실행시간",
-        "(R^2)"
+        "\\(R^2\\)"
       ],
       "answerIndex": 0,
       "explanation": "Likelihood는 현재 모수가 **관측된 데이터가 나타나는 것을 얼마나 잘 설명하는지** 나타내는 지표이다."
@@ -909,7 +909,7 @@
         "log가 선형함수이기 때문"
       ],
       "answerIndex": 0,
-      "explanation": "log는 단조증가 함수이므로\n\n[\n\\arg\\max L(\\beta)\n=================\n\n\\arg\\max\\log L(\\beta)\n]\n\n이다."
+      "explanation": "log는 단조증가 함수이므로\n\n\\[\\arg\\max L(\\beta) = \\arg\\max\\log L(\\beta)\\]\n\n이다."
     },
     {
       "id": 49,
@@ -926,7 +926,7 @@
         "sigmoid가 상수라서",
         "모든 계수가 이미 알려져 있어서"
       ],
-      "note": "자료에서도 log-likelihood를 미분한 뒤 **도함수가 0에 근접하도록 수치적·반복 최적화**로 (\\beta)를 찾는다고 설명한다.",
+      "note": "자료에서도 log-likelihood를 미분한 뒤 **도함수가 0에 근접하도록 수치적·반복 최적화**로 \\(\\beta\\)를 찾는다고 설명한다.",
       "answerIndex": 0,
       "explanation": "로지스틱 회귀에서는 일반적으로 선형회귀처럼 간단한 closed-form으로 끝나지 않으므로 **반복적인 수치 최적화**를 이용한다."
     },
@@ -994,13 +994,13 @@
       "star": 0,
       "stem": "ReLU는?",
       "choices": [
-        "(\\max(0,z))",
-        "sigmoid(z)",
-        "(z^2)",
-        "(\\log z)"
+        "\\(\\max(0,z)\\)",
+        "sigmoid\\(z\\)",
+        "\\(z^2\\)",
+        "\\(\\log z\\)"
       ],
       "answerIndex": 0,
-      "explanation": "[\nReLU(z)=\\max(0,z)\n]"
+      "explanation": "\\[ReLU(z)=\\max(0,z)\\]"
     },
     {
       "id": 54,
@@ -1028,7 +1028,7 @@
         "name": "신경망 / Shallow Network"
       },
       "star": 0,
-      "stem": "Shallow Network에서\n[\nh_d=a[\\theta_{d0}+\\theta_{d1}x]\n]\n의 (h_d)를 무엇이라고 하는가?",
+      "stem": "Shallow Network에서\n\\[h_d=a[\\theta_{d0}+\\theta_{d1}x]\\]\n의 \\(h_d\\)를 무엇이라고 하는가?",
       "choices": [
         "Hidden unit",
         "Loss",
@@ -1036,7 +1036,7 @@
         "Learning rate"
       ],
       "answerIndex": 0,
-      "explanation": "(h_d)는 **hidden unit**이다."
+      "explanation": "\\(h_d\\)는 **hidden unit**이다."
     },
     {
       "id": 56,
@@ -1048,13 +1048,13 @@
       "star": 0,
       "stem": "3개의 hidden unit을 가진 자료의 출력식은?",
       "choices": [
-        "(y=\\phi_0+\\phi_1h_1+\\phi_2h_2+\\phi_3h_3)",
-        "(y=h_1h_2h_3)",
-        "(y=x+h_1)",
-        "(y=\\phi_0)만"
+        "\\(y=\\phi_0+\\phi_1h_1+\\phi_2h_2+\\phi_3h_3\\)",
+        "\\(y=h_1h_2h_3\\)",
+        "\\(y=x+h_1\\)",
+        "\\(y=\\phi_0\\)만"
       ],
       "answerIndex": 0,
-      "explanation": "[\ny=\\phi_0+\\phi_1h_1+\\phi_2h_2+\\phi_3h_3\n]\n\n이다."
+      "explanation": "\\[y=\\phi_0+\\phi_1h_1+\\phi_2h_2+\\phi_3h_3\\]\n\n이다."
     },
     {
       "id": 57,
@@ -1071,9 +1071,9 @@
         "출력 → 입력 → 활성화",
         "RSS → logit → sigmoid"
       ],
-      "note": "자료는 실제로 각 hidden unit에 대해 선형변환 → 활성화 함수 → (\\phi_j)배 → 합산 과정을 단계별 그림으로 설명한다.",
+      "note": "자료는 실제로 각 hidden unit에 대해 선형변환 → 활성화 함수 → \\(\\phi_j\\)배 → 합산 과정을 단계별 그림으로 설명한다.",
       "answerIndex": 0,
-      "explanation": "자료의 흐름:\n\n**선형변환 → 활성화 → (\\phi_j) 가중치 적용 → 합**\n\n이다."
+      "explanation": "자료의 흐름:\n\n**선형변환 → 활성화 → \\(\\phi_j\\) 가중치 적용 → 합**\n\n이다."
     },
     {
       "id": 58,
@@ -1156,15 +1156,15 @@
         "name": "다중 입력/출력·Deep Network"
       },
       "star": 0,
-      "stem": "입력이 (x_1,x_2) 두 개인 경우 hidden unit의 일반적인 형태는?",
+      "stem": "입력이 \\(x_1,x_2\\) 두 개인 경우 hidden unit의 일반적인 형태는?",
       "choices": [
-        "(a(\\theta_{d0}+\\theta_{d1}x_1+\\theta_{d2}x_2))",
-        "(x_1+x_2)만 가능",
-        "(a(x_1x_2))만 가능",
-        "(\\theta_d)만 가능"
+        "\\(a(\\theta_{d0}+\\theta_{d1}x_1+\\theta_{d2}x_2)\\)",
+        "\\(x_1+x_2\\)만 가능",
+        "\\(a(x_1x_2)\\)만 가능",
+        "\\(\\theta_d\\)만 가능"
       ],
       "answerIndex": 0,
-      "explanation": "[\nh_d\n===\n\na(\\theta_{d0}+\\theta_{d1}x_1+\\theta_{d2}x_2)\n]\n\n이다."
+      "explanation": "\\[h_d = a(\\theta_{d0}+\\theta_{d1}x_1+\\theta_{d2}x_2)\\]\n\n이다."
     },
     {
       "id": 63,
@@ -1182,7 +1182,7 @@
         "데이터 개수"
       ],
       "answerIndex": 0,
-      "explanation": "2차원에서\n\n[\n\\theta_0+\\theta_1x_1+\\theta_2x_2=0\n]\n\n은 하나의 **선형 경계**가 된다."
+      "explanation": "2차원에서\n\n\\[\\theta_0+\\theta_1x_1+\\theta_2x_2=0\\]\n\n은 하나의 **선형 경계**가 된다."
     },
     {
       "id": 64,
@@ -1218,7 +1218,7 @@
         "상관계수"
       ],
       "answerIndex": 0,
-      "explanation": "앞 네트워크의 출력을 다음 네트워크 입력으로 넣는 것이므로 **함수 합성(composition)**이다."
+      "explanation": "앞 네트워크의 출력을 다음 네트워크 입력으로 넣는 것이므로 **함수 합성\\(composition\\)**이다."
     },
     {
       "id": 66,
@@ -1264,14 +1264,14 @@
         "name": "손실함수 / Gradient Descent / Backpropagation"
       },
       "star": 1,
-      "stem": "손실함수(loss function)는?",
+      "stem": "손실함수\\(loss function\\)는?",
       "choices": [
         "모델이 얼마나 잘못 예측하는지를 측정",
         "입력변수 개수를 측정",
         "parameter 수를 측정",
         "학습률을 계산"
       ],
-      "note": "자료는 학습을 (\\hat\\phi=\\arg\\min_\\phi L[\\phi]), 즉 **손실함수를 최소화하는 parameter를 찾는 과정**으로 정의한다.",
+      "note": "자료는 학습을 \\(\\hat\\phi=\\arg\\min_\\phi L[\\phi]\\), 즉 **손실함수를 최소화하는 parameter를 찾는 과정**으로 정의한다.",
       "answerIndex": 0,
       "explanation": "Loss function은 **모델 예측이 실제값에서 얼마나 틀렸는지 측정하는 함수**다."
     },
@@ -1285,13 +1285,13 @@
       "star": 2,
       "stem": "Gradient Descent의 parameter 업데이트 식으로 옳은 것은?",
       "choices": [
-        "(\\phi\\leftarrow\\phi-\\alpha\\frac{\\partial L}{\\partial\\phi})",
-        "(\\phi\\leftarrow\\phi+\\alpha L)",
-        "(\\phi\\leftarrow L/\\phi)",
-        "(\\phi\\leftarrow0)"
+        "\\(\\phi\\leftarrow\\phi-\\alpha\\frac{\\partial L}{\\partial\\phi}\\)",
+        "\\(\\phi\\leftarrow\\phi+\\alpha L\\)",
+        "\\(\\phi\\leftarrow L/\\phi\\)",
+        "\\(\\phi\\leftarrow0\\)"
       ],
       "answerIndex": 0,
-      "explanation": "[\n\\phi\n\\leftarrow\n\\phi-\\alpha\\frac{\\partial L}{\\partial\\phi}\n]\n\n이다.\n\n(\\alpha)는 **learning rate(학습률)**이다."
+      "explanation": "\\[\\phi\\leftarrow\\phi-\\alpha\\frac{\\partial L}{\\partial\\phi}\\]\n\n이다.\n\n\\(\\alpha\\)는 **learning rate(학습률)**이다."
     },
     {
       "id": 70,
@@ -1308,7 +1308,7 @@
         "parameter를 미분 없이 갱신한다.",
         "순전파와 완전히 같은 계산만 반복한다."
       ],
-      "note": "자료에서는 역전파를 출력 오차에서 시작해 계산 그래프를 거꾸로 따라가며 **연쇄법칙(chain rule)**으로 각 parameter의 미분값을 계산하는 과정으로 정의한다.",
+      "note": "자료에서는 역전파를 출력 오차에서 시작해 계산 그래프를 거꾸로 따라가며 **연쇄법칙\\(chain rule\\)**으로 각 parameter의 미분값을 계산하는 과정으로 정의한다.",
       "answerIndex": 0,
       "explanation": "Backpropagation은 loss에서 시작해서 네트워크를 **역방향으로 따라가며 chain rule로 각 parameter의 gradient를 계산**한다."
     },
@@ -1317,18 +1317,18 @@
       "part": "short",
       "section": null,
       "star": 0,
-      "stem": "단순선형회귀 모형 (Y=\\beta_0+\\beta_1X+\\epsilon)에서 (\\beta_0,\\beta_1,\\epsilon)의 의미를 각각 쓰시오.",
+      "stem": "단순선형회귀 모형 \\(Y=\\beta_0+\\beta_1X+\\epsilon\\)에서 \\(\\beta_0,\\beta_1,\\epsilon\\)의 의미를 각각 쓰시오.",
       "choices": [],
-      "answerText": "(\\beta_0): 절편, X=0일 때 Y의 평균값\n(\\beta_1): X가 1 증가할 때 Y의 평균 변화량\n(\\epsilon): 모형이 설명하지 못하는 관측오차"
+      "answerText": "\\(\\beta_0\\): 절편, X=0일 때 Y의 평균값\n\\(\\beta_1\\): X가 1 증가할 때 Y의 평균 변화량\n\\(\\epsilon\\): 모형이 설명하지 못하는 관측오차"
     },
     {
       "id": 72,
       "part": "short",
       "section": null,
       "star": 0,
-      "stem": "실제값 (y_i)와 예측값 (\\hat y_i)를 이용해 잔차 (e_i)를 식으로 쓰시오.",
+      "stem": "실제값 \\(y_i\\)와 예측값 \\(\\hat y_i\\)를 이용해 잔차 \\(e_i\\)를 식으로 쓰시오.",
       "choices": [],
-      "answerText": "[\ne_i=y_i-\\hat y_i\n]"
+      "answerText": "\\[e_i=y_i-\\hat y_i\\]"
     },
     {
       "id": 73,
@@ -1337,23 +1337,23 @@
       "star": 0,
       "stem": "RSS를 식으로 쓰시오.",
       "choices": [],
-      "answerText": "[\nRSS\n===\n\n\n\\sum_{i=1}^{n}e_i^2\n]"
+      "answerText": "\\[RSS = \\sum_{i=1}^{n}(y_i-\\hat y_i)^2 = \\sum_{i=1}^{n}e_i^2\\]"
     },
     {
       "id": 74,
       "part": "short",
       "section": null,
       "star": 1,
-      "stem": "단순선형회귀의 (\\hat\\beta_1)과 (\\hat\\beta_0)의 closed-form 식을 쓰시오.",
+      "stem": "단순선형회귀의 \\(\\hat\\beta_1\\)과 \\(\\hat\\beta_0\\)의 closed-form 식을 쓰시오.",
       "choices": [],
-      "answerText": "[\n\\hat\\beta_1=\n\\frac{\\sum(x_i-\\bar x)(y_i-\\bar y)}\n{\\sum(x_i-\\bar x)^2}\n]\n\n[\n\\hat\\beta_0\n===========\n\n\\bar y-\\hat\\beta_1\\bar x\n]"
+      "answerText": "\\[\\hat\\beta_1=\\frac{\\sum(x_i-\\bar x)(y_i-\\bar y)}{\\sum(x_i-\\bar x)^2}\\]\n\n\\[\\hat\\beta_0 = \\bar y-\\hat\\beta_1\\bar x\\]"
     },
     {
       "id": 75,
       "part": "short",
       "section": null,
       "star": 0,
-      "stem": "(R^2=0.612)의 의미를 한 문장으로 설명하시오.",
+      "stem": "\\(R^2=0.612\\)의 의미를 한 문장으로 설명하시오.",
       "choices": [],
       "answerText": "종속변수 Y 변동의 약 61.2%를 해당 선형회귀모형이 설명한다."
     },
@@ -1364,25 +1364,25 @@
       "star": 0,
       "stem": "다중선형회귀의 일반적인 모형식을 쓰시오.",
       "choices": [],
-      "answerText": "[\nY=\n\\beta_0+\\beta_1X_1+\\cdots+\\beta_pX_p+\\epsilon\n]"
+      "answerText": "\\[Y=\\beta_0+\\beta_1X_1+\\cdots+\\beta_pX_p+\\epsilon\\]"
     },
     {
       "id": 77,
       "part": "short",
       "section": null,
       "star": 0,
-      "stem": "다중선형회귀에서 (\\beta_j)를 해석할 때 반드시 붙여야 하는 조건을 쓰시오.",
+      "stem": "다중선형회귀에서 \\(\\beta_j\\)를 해석할 때 반드시 붙여야 하는 조건을 쓰시오.",
       "choices": [],
-      "answerText": "**다른 모든 독립변수를 고정했을 때** (X_j)가 1 증가하면 Y가 평균적으로 (\\beta_j)만큼 변화한다."
+      "answerText": "**다른 모든 독립변수를 고정했을 때** \\(X_j\\)가 1 증가하면 Y가 평균적으로 \\(\\beta_j\\)만큼 변화한다."
     },
     {
       "id": 78,
       "part": "short",
       "section": null,
       "star": 1,
-      "stem": "다중선형회귀를 (y=X\\beta+\\epsilon)으로 표현할 때 최소제곱 추정량 (\\hat\\beta)를 쓰시오.",
+      "stem": "다중선형회귀를 \\(y=X\\beta+\\epsilon\\)으로 표현할 때 최소제곱 추정량 \\(\\hat\\beta\\)를 쓰시오.",
       "choices": [],
-      "answerText": "[\n\\hat\\beta=(X^TX)^{-1}X^Ty\n]"
+      "answerText": "\\[\\hat\\beta=(X^TX)^{-1}X^Ty\\]"
     },
     {
       "id": 79,
@@ -1436,7 +1436,7 @@
       "star": 0,
       "stem": "Sigmoid 함수를 식으로 쓰시오.",
       "choices": [],
-      "answerText": "[\n\\sigma(z)=\\frac{1}{1+e^{-z}}\n]"
+      "answerText": "\\[\\sigma(z)=\\frac{1}{1+e^{-z}}\\]"
     },
     {
       "id": 85,
@@ -1445,16 +1445,16 @@
       "star": 0,
       "stem": "확률 p의 odds를 식으로 쓰시오.",
       "choices": [],
-      "answerText": "[\nOdds=\\frac{p}{1-p}\n]"
+      "answerText": "\\[Odds=\\frac{p}{1-p}\\]"
     },
     {
       "id": 86,
       "part": "short",
       "section": null,
       "star": 0,
-      "stem": "logit(p)를 식으로 쓰시오.",
+      "stem": "logit\\(p\\)를 식으로 쓰시오.",
       "choices": [],
-      "answerText": "[\nlogit(p)\n========\n\n\\log\\frac{p}{1-p}\n]"
+      "answerText": "\\[logit(p) = \\log\\frac{p}{1-p}\\]"
     },
     {
       "id": 87,
@@ -1463,7 +1463,7 @@
       "star": 1,
       "stem": "로지스틱 회귀에서 logit 변환을 적용했을 때 얻어지는 선형식을 쓰시오.",
       "choices": [],
-      "answerText": "[\n\\log\\frac{p}{1-p}\n=================\n\n\\beta_0+\\beta_1x\n]"
+      "answerText": "\\[\\log\\frac{p}{1-p} = \\beta_0+\\beta_1x\\]"
     },
     {
       "id": 88,
@@ -1499,23 +1499,23 @@
       "star": 0,
       "stem": "ReLU 함수를 식으로 쓰시오.",
       "choices": [],
-      "answerText": "[\nReLU(z)=\\max(0,z)\n]"
+      "answerText": "\\[ReLU(z)=\\max(0,z)\\]"
     },
     {
       "id": 92,
       "part": "short",
       "section": null,
       "star": 0,
-      "stem": "Hidden unit (h_d)의 일반적인 형태를 쓰시오.",
+      "stem": "Hidden unit \\(h_d\\)의 일반적인 형태를 쓰시오.",
       "choices": [],
-      "answerText": "단일 입력이면\n\n[\nh_d=a(\\theta_{d0}+\\theta_{d1}x)\n]\n\n다중 입력이면\n\n[\nh_d=a\\left(\\theta_{d0}+\\sum_j\\theta_{dj}x_j\\right)\n]\n\n이다."
+      "answerText": "단일 입력이면\n\n\\[h_d=a(\\theta_{d0}+\\theta_{d1}x)\\]\n\n다중 입력이면\n\n\\[h_d=a\\left(\\theta_{d0}+\\sum_j\\theta_{dj}x_j\\right)\\]\n\n이다."
     },
     {
       "id": 93,
       "part": "short",
       "section": null,
       "star": 0,
-      "stem": "보편적 근사 정리(Universal Approximation Theorem)의 핵심 내용을 쓰시오.",
+      "stem": "보편적 근사 정리\\(Universal Approximation Theorem\\)의 핵심 내용을 쓰시오.",
       "choices": [],
       "answerText": "충분히 많은 hidden unit을 가진 신경망은 임의의 연속함수를 원하는 정밀도로 근사할 수 있다는 정리이다."
     },
@@ -1524,9 +1524,9 @@
       "part": "short",
       "section": null,
       "star": 1,
-      "stem": "Gradient Descent의 parameter update 식을 쓰고 (\\alpha)가 무엇인지 쓰시오.",
+      "stem": "Gradient Descent의 parameter update 식을 쓰고 \\(\\alpha\\)가 무엇인지 쓰시오.",
       "choices": [],
-      "answerText": "[\n\\phi\n\\leftarrow\n\\phi-\\alpha\\frac{\\partial L}{\\partial\\phi}\n]\n\n(\\alpha)는 한 번의 업데이트에서 parameter가 이동하는 크기를 조절하는 **learning rate**다."
+      "answerText": "\\[\\phi\\leftarrow\\phi-\\alpha\\frac{\\partial L}{\\partial\\phi}\\]\n\n\\(\\alpha\\)는 한 번의 업데이트에서 parameter가 이동하는 크기를 조절하는 **learning rate**다."
     },
     {
       "id": 95,
@@ -1544,34 +1544,34 @@
       "star": 1,
       "stem": "단순선형회귀에서 최소제곱법을 사용하는 이유를 설명하시오. 답안에는 반드시 다음 용어를 포함하시오.\n**예측값 / 잔차 / RSS / 최소화 / 회귀계수**",
       "choices": [],
-      "answerText": "단순선형회귀에서는 입력 X로부터 예측값 (\\hat y_i)를 계산한다. 실제값 (y_i)와 예측값의 차이를 잔차 (e_i=y_i-\\hat y_i)라고 한다. 단순히 잔차를 더하면 양수와 음수가 상쇄될 수 있기 때문에 잔차를 제곱하여 더한\n\n[\nRSS=\\sum_i(y_i-\\hat y_i)^2\n]\n\n를 사용한다. 최소제곱법은 이 RSS를 최소화하는 회귀계수 (\\hat\\beta_0,\\hat\\beta_1)을 찾는 방법이다. 따라서 데이터에 가장 잘 맞는 회귀선을 선택하게 된다."
+      "answerText": "단순선형회귀에서는 입력 X로부터 예측값 \\(\\hat y_i\\)를 계산한다. 실제값 \\(y_i\\)와 예측값의 차이를 잔차 \\(e_i=y_i-\\hat y_i\\)라고 한다. 단순히 잔차를 더하면 양수와 음수가 상쇄될 수 있기 때문에 잔차를 제곱하여 더한\n\n\\[RSS=\\sum_i(y_i-\\hat y_i)^2\\]\n\n를 사용한다. 최소제곱법은 이 RSS를 최소화하는 회귀계수 \\(\\hat\\beta_0,\\hat\\beta_1\\)을 찾는 방법이다. 따라서 데이터에 가장 잘 맞는 회귀선을 선택하게 된다."
     },
     {
       "id": 97,
       "part": "essay",
       "section": null,
       "star": 2,
-      "stem": "광고 데이터에서 단순선형회귀 결과가 다음과 같다고 하자.\n* Intercept = 7.0325\n* TV coefficient = 0.0475\n* TV p-value < 0.0001\n* (R^2=0.612)\n각 수치의 의미를 모두 설명하시오.",
+      "stem": "광고 데이터에서 단순선형회귀 결과가 다음과 같다고 하자.\n* Intercept = 7.0325\n* TV coefficient = 0.0475\n* TV p-value < 0.0001\n* \\(R^2=0.612\\)\n각 수치의 의미를 모두 설명하시오.",
       "choices": [],
-      "answerText": "**Intercept=7.0325**는 TV 광고비가 0일 때 예상되는 평균 판매량이 약 7.03이라는 뜻이다.\n\n**TV coefficient=0.0475**는 TV 광고비가 1단위 증가하면 평균 판매량이 약 0.0475단위 증가한다는 뜻이다.\n\n**p-value < 0.0001**은 TV 광고비의 회귀계수가 0이라는 가설을 기각할 충분한 근거가 있으므로 TV 광고비와 매출 사이의 관계가 통계적으로 매우 유의하다는 뜻이다.\n\n**(R^2=0.612)**는 판매량 변동의 약 61.2%를 TV 광고비를 이용한 선형회귀모형이 설명한다는 뜻이다.\n\n단, 통계적으로 유의한 관계가 있다고 해서 TV 광고가 매출의 인과적 원인임이 자동으로 증명되는 것은 아니다."
+      "answerText": "**Intercept=7.0325**는 TV 광고비가 0일 때 예상되는 평균 판매량이 약 7.03이라는 뜻이다.\n\n**TV coefficient=0.0475**는 TV 광고비가 1단위 증가하면 평균 판매량이 약 0.0475단위 증가한다는 뜻이다.\n\n**p-value < 0.0001**은 TV 광고비의 회귀계수가 0이라는 가설을 기각할 충분한 근거가 있으므로 TV 광고비와 매출 사이의 관계가 통계적으로 매우 유의하다는 뜻이다.\n\n**\\(R^2=0.612\\)**는 판매량 변동의 약 61.2%를 TV 광고비를 이용한 선형회귀모형이 설명한다는 뜻이다.\n\n단, 통계적으로 유의한 관계가 있다고 해서 TV 광고가 매출의 인과적 원인임이 자동으로 증명되는 것은 아니다."
     },
     {
       "id": 98,
       "part": "essay",
       "section": null,
       "star": 2,
-      "stem": "다중선형회귀에서\n[\nY=\\beta_0+\\beta_1X_1+\\beta_2X_2+\\cdots+\\beta_pX_p+\\epsilon\n]\n일 때 (\\beta_j)를 어떻게 해석해야 하는지 설명하고, 단순 상관관계와 무엇이 다른지도 설명하시오.",
+      "stem": "다중선형회귀에서\n\\[Y=\\beta_0+\\beta_1X_1+\\beta_2X_2+\\cdots+\\beta_pX_p+\\epsilon\\]\n일 때 \\(\\beta_j\\)를 어떻게 해석해야 하는지 설명하고, 단순 상관관계와 무엇이 다른지도 설명하시오.",
       "choices": [],
-      "answerText": "다중선형회귀\n\n[\nY=\\beta_0+\\beta_1X_1+\\cdots+\\beta_pX_p+\\epsilon\n]\n\n에서 (\\beta_j)는 **다른 모든 독립변수를 고정한 상태에서** (X_j)가 1단위 증가할 때 Y가 평균적으로 얼마나 변화하는지를 나타낸다.\n\n따라서 단순 상관관계와 달리 다른 변수들의 효과를 어느 정도 통제한 상태에서 특정 변수의 관계를 해석할 수 있다. 하지만 이것만으로 인과관계를 증명할 수 있는 것은 아니다."
+      "answerText": "다중선형회귀\n\n\\[Y=\\beta_0+\\beta_1X_1+\\cdots+\\beta_pX_p+\\epsilon\\]\n\n에서 \\(\\beta_j\\)는 **다른 모든 독립변수를 고정한 상태에서** \\(X_j\\)가 1단위 증가할 때 Y가 평균적으로 얼마나 변화하는지를 나타낸다.\n\n따라서 단순 상관관계와 달리 다른 변수들의 효과를 어느 정도 통제한 상태에서 특정 변수의 관계를 해석할 수 있다. 하지만 이것만으로 인과관계를 증명할 수 있는 것은 아니다."
     },
     {
       "id": 99,
       "part": "essay",
       "section": null,
       "star": 3,
-      "stem": "다중선형회귀의 최소제곱 문제를\n[\nRSS=(y-X\\hat\\beta)^T(y-X\\hat\\beta)\n]\n로 표현했을 때,\n[\n\\hat\\beta=(X^TX)^{-1}X^Ty\n]\n가 어떤 의미의 해인지 설명하시오.\n※ 모든 미분 과정을 암기해서 쓰라는 문제가 아니라 **RSS 최소화와 정상방정식의 관계**를 설명할 것.",
+      "stem": "다중선형회귀의 최소제곱 문제를\n\\[RSS=(y-X\\hat\\beta)^T(y-X\\hat\\beta)\\]\n로 표현했을 때,\n\\[\\hat\\beta=(X^TX)^{-1}X^Ty\\]\n가 어떤 의미의 해인지 설명하시오.\n※ 모든 미분 과정을 암기해서 쓰라는 문제가 아니라 **RSS 최소화와 정상방정식의 관계**를 설명할 것.",
       "choices": [],
-      "answerText": "다중선형회귀에서는\n\n[\ny=X\\beta+\\epsilon\n]\n\n로 모델을 표현할 수 있다.\n\n예측값은 (X\\hat\\beta)이므로 잔차벡터는\n\n[\ny-X\\hat\\beta\n]\n\n이다.\n\n이를 제곱하여 모두 합한 RSS는\n\n[\nRSS=(y-X\\hat\\beta)^T(y-X\\hat\\beta)\n]\n\n가 된다.\n\nRSS가 최소가 되는 (\\hat\\beta)를 찾기 위해 (\\hat\\beta)에 대해 미분하고 0으로 두면 정상방정식을 얻고, 이를 풀면\n\n[\n\\hat\\beta=(X^TX)^{-1}X^Ty\n]\n\n가 된다.\n\n즉 이 식은 **관측값과 예측값 사이의 제곱오차를 가장 작게 만드는 회귀계수의 closed-form solution**이다."
+      "answerText": "다중선형회귀에서는\n\n\\[y=X\\beta+\\epsilon\\]\n\n로 모델을 표현할 수 있다.\n\n예측값은 \\(X\\hat\\beta\\)이므로 잔차벡터는\n\n\\[y-X\\hat\\beta\\]\n\n이다.\n\n이를 제곱하여 모두 합한 RSS는\n\n\\[RSS=(y-X\\hat\\beta)^T(y-X\\hat\\beta)\\]\n\n가 된다.\n\nRSS가 최소가 되는 \\(\\hat\\beta\\)를 찾기 위해 \\(\\hat\\beta\\)에 대해 미분하고 0으로 두면 정상방정식을 얻고, 이를 풀면\n\n\\[\\hat\\beta=(X^TX)^{-1}X^Ty\\]\n\n가 된다.\n\n즉 이 식은 **관측값과 예측값 사이의 제곱오차를 가장 작게 만드는 회귀계수의 closed-form solution**이다."
     },
     {
       "id": 100,
@@ -1580,7 +1580,7 @@
       "star": 0,
       "stem": "훈련 데이터에서 매우 좋은 성능을 보이는 모델이 새로운 데이터에서 반드시 좋은 성능을 보이지 않는 이유를 설명하고, 테스트셋이 필요한 이유를 함께 설명하시오.",
       "choices": [],
-      "answerText": "훈련 데이터는 이미 모델이 학습 과정에서 본 데이터이므로 훈련 데이터에 대한 성능이 좋아도 새로운 데이터에 대한 성능이 반드시 좋은 것은 아니다.\n\n특히 모델이 지나치게 복잡하면 훈련 데이터의 일반적인 패턴뿐 아니라 잡음까지 학습하는 **과적합(overfitting)**이 발생할 수 있다.\n\n따라서 학습에 사용하지 않은 테스트 데이터를 이용해 모델이 새로운 데이터에서도 잘 작동하는지, 즉 **일반화 성능**을 평가해야 한다."
+      "answerText": "훈련 데이터는 이미 모델이 학습 과정에서 본 데이터이므로 훈련 데이터에 대한 성능이 좋아도 새로운 데이터에 대한 성능이 반드시 좋은 것은 아니다.\n\n특히 모델이 지나치게 복잡하면 훈련 데이터의 일반적인 패턴뿐 아니라 잡음까지 학습하는 **과적합\\(overfitting\\)**이 발생할 수 있다.\n\n따라서 학습에 사용하지 않은 테스트 데이터를 이용해 모델이 새로운 데이터에서도 잘 작동하는지, 즉 **일반화 성능**을 평가해야 한다."
     },
     {
       "id": 101,
@@ -1598,16 +1598,16 @@
       "star": 1,
       "stem": "왜 이진 분류 문제에 선형회귀보다 로지스틱 회귀가 적합한지 설명하시오.\n답안에 다음을 포함할 것.\n**0~1 / 확률 / sigmoid / 선형모형**",
       "choices": [],
-      "answerText": "이진 분류에서 우리가 원하는 출력은 (Y=1)일 **확률**이다.\n\n선형회귀\n\n[\n\\beta_0+\\beta_1x\n]\n\n는 출력 범위에 제한이 없기 때문에 0보다 작거나 1보다 큰 값을 낼 수 있다.\n\n로지스틱 회귀는 선형모형의 결과를 sigmoid 함수\n\n[\n\\sigma(z)=\\frac1{1+e^{-z}}\n]\n\n에 통과시킨다.\n\nsigmoid 출력은 항상 0과 1 사이이므로 이를 (P(Y=1|X))와 같은 확률로 해석할 수 있다.\n\n따라서 이진 분류에는 선형회귀보다 로지스틱 회귀가 적합하다."
+      "answerText": "이진 분류에서 우리가 원하는 출력은 \\(Y=1\\)일 **확률**이다.\n\n선형회귀\n\n\\[\\beta_0+\\beta_1x\\]\n\n는 출력 범위에 제한이 없기 때문에 0보다 작거나 1보다 큰 값을 낼 수 있다.\n\n로지스틱 회귀는 선형모형의 결과를 sigmoid 함수\n\n\\[\\sigma(z)=\\frac1{1+e^{-z}}\\]\n\n에 통과시킨다.\n\nsigmoid 출력은 항상 0과 1 사이이므로 이를 \\(P(Y=1|X)\\)와 같은 확률로 해석할 수 있다.\n\n따라서 이진 분류에는 선형회귀보다 로지스틱 회귀가 적합하다."
     },
     {
       "id": 103,
       "part": "essay",
       "section": null,
       "star": 3,
-      "stem": "Odds와 Logit의 관계를 설명하고,\n[\np(x;\\beta)\n==========\n\\frac{e^{\\beta_0+\\beta_1x}}\n{1+e^{\\beta_0+\\beta_1x}}\n]\n에 logit 변환을 적용하면 왜\n[\n\\log\\frac{p}{1-p}\n=================\n\\beta_0+\\beta_1x\n]\n가 되는지 설명하시오.",
+      "stem": "Odds와 Logit의 관계를 설명하고,\n\\[p(x;\\beta) = \\frac{e^{\\beta_0+\\beta_1x}}{1+e^{\\beta_0+\\beta_1x}}\\]\n에 logit 변환을 적용하면 왜\n\\[\\log\\frac{p}{1-p} = \\beta_0+\\beta_1x\\]\n가 되는지 설명하시오.",
       "choices": [],
-      "answerText": "확률이 p일 때 odds는\n\n[\nodds=\\frac{p}{1-p}\n]\n\n이고 logit은 odds에 로그를 취한\n\n[\nlogit(p)=\\log\\frac{p}{1-p}\n]\n\n이다.\n\n로지스틱 회귀에서\n\n[\np=\n\\frac{e^{\\beta_0+\\beta_1x}}\n{1+e^{\\beta_0+\\beta_1x}}\n]\n\n라고 하면\n\n[\n1-p\n===\n\n\\frac1{1+e^{\\beta_0+\\beta_1x}}\n]\n\n이므로\n\n[\n\\frac{p}{1-p}\n=============\n\ne^{\\beta_0+\\beta_1x}\n]\n\n이다.\n\n양변에 log를 취하면\n\n[\n\\log\\frac{p}{1-p}\n=================\n\n\\beta_0+\\beta_1x\n]\n\n가 된다.\n\n따라서 확률 p는 X와 비선형 관계지만 **log-odds는 X와 선형 관계**가 된다."
+      "answerText": "확률이 p일 때 odds는\n\n\\[odds=\\frac{p}{1-p}\\]\n\n이고 logit은 odds에 로그를 취한\n\n\\[logit(p)=\\log\\frac{p}{1-p}\\]\n\n이다.\n\n로지스틱 회귀에서\n\n\\[p=\\frac{e^{\\beta_0+\\beta_1x}}{1+e^{\\beta_0+\\beta_1x}}\\]\n\n라고 하면\n\n\\[1-p = \\frac1{1+e^{\\beta_0+\\beta_1x}}\\]\n\n이므로\n\n\\[\\frac{p}{1-p} = e^{\\beta_0+\\beta_1x}\\]\n\n이다.\n\n양변에 log를 취하면\n\n\\[\\log\\frac{p}{1-p} = \\beta_0+\\beta_1x\\]\n\n가 된다.\n\n따라서 확률 p는 X와 비선형 관계지만 **log-odds는 X와 선형 관계**가 된다."
     },
     {
       "id": 104,
@@ -1616,7 +1616,7 @@
       "star": 3,
       "stem": "로지스틱 회귀에서 MLE를 이용하여 모수를 추정하는 과정을 설명하시오.\n답안에 반드시 다음을 포함할 것.\n**Likelihood → 최대화 → log-likelihood → 곱을 합으로 변환 → 반복적인 수치 최적화**\n자료에서 MLE 부분은 연속해서 `HARD`로 표시되어 있다.",
       "choices": [],
-      "answerText": "로지스틱 회귀에서는 입력 X에 대해 관측된 실제 label이 나타날 가능성을 나타내는 **likelihood**를 정의한다.\n\n학습의 목표는 likelihood를 최대화하는 (\\beta)를 찾는 것이며 이를 **Maximum Likelihood Estimation(MLE)**이라고 한다.\n\nLikelihood는 여러 데이터의 확률이 곱해진 형태이므로 계산과 미분이 불편하다. 그래서 log를 취하여 **log-likelihood**를 사용한다.\n\n로그를 취하면 곱셈이 덧셈으로 변해 계산이 쉬워지고, log 함수는 단조증가하므로 likelihood를 최대화하는 (\\beta)와 log-likelihood를 최대화하는 (\\beta)는 동일하다.\n\n이후 log-likelihood의 미분값을 이용해 반복적인 수치 최적화를 수행하여 최적의 (\\beta)를 찾는다."
+      "answerText": "로지스틱 회귀에서는 입력 X에 대해 관측된 실제 label이 나타날 가능성을 나타내는 **likelihood**를 정의한다.\n\n학습의 목표는 likelihood를 최대화하는 \\(\\beta\\)를 찾는 것이며 이를 **Maximum Likelihood Estimation\\(MLE\\)**이라고 한다.\n\nLikelihood는 여러 데이터의 확률이 곱해진 형태이므로 계산과 미분이 불편하다. 그래서 log를 취하여 **log-likelihood**를 사용한다.\n\n로그를 취하면 곱셈이 덧셈으로 변해 계산이 쉬워지고, log 함수는 단조증가하므로 likelihood를 최대화하는 \\(\\beta\\)와 log-likelihood를 최대화하는 \\(\\beta\\)는 동일하다.\n\n이후 log-likelihood의 미분값을 이용해 반복적인 수치 최적화를 수행하여 최적의 \\(\\beta\\)를 찾는다."
     },
     {
       "id": 105,
@@ -1625,16 +1625,16 @@
       "star": 1,
       "stem": "신용카드 Default 예제에서 Balance의 계수가 0.0055라고 하자.\n이 계수의 의미를 **확률 자체의 증가량으로 해석하면 안 되는 이유**와 함께 올바르게 설명하시오.",
       "choices": [],
-      "answerText": "Balance의 계수가 0.0055라는 것은 Balance가 1단위 증가할 때 Default 확률 자체가 0.0055 증가한다는 뜻이 아니다.\n\n로지스틱 회귀는\n\n[\n\\log\\frac{p}{1-p}\n=================\n\n\\beta_0+\\beta_1X\n]\n\n형태이기 때문에 (\\beta_1=0.0055)는 Balance가 1 증가할 때 **Default의 log-odds가 0.0055 증가한다**는 의미다.\n\n확률은 sigmoid를 거쳐 계산되므로 같은 X 증가량이라도 현재 X값에 따라 실제 확률 변화량은 달라질 수 있다."
+      "answerText": "Balance의 계수가 0.0055라는 것은 Balance가 1단위 증가할 때 Default 확률 자체가 0.0055 증가한다는 뜻이 아니다.\n\n로지스틱 회귀는\n\n\\[\\log\\frac{p}{1-p} = \\beta_0+\\beta_1X\\]\n\n형태이기 때문에 \\(\\beta_1=0.0055\\)는 Balance가 1 증가할 때 **Default의 log-odds가 0.0055 증가한다**는 의미다.\n\n확률은 sigmoid를 거쳐 계산되므로 같은 X 증가량이라도 현재 X값에 따라 실제 확률 변화량은 달라질 수 있다."
     },
     {
       "id": 106,
       "part": "essay",
       "section": null,
       "star": 2,
-      "stem": "Shallow Network에서\n[\nh_d=a[\\theta_{d0}+\\theta_{d1}x]\n]\n와\n[\ny=\\phi_0+\\sum_{d=1}^{D}\\phi_dh_d\n]\n가 각각 어떤 역할을 하는지 설명하고, ReLU 활성화 함수를 사용했을 때 왜 전체 출력이 piecewise linear function이 될 수 있는지 설명하시오.",
+      "stem": "Shallow Network에서\n\\[h_d=a[\\theta_{d0}+\\theta_{d1}x]\\]\n와\n\\[y=\\phi_0+\\sum_{d=1}^{D}\\phi_dh_d\\]\n가 각각 어떤 역할을 하는지 설명하고, ReLU 활성화 함수를 사용했을 때 왜 전체 출력이 piecewise linear function이 될 수 있는지 설명하시오.",
       "choices": [],
-      "answerText": "Hidden unit은\n\n[\nh_d=a(\\theta_{d0}+\\theta_{d1}x)\n]\n\n와 같이 입력 X를 먼저 선형변환한 뒤 활성화 함수 (a)를 적용한 값이다.\n\n최종 출력은\n\n[\ny=\\phi_0+\\sum_{d=1}^{D}\\phi_dh_d\n]\n\n처럼 여러 hidden unit을 가중합하여 계산한다.\n\nReLU를 활성화 함수로 사용하면 각 hidden unit은 특정 지점 전에는 0이고 이후에는 직선 형태를 갖는다.\n\n여러 ReLU hidden unit을 더하면 입력 구간별로 서로 다른 직선이 연결된 형태가 만들어지므로 전체 함수는 **piecewise linear function**이 된다."
+      "answerText": "Hidden unit은\n\n\\[h_d=a(\\theta_{d0}+\\theta_{d1}x)\\]\n\n와 같이 입력 X를 먼저 선형변환한 뒤 활성화 함수 \\(a\\)를 적용한 값이다.\n\n최종 출력은\n\n\\[y=\\phi_0+\\sum_{d=1}^{D}\\phi_dh_d\\]\n\n처럼 여러 hidden unit을 가중합하여 계산한다.\n\nReLU를 활성화 함수로 사용하면 각 hidden unit은 특정 지점 전에는 0이고 이후에는 직선 형태를 갖는다.\n\n여러 ReLU hidden unit을 더하면 입력 구간별로 서로 다른 직선이 연결된 형태가 만들어지므로 전체 함수는 **piecewise linear function**이 된다."
     },
     {
       "id": 107,
@@ -1650,9 +1650,9 @@
       "part": "essay",
       "section": null,
       "star": 3,
-      "stem": "신경망 학습을 다음 식과 연결하여 설명하시오.\n[\n\\hat\\phi=\\arg\\min_\\phi L[\\phi]\n]\n그리고 Gradient Descent에서\n[\n\\phi\n\\leftarrow\n\\phi-\\alpha\\frac{\\partial L}{\\partial\\phi}\n]\n를 사용하는 이유와 learning rate (\\alpha)의 역할을 설명하시오.\n자료는 경사하강법을 **기울기의 반대 방향으로 이동하여 손실함수를 줄이는 방법**으로 정의한다.",
+      "stem": "신경망 학습을 다음 식과 연결하여 설명하시오.\n\\[\\hat\\phi=\\arg\\min_\\phi L[\\phi]\\]\n그리고 Gradient Descent에서\n\\[\\phi\\leftarrow\\phi-\\alpha\\frac{\\partial L}{\\partial\\phi}\\]\n를 사용하는 이유와 learning rate \\(\\alpha\\)의 역할을 설명하시오.\n자료는 경사하강법을 **기울기의 반대 방향으로 이동하여 손실함수를 줄이는 방법**으로 정의한다.",
       "choices": [],
-      "answerText": "신경망 학습은\n\n[\n\\hat\\phi=\\arg\\min_\\phi L[\\phi]\n]\n\n즉 손실함수 (L)을 가장 작게 만드는 parameter (\\phi)를 찾는 과정이다.\n\nGradient\n\n[\n\\frac{\\partial L}{\\partial\\phi}\n]\n\n는 현재 parameter에서 손실함수가 가장 빠르게 증가하는 방향을 나타낸다.\n\n따라서 손실을 줄이려면 그 반대 방향으로 이동해야 한다.\n\n[\n\\phi\n\\leftarrow\n\\phi-\\alpha\n\\frac{\\partial L}{\\partial\\phi}\n]\n\n여기서 (\\alpha)는 learning rate로 한 번 업데이트할 때 얼마나 크게 이동할지를 결정한다.\n\n학습률이 너무 크면 최소점을 지나치거나 불안정해질 수 있고, 너무 작으면 학습이 매우 느려질 수 있다."
+      "answerText": "신경망 학습은\n\n\\[\\hat\\phi=\\arg\\min_\\phi L[\\phi]\\]\n\n즉 손실함수 \\(L\\)을 가장 작게 만드는 parameter \\(\\phi\\)를 찾는 과정이다.\n\nGradient\n\n\\[\\frac{\\partial L}{\\partial\\phi}\\]\n\n는 현재 parameter에서 손실함수가 가장 빠르게 증가하는 방향을 나타낸다.\n\n따라서 손실을 줄이려면 그 반대 방향으로 이동해야 한다.\n\n\\[\\phi\\leftarrow\\phi-\\alpha\\frac{\\partial L}{\\partial\\phi}\\]\n\n여기서 \\(\\alpha\\)는 learning rate로 한 번 업데이트할 때 얼마나 크게 이동할지를 결정한다.\n\n학습률이 너무 크면 최소점을 지나치거나 불안정해질 수 있고, 너무 작으면 학습이 매우 느려질 수 있다."
     },
     {
       "id": 109,
@@ -1661,7 +1661,7 @@
       "star": 3,
       "stem": "Backpropagation이 필요한 이유를 설명하시오.\n다음 개념을 모두 사용하시오.\n**Forward propagation / Loss / Chain rule / Gradient / Parameter update**",
       "choices": [],
-      "answerText": "먼저 **Forward propagation**을 통해 입력 데이터를 각 layer에 전달하여 최종 예측값을 구한다.\n\n예측값과 실제값을 비교해 **Loss**를 계산한다.\n\n모델 학습을 위해서는 각 parameter가 Loss에 얼마나 영향을 미치는지, 즉 **Gradient**를 알아야 한다.\n\nDeep Network에서는 parameter가 여러 층을 거쳐 loss에 영향을 주므로 직접 계산하기 복잡하다.\n\n따라서 Backpropagation은 최종 loss에서 시작해 네트워크를 역방향으로 이동하면서 **Chain Rule**을 이용해 각 parameter의 gradient를 효율적으로 계산한다.\n\n계산된 gradient를 이용해\n\n[\n\\phi\n\\leftarrow\n\\phi-\\alpha\\nabla_\\phi L\n]\n\n과 같이 parameter를 업데이트한다."
+      "answerText": "먼저 **Forward propagation**을 통해 입력 데이터를 각 layer에 전달하여 최종 예측값을 구한다.\n\n예측값과 실제값을 비교해 **Loss**를 계산한다.\n\n모델 학습을 위해서는 각 parameter가 Loss에 얼마나 영향을 미치는지, 즉 **Gradient**를 알아야 한다.\n\nDeep Network에서는 parameter가 여러 층을 거쳐 loss에 영향을 주므로 직접 계산하기 복잡하다.\n\n따라서 Backpropagation은 최종 loss에서 시작해 네트워크를 역방향으로 이동하면서 **Chain Rule**을 이용해 각 parameter의 gradient를 효율적으로 계산한다.\n\n계산된 gradient를 이용해\n\n\\[\\phi\\leftarrow\\phi-\\alpha\\nabla_\\phi L\\]\n\n과 같이 parameter를 업데이트한다."
     },
     {
       "id": 110,
@@ -1670,9 +1670,9 @@
       "star": 3,
       "stem": "다음 흐름을 하나의 머신러닝 학습 과정으로 연결하여 설명하시오.\n**입력 데이터\n→ 모델\n→ parameter\n→ 예측값\n→ loss\n→ gradient\n→ backpropagation\n→ parameter update\n→ 반복 학습**\n마지막으로 **SGD가 전체 데이터가 아니라 일부 mini-batch를 사용할 수 있는 이유와 장점**까지 설명하시오.\n자료의 최종 정리에서도 Gradient Descent는 전체 손실의 기울기를 계산하는 반면, SGD는 일부 mini-batch로 기울기를 계산하여 **계산 비용이 작고 큰 데이터셋에 적용하기 쉽다**고 정리한다.",
       "choices": [],
-      "answerText": "1. **입력 데이터** X가 모델에 들어간다.\n2. 모델의 현재 **parameter**를 이용해 **Forward propagation**을 수행한다.\n3. 모델에서 **예측값** (\\hat y)를 얻는다.\n4. 실제값 y와 예측값을 비교하여 **loss**를 계산한다.\n5. 각 parameter가 loss에 미치는 영향을 나타내는 **gradient**가 필요하다.\n6. 신경망에서는 **backpropagation**을 통해 chain rule을 이용해 gradient를 계산한다.\n7. Gradient Descent를 이용해\n\n[\n\\phi\n\\leftarrow\n\\phi-\\alpha\\nabla_\\phi L\n]\n\n로 parameter를 업데이트한다.\n8. 이 과정을 여러 번 반복하면서 loss가 작아지는 parameter를 학습한다.\n\n일반 Gradient Descent는 전체 데이터의 gradient를 계산한다.\n\n반면 **SGD 또는 mini-batch SGD**는 전체 데이터가 아니라 일부 데이터만 이용해 gradient를 근사한다.\n\n따라서 한 번의 업데이트에 필요한 계산량과 메모리가 줄어 **큰 데이터셋에 효율적**이며 parameter를 더 자주 업데이트할 수 있다.\n\n다만 일부 데이터로 계산하기 때문에 gradient에 노이즈가 존재해 업데이트 방향이 흔들릴 수 있다. 이 노이즈 때문에 오히려 특정 local minimum이나 saddle point 부근에서 빠져나오는 데 도움이 될 수도 있다. 자료에서도 SGD의 핵심 장점으로 일부 mini-batch를 이용해 계산 비용을 줄이고 큰 데이터셋에 적용하기 쉽다는 점을 강조한다."
+      "answerText": "1. **입력 데이터** X가 모델에 들어간다.\n2. 모델의 현재 **parameter**를 이용해 **Forward propagation**을 수행한다.\n3. 모델에서 **예측값** \\(\\hat y\\)를 얻는다.\n4. 실제값 y와 예측값을 비교하여 **loss**를 계산한다.\n5. 각 parameter가 loss에 미치는 영향을 나타내는 **gradient**가 필요하다.\n6. 신경망에서는 **backpropagation**을 통해 chain rule을 이용해 gradient를 계산한다.\n7. Gradient Descent를 이용해\n\n\\[\\phi\\leftarrow\\phi-\\alpha\\nabla_\\phi L\\]\n\n로 parameter를 업데이트한다.\n8. 이 과정을 여러 번 반복하면서 loss가 작아지는 parameter를 학습한다.\n\n일반 Gradient Descent는 전체 데이터의 gradient를 계산한다.\n\n반면 **SGD 또는 mini-batch SGD**는 전체 데이터가 아니라 일부 데이터만 이용해 gradient를 근사한다.\n\n따라서 한 번의 업데이트에 필요한 계산량과 메모리가 줄어 **큰 데이터셋에 효율적**이며 parameter를 더 자주 업데이트할 수 있다.\n\n다만 일부 데이터로 계산하기 때문에 gradient에 노이즈가 존재해 업데이트 방향이 흔들릴 수 있다. 이 노이즈 때문에 오히려 특정 local minimum이나 saddle point 부근에서 빠져나오는 데 도움이 될 수도 있다. 자료에서도 SGD의 핵심 장점으로 일부 mini-batch를 이용해 계산 비용을 줄이고 큰 데이터셋에 적용하기 쉽다는 점을 강조한다."
     }
   ],
   "studyGuide": "## 이 110문제를 공부하는 방법\n\n이걸 **1번부터 110번까지 한 번 풀고 끝내면 안 돼.** 목적이 슬라이드를 다시 안 보고 문제은행으로 복습하는 거니까 이렇게 하는 게 좋아.\n\n**1회차:** 객관식 1~70 → 모르는 문제 표시\n**2회차:** 단답 71~95 → 공식과 용어를 직접 써보기\n**3회차:** 서술 96~110 → 말로 설명할 수 있는지 확인\n**마지막:** 틀린 객관식 + 답 못 쓴 단답/서술만 다시 풀기\n\n특히 시험 직전 최우선은 **10, 19, 23, 41~49, 60, 68~70, 74, 78, 87, 94~95, 97~99, 103~104, 106, 108~110번**이야. 이쪽이 자료에서 수식·HARD 표시·확인문제·단계별 설명이 집중된 부분이다. 그리고 후반 자료의 확인문제 자체도 Loss, Gradient Descent, SGD, Convex, learning rate, local minima를 직접 묻고 있어서 이 영역은 출제 대비 가치가 높아.  \n\n**다음에는 이 110개에 대한 `정답 + 틀린 선지가 왜 틀렸는지 + 주관식/서술형 모범답안`을 붙이면 그게 사실상 네 시험용 요약본이 된다.**",
-  "appendix": "### 시험 직전에 이것만은 외워\n\n진짜 시간이 부족하면 이 연결만 머릿속에 잡아두면 돼.\n\n**선형회귀:**\n(Y=\\beta_0+\\beta_1X+\\epsilon) → 잔차 → RSS → 최소제곱법 → (R^2), p-value\n\n**다중회귀:**\n다른 변수 고정 → (\\beta_j) 해석 → (y=X\\beta+\\epsilon) → ((X^TX)^{-1}X^Ty) → 다중공선성\n\n**로지스틱:**\n분류 → sigmoid → probability → odds (p/(1-p)) → logit → 선형식 → likelihood → MLE\n\n**신경망:**\n선형변환 → activation → hidden unit → weighted sum → shallow → deep\n\n**학습:**\nprediction → loss → gradient → backpropagation → gradient descent → parameter update → 반복\n\n이 5줄 흐름이 연결되면 서술형도 훨씬 쓰기 쉬워진다."
+  "appendix": "### 시험 직전에 이것만은 외워\n\n진짜 시간이 부족하면 이 연결만 머릿속에 잡아두면 돼.\n\n**선형회귀:**\n\\(Y=\\beta_0+\\beta_1X+\\epsilon\\) → 잔차 → RSS → 최소제곱법 → \\(R^2\\), p-value\n\n**다중회귀:**\n다른 변수 고정 → \\(\\beta_j\\) 해석 → \\(y=X\\beta+\\epsilon\\) → \\((X^TX)^{-1}X^Ty\\) → 다중공선성\n\n**로지스틱:**\n분류 → sigmoid → probability → odds \\(p/(1-p)\\) → logit → 선형식 → likelihood → MLE\n\n**신경망:**\n선형변환 → activation → hidden unit → weighted sum → shallow → deep\n\n**학습:**\nprediction → loss → gradient → backpropagation → gradient descent → parameter update → 반복\n\n이 5줄 흐름이 연결되면 서술형도 훨씬 쓰기 쉬워진다."
 }
