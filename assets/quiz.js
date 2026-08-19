@@ -101,20 +101,21 @@ function renderStatusChip(card, q, progress) {
 
 function applyMcResult(card, q, progress) {
   const p = progress[q.id];
+  const answered = !!(p && p.selected !== undefined);
   const buttons = card.querySelectorAll(".choice");
   buttons.forEach((btn) => {
     const idx = Number(btn.dataset.idx);
+    btn.classList.remove("locked", "correct-choice", "wrong-choice", "picked");
+    if (!answered) return;
     btn.classList.add("locked");
-    if (p && idx === q.answerIndex) btn.classList.add("correct-choice");
-    if (p && idx === p.selected && idx !== q.answerIndex) btn.classList.add("wrong-choice");
-    if (p && idx === p.selected) btn.classList.add("picked");
+    if (idx === q.answerIndex) btn.classList.add("correct-choice");
+    if (idx === p.selected && idx !== q.answerIndex) btn.classList.add("wrong-choice");
+    if (idx === p.selected) btn.classList.add("picked");
   });
   const slot = card.querySelector(".explanation-slot");
-  if (p && p.selected !== undefined) {
-    slot.innerHTML = `<div class="explanation"><span class="label">해설</span>${formatText(q.explanation || "(해설 없음)")}</div>`;
-  } else {
-    slot.innerHTML = "";
-  }
+  slot.innerHTML = answered
+    ? `<div class="explanation"><span class="label">해설</span>${formatText(q.explanation || "(해설 없음)")}</div>`
+    : "";
 }
 
 function applyShortEssayResult(card, q, progress) {
