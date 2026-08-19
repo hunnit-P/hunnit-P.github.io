@@ -17,6 +17,7 @@ data/{chapter}.json 을 생성하고 data/manifest.json 을 갱신한다.
   숫자 없는 #/##/### 헤더가 나오면(문제 파싱 이후) -> 이후 전부 appendix 로 수집
 """
 import json
+import random
 import re
 import sys
 import unicodedata
@@ -338,6 +339,11 @@ def convert_inline_parens(line):
                 )
                 if looks_like_math:
                     result.append("\\(" + fix_bare_math_functions(inner) + "\\)")
+                    # 렌더링된 수식 바로 뒤에 공백 없이 한글/영문/숫자가 붙으면
+                    # (예: '(h_t=W)만' -> 'h_t=W만'처럼 수식에 조사가 딱 붙어버림)
+                    # 읽기 어려우니 공백을 하나 끼워 넣는다.
+                    if j < n and re.match(r"[0-9A-Za-z가-힣]", line[j]):
+                        result.append(" ")
                 else:
                     result.append(line[i:j])
                 i = j
@@ -372,6 +378,24 @@ def normalize_math(text):
     return "\n".join(out)
 
 
+def shuffle_choices(chapter_id, item):
+    """
+    소스 자료가 정답을 압도적으로 ①번에 몰아서 써놔서(찍기만 해도 잘 맞는
+    문제), 보기 4개의 순서를 문제별로 결정론적으로 섞어 정답 위치를
+    고르게 분산시킨다. 시드가 (chapter_id, 문제번호) 기반이라 매번 빌드해도
+    같은 문제는 항상 같은 순서로 나온다.
+    """
+    if item["part"] != "mc" or item.get("answerIndex") is None:
+        return
+    if len(item["choices"]) != 4:
+        return
+    rng = random.Random(f"{chapter_id}-{item['id']}")
+    order = [0, 1, 2, 3]
+    rng.shuffle(order)
+    item["choices"] = [item["choices"][k] for k in order]
+    item["answerIndex"] = order.index(item["answerIndex"])
+
+
 def build_chapter(chapter_id: str, problem_path: Path, answer_path: Path):
     questions, guide_text = parse_questions(problem_path)
     answers, appendix_text = parse_answers(answer_path)
@@ -396,6 +420,7 @@ def build_chapter(chapter_id: str, problem_path: Path, answer_path: Path):
             letter = a.get("answer_letter")
             item["answerIndex"] = LETTER_INDEX.get(letter, None)
             item["explanation"] = normalize_math(a.get("explanation", ""))
+            shuffle_choices(chapter_id, item)
         else:
             item["answerText"] = normalize_math(a.get("explanation", ""))
         merged.append(item)
