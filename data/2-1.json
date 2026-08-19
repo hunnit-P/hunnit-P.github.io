@@ -278,7 +278,7 @@
         "name": "원-핫 인코딩과 워드 임베딩"
       },
       "star": 0,
-      "stem": "Skip-gram의 장점으로 강의자료에서 제시된 것은?",
+      "stem": "Skip-gram의 장점으로 제시된 것은?",
       "choices": [
         "학습 속도가 항상 CBOW보다 빠르다.",
         "적은 데이터에서도 잘 동작하고 희귀 단어나 구 표현에 강하다.",
@@ -286,7 +286,7 @@
         "주변 단어를 입력으로만 사용한다."
       ],
       "answerIndex": 1,
-      "explanation": "강의자료는 Skip-gram이 적은 데이터에서도 잘 동작하고 희귀 단어나 구 표현에 강한 대신 학습 속도가 느릴 수 있다고 정리한다."
+      "explanation": "Skip-gram이 적은 데이터에서도 잘 동작하고 희귀 단어나 구 표현에 강한 대신 학습 속도가 느릴 수 있다고 정리한다."
     },
     {
       "id": 15,
@@ -296,7 +296,7 @@
         "name": "원-핫 인코딩과 워드 임베딩"
       },
       "star": 0,
-      "stem": "CBOW의 장점으로 강의자료에서 제시된 것은?",
+      "stem": "CBOW의 장점으로 제시된 것은?",
       "choices": [
         "희귀 단어에 특히 강하다.",
         "학습 속도가 빠르고 자주 나오는 단어에 강하다.",
@@ -350,7 +350,7 @@
         "name": "순차적 데이터"
       },
       "star": 0,
-      "stem": "강의자료에서 순차적 데이터의 예로 제시되지 않은 것은?",
+      "stem": "순차적 데이터의 예로 제시되지 않은 것은?",
       "choices": [
         "오디오",
         "텍스트",
@@ -358,7 +358,7 @@
         "무작위로 섞인 독립 표본만으로 구성된 표"
       ],
       "answerIndex": 3,
-      "explanation": "강의자료는 오디오, 텍스트, 비디오 등을 대표적인 순차적 데이터로 제시한다."
+      "explanation": "오디오, 텍스트, 비디오 등을 대표적인 순차적 데이터로 제시한다."
     },
     {
       "id": 19,
@@ -422,7 +422,7 @@
         "name": "순차적 데이터"
       },
       "star": 0,
-      "stem": "순차적 데이터를 처리하기 위한 모델의 예로 강의자료에서 제시된 조합은?",
+      "stem": "순차적 데이터를 처리하기 위한 모델의 예로 제시된 조합은?",
       "choices": [
         "RNN, LSTM, Transformer",
         "K-means, PCA, DBSCAN",
@@ -430,7 +430,7 @@
         "선형 회귀만"
       ],
       "answerIndex": 0,
-      "explanation": "강의자료는 순차적 데이터를 위한 대표적 Sequential Models로 RNN, LSTM, Transformer를 제시한다."
+      "explanation": "순차적 데이터를 위한 대표적 Sequential Models로 RNN, LSTM, Transformer를 제시한다."
     },
     {
       "id": 23,
@@ -584,7 +584,7 @@
         "name": "RNN"
       },
       "star": 0,
-      "stem": "기본 RNN의 중요한 문제로 강의자료에서 강조된 것은?",
+      "stem": "기본 RNN의 중요한 문제로 강조된 것은?",
       "choices": [
         "장기 의존성 학습의 어려움",
         "임베딩을 전혀 사용할 수 없음",
@@ -962,7 +962,7 @@
         "name": "Self-Attention"
       },
       "star": 0,
-      "stem": "강의자료에서 positional encoding의 방법으로 제시된 것은?",
+      "stem": "positional encoding의 방법으로 제시된 것은?",
       "choices": [
         "Sinusoidal Position Encoding과 Learned Absolute Position Embedding",
         "K-means와 PCA",
@@ -970,7 +970,7 @@
         "RNN과 LSTM"
       ],
       "answerIndex": 0,
-      "explanation": "강의자료는 sinusoidal 방식과 학습 가능한 absolute position embedding을 대표적인 위치 표현 방법으로 제시한다."
+      "explanation": "sinusoidal 방식과 학습 가능한 absolute position embedding을 대표적인 위치 표현 방법으로 제시한다."
     },
     {
       "id": 53,
