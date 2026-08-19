@@ -1,0 +1,321 @@
+#!/usr/bin/env python3
+"""
+source/{chapter}문제.md + source/{chapter}해설.md 를 파싱해서
+data/{chapter}.json 을 생성하고 data/manifest.json 을 갱신한다.
+
+문제.md 포맷 규칙
+  # PART N. <객관식|단답형|서술형> ...   -> 파트 구분
+  ## X. 이름                            -> 섹션 구분 (X: A,B,C...)
+  ### N.  또는  ### N. ★ / ★★ / ★★★     -> 문제 번호 + 난이도(별 개수)
+  ① ② ③ ④ 로 시작하는 줄               -> 객관식 보기
+  그 외 텍스트                          -> 문제 본문 또는 보기 뒤에 오면 참고 노트
+  ## 이 N문제를 공부하는 방법 (숫자 없는 ## 헤더) -> 이후 전부 studyGuide 로 수집
+
+해설.md 포맷 규칙
+  ## N. <제목/★>  또는  ### N. <①~④> <★...>  -> 문제 번호 (+ 객관식 정답 기호)
+  그 외 텍스트                                 -> 해설/모범답안 본문
+  숫자 없는 #/##/### 헤더가 나오면(문제 파싱 이후) -> 이후 전부 appendix 로 수집
+"""
+import json
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+SOURCE_DIR = ROOT / "source"
+DATA_DIR = ROOT / "data"
+
+CIRCLED = ["①", "②", "③", "④"]
+
+PART_RE = re.compile(r"^#\s*PART\s*\d+\.\s*(.+)$")
+# 섹션 헤더는 원본에서 '#'과 '##'가 혼용되어 있어 둘 다 허용한다.
+SECTION_RE = re.compile(r"^#{1,2}\s+([A-Z])\.\s+(.+)$")
+GENERIC_H2_RE = re.compile(r"^##\s+(.+)$")
+QUESTION_RE = re.compile(r"^###\s+(\d+)\.\s*(.*)$")
+
+
+def part_key(title: str) -> str:
+    if "객관식" in title:
+        return "mc"
+    if "단답형" in title:
+        return "short"
+    if "서술형" in title:
+        return "essay"
+    return "mc"
+
+
+def clean_lines(lines):
+    # 앞뒤 빈 줄 제거, 내부 개행은 보존
+    while lines and lines[0].strip() == "":
+        lines.pop(0)
+    while lines and lines[-1].strip() == "":
+        lines.pop()
+    return "\n".join(lines).strip()
+
+
+def parse_questions(md_path: Path):
+    lines = md_path.read_text(encoding="utf-8").splitlines()
+
+    questions = []
+    current_part = None
+    current_section = None  # (key, name)
+    current_q = None
+    collecting_guide = False
+    guide_lines = []
+
+    def flush():
+        nonlocal current_q
+        if current_q is None:
+            return
+        q = current_q
+        stem = clean_lines(q["stem_lines"])
+        choices = [c.strip() for c in q["choices"]]
+        note = clean_lines(q.get("note_lines", []))
+        item = {
+            "id": q["id"],
+            "part": q["part"],
+            "section": q["section"],
+            "star": q["star"],
+            "stem": stem,
+            "choices": choices,
+        }
+        if note:
+            item["note"] = note
+        questions.append(item)
+        current_q = None
+
+    for raw in lines:
+        line = raw.rstrip("\n")
+
+        if collecting_guide:
+            guide_lines.append(line)
+            continue
+
+        m_part = PART_RE.match(line)
+        if m_part:
+            flush()
+            current_part = part_key(m_part.group(1))
+            current_section = None
+            continue
+
+        m_section = SECTION_RE.match(line)
+        if m_section:
+            flush()
+            current_section = {"key": m_section.group(1), "name": m_section.group(2).strip()}
+            continue
+
+        m_generic_h2 = GENERIC_H2_RE.match(line)
+        if m_generic_h2 and current_part is not None:
+            # 숫자 없는 '## ' 헤더 = 문제 구간 종료, 이후는 스터디 가이드
+            flush()
+            collecting_guide = True
+            guide_lines.append(line)
+            continue
+
+        m_q = QUESTION_RE.match(line)
+        if m_q:
+            flush()
+            qid = int(m_q.group(1))
+            rest = m_q.group(2)
+            star = rest.count("★")
+            current_q = {
+                "id": qid,
+                "part": current_part,
+                "section": current_section,
+                "star": star,
+                "stem_lines": [],
+                "choices": [],
+                "note_lines": [],
+            }
+            continue
+
+        if current_q is None:
+            continue
+
+        stripped = line.strip()
+        if stripped == "---":
+            continue
+        if stripped == "":
+            continue
+        if stripped[0] in CIRCLED:
+            current_q["choices"].append(stripped[1:].strip())
+            continue
+
+        if current_q["choices"]:
+            current_q["note_lines"].append(line)
+        else:
+            current_q["stem_lines"].append(line)
+
+    flush()
+    guide_text = clean_lines(guide_lines) if guide_lines else ""
+    return questions, guide_text
+
+
+ANSWER_HEADER_RE = re.compile(r"^#{1,3}\s+(\d+)\.\s*(.*)$")
+
+
+def parse_answers(md_path: Path):
+    lines = md_path.read_text(encoding="utf-8").splitlines()
+
+    answers = {}
+    current_id = None
+    current_letter = None
+    body_lines = []
+    collecting_appendix = False
+    appendix_lines = []
+
+    def flush():
+        nonlocal current_id, current_letter, body_lines
+        if current_id is None:
+            return
+        answers[current_id] = {
+            "answer_letter": current_letter,
+            "explanation": clean_lines(body_lines),
+        }
+        current_id = None
+        current_letter = None
+        body_lines = []
+
+    for raw in lines:
+        line = raw.rstrip("\n")
+
+        if collecting_appendix:
+            appendix_lines.append(line)
+            continue
+
+        m = ANSWER_HEADER_RE.match(line)
+        if m:
+            flush()
+            current_id = int(m.group(1))
+            rest = m.group(2).strip()
+            current_letter = rest[0] if rest and rest[0] in CIRCLED else None
+            body_lines = []
+            continue
+
+        # h1('# ...')은 중간 구간을 나누는 장식용 제목(예: "# 다중선형회귀")이거나
+        # 맨 위 인트로 문장이므로 그냥 무시한다 (부록 트리거 아님).
+        if re.match(r"^#\s+\S", line):
+            continue
+
+        # 숫자가 없는 h2/h3(예: "### 시험 직전에 이것만은 외워")가 나오면
+        # 그 지점부터는 문제/정답 구간이 끝난 부록으로 간주한다.
+        if re.match(r"^#{2,3}\s+\S", line) and current_id is not None:
+            flush()
+            collecting_appendix = True
+            appendix_lines.append(line)
+            continue
+
+        if current_id is None:
+            continue
+
+        if line.strip() == "---":
+            continue
+
+        body_lines.append(line)
+
+    flush()
+    appendix_text = clean_lines(appendix_lines) if appendix_lines else ""
+    return answers, appendix_text
+
+
+LETTER_INDEX = {c: i for i, c in enumerate(CIRCLED)}
+
+
+def build_chapter(chapter_id: str, problem_path: Path, answer_path: Path):
+    questions, guide_text = parse_questions(problem_path)
+    answers, appendix_text = parse_answers(answer_path)
+
+    sections = []
+    seen = set()
+
+    merged = []
+    for q in questions:
+        a = answers.get(q["id"], {})
+        item = dict(q)
+        if q["section"] and q["section"]["key"] not in seen:
+            seen.add(q["section"]["key"])
+            sections.append(q["section"])
+
+        if q["part"] == "mc":
+            letter = a.get("answer_letter")
+            item["answerIndex"] = LETTER_INDEX.get(letter, None)
+            item["explanation"] = a.get("explanation", "")
+        else:
+            item["answerText"] = a.get("explanation", "")
+        merged.append(item)
+
+    counts = {
+        "mc": sum(1 for q in merged if q["part"] == "mc"),
+        "short": sum(1 for q in merged if q["part"] == "short"),
+        "essay": sum(1 for q in merged if q["part"] == "essay"),
+    }
+
+    chapter = {
+        "id": chapter_id,
+        "sections": sections,
+        "counts": counts,
+        "questions": merged,
+        "studyGuide": guide_text,
+        "appendix": appendix_text,
+    }
+    return chapter
+
+
+def main():
+    DATA_DIR.mkdir(exist_ok=True)
+    problem_files = sorted(SOURCE_DIR.glob("*문제.md"))
+
+    manifest_chapters = []
+
+    for problem_path in problem_files:
+        chapter_id_raw = problem_path.name.replace("문제.md", "")
+        chapter_id = chapter_id_raw.replace("_", "-")
+        answer_path = SOURCE_DIR / f"{chapter_id_raw}해설.md"
+        if not answer_path.exists():
+            print(f"[skip] {chapter_id}: 해설 파일 없음 ({answer_path.name})")
+            continue
+
+        chapter = build_chapter(chapter_id, problem_path, answer_path)
+        out_path = DATA_DIR / f"{chapter_id}.json"
+        out_path.write_text(
+            json.dumps(chapter, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+
+        section_names = " · ".join(s["name"] for s in chapter["sections"])
+        counts = chapter["counts"]
+        total = counts["mc"] + counts["short"] + counts["essay"]
+        print(
+            f"[ok] {chapter_id}: 총 {total}문항 "
+            f"(객관식 {counts['mc']} / 단답 {counts['short']} / 서술 {counts['essay']})"
+        )
+
+        manifest_chapters.append(
+            {
+                "id": chapter_id,
+                "title": section_names or chapter_id,
+                "counts": counts,
+                "available": True,
+            }
+        )
+
+    # source에 파일이 아직 없는 예정 챕터도 목록에 노출 (준비중)
+    planned = ["1-1", "1-2", "2-1", "2-2", "3-1", "3-2"]
+    have = {c["id"] for c in manifest_chapters}
+    for cid in planned:
+        if cid not in have:
+            manifest_chapters.append(
+                {"id": cid, "title": "", "counts": {"mc": 0, "short": 0, "essay": 0}, "available": False}
+            )
+
+    order = {cid: i for i, cid in enumerate(planned)}
+    manifest_chapters.sort(key=lambda c: order.get(c["id"], 999))
+
+    manifest = {"chapters": manifest_chapters}
+    (DATA_DIR / "manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    print(f"[ok] manifest.json 갱신 ({len(manifest_chapters)}개 챕터)")
+
+
+if __name__ == "__main__":
+    main()

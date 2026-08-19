@@ -1,0 +1,64 @@
+{
+  "chapters": [
+    {
+      "id": "1-1",
+      "title": "",
+      "counts": {
+        "mc": 0,
+        "short": 0,
+        "essay": 0
+      },
+      "available": false
+    },
+    {
+      "id": "1-2",
+      "title": "선형회귀 · 다중선형회귀 · 일반화·다중공선성 · 분류와 로지스틱 회귀 · Odds / Logit / MLE ★ · 신경망 / Shallow Network · 다중 입력/출력·Deep Network · 손실함수 / Gradient Descent / Backpropagation",
+      "counts": {
+        "mc": 70,
+        "short": 25,
+        "essay": 15
+      },
+      "available": true
+    },
+    {
+      "id": "2-1",
+      "title": "",
+      "counts": {
+        "mc": 0,
+        "short": 0,
+        "essay": 0
+      },
+      "available": false
+    },
+    {
+      "id": "2-2",
+      "title": "",
+      "counts": {
+        "mc": 0,
+        "short": 0,
+        "essay": 0
+      },
+      "available": false
+    },
+    {
+      "id": "3-1",
+      "title": "",
+      "counts": {
+        "mc": 0,
+        "short": 0,
+        "essay": 0
+      },
+      "available": false
+    },
+    {
+      "id": "3-2",
+      "title": "",
+      "counts": {
+        "mc": 0,
+        "short": 0,
+        "essay": 0
+      },
+      "available": false
+    }
+  ]
+}
