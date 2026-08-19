@@ -45,6 +45,12 @@ def part_key(title: str) -> str:
     return "mc"
 
 
+def strip_hardbreak(s):
+    # 일부 소스는 줄 끝에 markdown hard-break용 '\'를 붙여둔다 (문단이 하나로
+    # 합쳐지지 않도록 강제 줄바꿈시키는 용도). 렌더링에는 필요 없으므로 제거.
+    return s[:-1].rstrip() if s.endswith("\\") else s
+
+
 def clean_lines(lines):
     # 앞뒤 빈 줄 제거, 내부 개행은 보존
     while lines and lines[0].strip() == "":
@@ -139,13 +145,20 @@ def parse_questions(md_path: Path):
         if stripped == "":
             continue
         if stripped[0] in CIRCLED:
-            current_q["choices"].append(stripped[1:].strip())
+            current_q["choices"].append(strip_hardbreak(stripped[1:].strip()))
+            continue
+
+        choices = current_q["choices"]
+        if choices and len(choices) < 4:
+            # 보기 하나가 길어서 줄바꿈(markdown hard-break '\')된 경우:
+            # 다음 줄에 ①~④ 표시가 없으면 직전 보기의 이어지는 내용이다.
+            choices[-1] = (choices[-1] + " " + strip_hardbreak(stripped)).strip()
             continue
 
         if current_q["choices"]:
-            current_q["note_lines"].append(line)
+            current_q["note_lines"].append(strip_hardbreak(line))
         else:
-            current_q["stem_lines"].append(line)
+            current_q["stem_lines"].append(strip_hardbreak(line))
 
     flush()
     guide_text = clean_lines(guide_lines) if guide_lines else ""
@@ -157,6 +170,16 @@ ANSWER_HEADER_RE = re.compile(r"^#{1,3}\s+(\d+)\.\s*(.*)$")
 
 def parse_answers(md_path: Path):
     lines = md_path.read_text(encoding="utf-8").splitlines()
+
+    # 숫자 없는 '#'/'##'/'###' 헤더는 두 가지 역할을 한다: 문제 구간
+    # 중간에 끼어드는 장식용 제목(예: "# 다중선형회귀", "## 단답형 정답")
+    # 이거나, 맨 마지막 문제 뒤에 오는 진짜 부록("## 시험 직전 핵심 요약")
+    # 이다. 마지막 문제 번호 헤더의 위치를 미리 찾아, 그 이후에 나오는
+    # 것만 부록으로 취급하고 그 전의 것은 조용히 건너뛴다.
+    last_q_idx = -1
+    for idx, raw in enumerate(lines):
+        if ANSWER_HEADER_RE.match(raw.rstrip("\n")):
+            last_q_idx = idx
 
     answers = {}
     current_id = None
@@ -177,7 +200,7 @@ def parse_answers(md_path: Path):
         current_letter = None
         body_lines = []
 
-    for raw in lines:
+    for idx, raw in enumerate(lines):
         line = raw.rstrip("\n")
 
         if collecting_appendix:
@@ -193,20 +216,16 @@ def parse_answers(md_path: Path):
             body_lines = []
             continue
 
-        # h1('# ...')은 대부분 중간 구간을 나누는 장식용 제목(예: "# 다중선형회귀")이거나
-        # 맨 위 인트로 문장이라 무시한다. 단, 수식(백슬래시 포함) 줄이 우연히
-        # '#'으로 시작하는 경우(예: "# \sum_{...}")는 본문 내용이므로 살려서 담는다.
-        if re.match(r"^#\s+\S", line):
+        if re.match(r"^#{1,3}\s+\S", line):
+            # 수식(백슬래시 포함) 줄이 우연히 '#'으로 시작하는 경우
+            # (예: "# \sum_{...}")는 본문 내용이므로 살려서 담는다.
             if "\\" in line and current_id is not None:
-                body_lines.append(re.sub(r"^#\s+", "", line))
-            continue
-
-        # 숫자가 없는 h2/h3(예: "### 시험 직전에 이것만은 외워")가 나오면
-        # 그 지점부터는 문제/정답 구간이 끝난 부록으로 간주한다.
-        if re.match(r"^#{2,3}\s+\S", line) and current_id is not None:
-            flush()
-            collecting_appendix = True
-            appendix_lines.append(line)
+                body_lines.append(re.sub(r"^#+\s+", "", line))
+                continue
+            if current_id is not None and idx > last_q_idx:
+                flush()
+                collecting_appendix = True
+                appendix_lines.append(line)
             continue
 
         if current_id is None:

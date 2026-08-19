@@ -32,13 +32,13 @@
     },
     {
       "id": "2-2",
-      "title": "",
+      "title": "파운데이션 모델과 거대 언어 모델 · 지시 학습과 선호 학습 · 추론과 디코딩 · 프롬프트 엔지니어링 · 평가, 응용과 한계",
       "counts": {
-        "mc": 0,
-        "short": 0,
-        "essay": 0
+        "mc": 70,
+        "short": 20,
+        "essay": 10
       },
-      "available": false
+      "available": true
     },
     {
       "id": "3-1",

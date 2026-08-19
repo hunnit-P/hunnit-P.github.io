@@ -1,0 +1,1564 @@
+{
+  "id": "2-2",
+  "sections": [
+    {
+      "key": "A",
+      "name": "파운데이션 모델과 거대 언어 모델"
+    },
+    {
+      "key": "B",
+      "name": "지시 학습과 선호 학습"
+    },
+    {
+      "key": "C",
+      "name": "추론과 디코딩"
+    },
+    {
+      "key": "D",
+      "name": "프롬프트 엔지니어링"
+    },
+    {
+      "key": "E",
+      "name": "평가, 응용과 한계"
+    }
+  ],
+  "counts": {
+    "mc": 70,
+    "short": 20,
+    "essay": 10
+  },
+  "questions": [
+    {
+      "id": 1,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "파운데이션 모델의 설명으로 가장 적절한 것은?",
+      "choices": [
+        "특정 태스크 하나만 수행하도록 소규모 데이터로 학습된 모델",
+        "대량의 데이터로 사전학습되어 다양한 작업에 범용적으로 활용 가능한 기반 모델",
+        "사람이 모든 정답을 직접 입력해야만 동작하는 모델",
+        "학습 없이 규칙만으로 동작하는 모델"
+      ],
+      "answerIndex": 1,
+      "explanation": "파운데이션 모델은 대규모 데이터로 사전학습한 뒤 여러 downstream task에\n범용적으로 활용할 수 있는 기반 모델이다."
+    },
+    {
+      "id": 2,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "파운데이션 모델의 장점과 가장 관련 깊은 것은?",
+      "choices": [
+        "새로운 태스크마다 반드시 모델을 처음부터 다시 학습한다.",
+        "자세한 설명이나 프롬프트만으로 새로운 작업에 활용할 수 있다.",
+        "데이터가 많아질수록 성능이 항상 감소한다.",
+        "Transformer를 사용할 수 없다."
+      ],
+      "answerIndex": 1,
+      "explanation": "기존에는 새 태스크마다 별도 학습이 필요한 경우가 많았지만 파운데이션\n모델은 프롬프트나 적응 학습으로 다양한 태스크에 활용할 수 있다."
+    },
+    {
+      "id": 3,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "강의자료에서 파운데이션 모델의 핵심 구성요소로 보기 어려운 것은?",
+      "choices": [
+        "빅데이터",
+        "자가 학습(Self-supervised Learning)",
+        "Attention 기반 Transformer",
+        "모든 데이터에 대한 수작업 정답 라벨"
+      ],
+      "answerIndex": 3,
+      "explanation": "파운데이션 모델의 대규모 사전학습은 사람이 모든 데이터에 정답을 붙이는\n방식에 의존하지 않는다. 강의자료는 빅데이터, 자가학습, Attention 기반\nTransformer를 핵심 요소로 설명한다."
+    },
+    {
+      "id": 4,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "Self-supervised Learning의 특징으로 맞는 것은?",
+      "choices": [
+        "반드시 사람이 모든 정답을 라벨링한다.",
+        "데이터 자체에서 학습 신호를 구성할 수 있다.",
+        "모델의 파라미터를 학습하지 않는다.",
+        "추론 단계에서만 사용한다."
+      ],
+      "answerIndex": 1,
+      "explanation": "Self-supervised Learning은 원본 데이터 자체로부터 입력과 예측 목표를\n구성한다."
+    },
+    {
+      "id": 5,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "다음 토큰 예측(Next Token Prediction)의 예로 가장 적절한 것은?",
+      "choices": [
+        "\"아까 밥 먹고\"를 보고 다음 토큰 \"왔어\"를 예측",
+        "이미지의 픽셀 수 계산",
+        "정답 레이블을 사람이 직접 입력",
+        "모델의 파라미터를 무작위로 삭제"
+      ],
+      "answerIndex": 0,
+      "explanation": "Next Token Prediction은 앞선 토큰을 조건으로 다음 토큰을 예측하는\n자기지도 학습 방식이다."
+    },
+    {
+      "id": 6,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "Attention의 설명으로 가장 적절한 것은?",
+      "choices": [
+        "입력 데이터에서 중요한 부분에 주의를 집중하는 메커니즘",
+        "데이터베이스 정렬 알고리즘",
+        "학습률을 자동으로 0으로 만드는 기법",
+        "모든 토큰을 동일하게 제거하는 방법"
+      ],
+      "answerIndex": 0,
+      "explanation": "Attention은 입력 중 현재 처리에 중요한 부분에 더 큰 가중치를 주는\n메커니즘이다."
+    },
+    {
+      "id": 7,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "Transformer가 거대 언어 모델의 핵심 구조로 활용되는 이유와 가장 관련\n깊은 것은?",
+      "choices": [
+        "Attention을 기반으로 토큰 간 관계를 효과적으로 학습할 수 있기 때문",
+        "순차 데이터 처리가 불가능하기 때문",
+        "파라미터를 전혀 사용하지 않기 때문",
+        "텍스트를 처리할 수 없기 때문"
+      ],
+      "answerIndex": 0,
+      "explanation": "Transformer는 Attention을 중심으로 멀리 떨어진 토큰 사이 관계까지\n효과적으로 모델링한다."
+    },
+    {
+      "id": 8,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "GPT-2가 보여준 중요한 가능성은?",
+      "choices": [
+        "추가 태스크 학습 없이 텍스트 지시를 통해 새로운 태스크를 어느 정도 수행할 수 있음",
+        "언어 모델의 크기가 커질수록 반드시 성능이 나빠짐",
+        "프롬프트는 모델 출력에 영향을 주지 않음",
+        "사전학습이 필요하지 않음"
+      ],
+      "answerIndex": 0,
+      "explanation": "GPT-2는 별도 태스크별 학습 없이 자연어 형태의 입력을 통해 여러 작업을\n어느 정도 수행할 수 있음을 보여주었다."
+    },
+    {
+      "id": 9,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "Perplexity에 대한 설명으로 가장 적절한 것은?",
+      "choices": [
+        "언어 모델이 다음 토큰을 얼마나 잘 예측하는지 평가하는 지표 중 하나",
+        "모델 파라미터 수만 세는 지표",
+        "이미지 해상도를 나타내는 지표",
+        "GPU 개수를 나타내는 지표"
+      ],
+      "answerIndex": 0,
+      "explanation": "Perplexity는 모델이 실제 토큰 시퀀스에 얼마나 높은 확률을 부여하는지를\n바탕으로 한 언어 모델 평가 지표다."
+    },
+    {
+      "id": 10,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "일반적으로 언어 모델의 Perplexity가 낮다는 것은 무엇을 의미하는가?",
+      "choices": [
+        "예측이 더 불확실하다.",
+        "다음 토큰을 상대적으로 더 잘 예측한다.",
+        "파라미터가 반드시 적다.",
+        "학습 데이터가 없다."
+      ],
+      "answerIndex": 1,
+      "explanation": "일반적으로 PPL이 낮을수록 정답 토큰에 더 높은 확률을 부여했다는 뜻이다."
+    },
+    {
+      "id": 11,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "Scaling Law의 핵심 내용으로 가장 적절한 것은?",
+      "choices": [
+        "데이터, 모델 크기, 연산량 증가와 성능 향상 사이에 일정한 경향이 존재한다.",
+        "모델을 작게 만들수록 언제나 성능이 좋아진다.",
+        "데이터가 많아지면 학습할 수 없다.",
+        "연산량은 모델 성능과 무관하다."
+      ],
+      "answerIndex": 0,
+      "explanation": "Scaling Law는 compute, dataset size, parameter 규모와 loss/성능 사이의\n경험적 규칙성을 말한다."
+    },
+    {
+      "id": 12,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "강의자료에서 텍스트 파운데이션 모델의 특징으로 제시된 조합은?",
+      "choices": [
+        "더 많은 데이터, 큰 모델, 긴 학습",
+        "더 적은 데이터, 작은 모델, 짧은 학습만",
+        "데이터 없이 규칙만 사용",
+        "지도학습만 사용"
+      ],
+      "answerIndex": 0,
+      "explanation": "강의자료는 더 많은 데이터, 더 큰 모델, 더 긴/많은 학습 연산이 성능\n향상과 연결되는 규모의 법칙을 설명한다."
+    },
+    {
+      "id": 13,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "Emergent Property(창발성)의 의미는?",
+      "choices": [
+        "모델 규모가 특정 수준을 넘으면서 이전에는 뚜렷하지 않던 능력이 나타나는 현상",
+        "모델이 학습 도중 삭제되는 현상",
+        "모든 모델이 동일한 성능을 내는 현상",
+        "모델이 입력을 받지 못하는 현상"
+      ],
+      "answerIndex": 0,
+      "explanation": "창발성은 작은 모델에서는 거의 나타나지 않던 능력이 규모 증가 후\n두드러지는 현상이다."
+    },
+    {
+      "id": 14,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "창발성의 예로 강의자료에서 언급된 것은?",
+      "choices": [
+        "In-Context Learning과 추론 능력",
+        "이미지 크기 조절만",
+        "데이터베이스 조인",
+        "파일 압축"
+      ],
+      "answerIndex": 0,
+      "explanation": "강의자료는 대표적 창발 능력으로 In-Context Learning과 reasoning을\n제시한다."
+    },
+    {
+      "id": 15,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "In-Context Learning의 설명으로 맞는 것은?",
+      "choices": [
+        "모델 가중치를 반드시 업데이트해야 한다.",
+        "프롬프트의 설명과 예시를 이용해 새로운 태스크를 수행한다.",
+        "모델을 처음부터 재학습한다.",
+        "학습 데이터를 삭제한다."
+      ],
+      "answerIndex": 1,
+      "explanation": "ICL에서는 모델 파라미터를 업데이트하지 않고 현재 프롬프트 안의 설명과\n예시를 이용한다."
+    },
+    {
+      "id": 16,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "Zero-shot prompting의 의미는?",
+      "choices": [
+        "예시 없이 지시만 제공",
+        "예시 한 개 제공",
+        "예시 여러 개 제공",
+        "모델 전체를 fine-tuning"
+      ],
+      "answerIndex": 0,
+      "explanation": "Zero-shot은 예시 없이 task instruction만 제공한다."
+    },
+    {
+      "id": 17,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "One-shot prompting의 의미는?",
+      "choices": [
+        "예시 없이 지시만 제공",
+        "예시 하나를 제공",
+        "수천 개의 학습 데이터를 제공",
+        "파라미터를 절반으로 제거"
+      ],
+      "answerIndex": 1,
+      "explanation": "One-shot은 하나의 예시를 제공한다."
+    },
+    {
+      "id": 18,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "Few-shot prompting의 의미는?",
+      "choices": [
+        "소수의 예시를 프롬프트에 제공",
+        "예시를 절대 제공하지 않음",
+        "반드시 모델 가중치를 변경",
+        "토큰을 하나만 입력"
+      ],
+      "answerIndex": 0,
+      "explanation": "Few-shot은 소수의 demonstration을 prompt context에 포함한다."
+    },
+    {
+      "id": 19,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "거대 언어 모델을 구분하는 절대적인 파라미터 수 기준이 존재한다고 보기\n어려운 이유는?",
+      "choices": [
+        "기술 발전에 따라 규모 기준이 계속 변하기 때문",
+        "모든 모델의 크기가 동일하기 때문",
+        "파라미터 수를 측정할 수 없기 때문",
+        "LLM은 파라미터를 갖지 않기 때문"
+      ],
+      "answerIndex": 0,
+      "explanation": "LLM의 규모 자체가 계속 커져 왔으므로 특정 파라미터 수를 영구적인 절대\n기준으로 삼기 어렵다."
+    },
+    {
+      "id": 20,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "파운데이션 모델과 거대 언어 모델"
+      },
+      "star": 0,
+      "stem": "LLM이 일반적으로 학습되는 대표 방식은?",
+      "choices": [
+        "대규모 텍스트에서 다음 토큰 예측을 수행하는 Transformer 기반 사전학습",
+        "정답을 모두 사람이 입력하는 규칙 기반 학습만",
+        "이미지 분할만",
+        "K-means만"
+      ],
+      "answerIndex": 0,
+      "explanation": "현대 GPT 계열 LLM은 대규모 텍스트에 대한 autoregressive next-token\nprediction과 Transformer가 대표적이다."
+    },
+    {
+      "id": 21,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "사전학습된 언어 모델에 Instruction Tuning이 필요한 주된 이유는?",
+      "choices": [
+        "사용자의 지시를 더 잘 이해하고 따르도록 만들기 위해",
+        "파라미터를 모두 삭제하기 위해",
+        "텍스트 생성을 불가능하게 하기 위해",
+        "모델을 이미지 분류기로만 만들기 위해"
+      ],
+      "answerIndex": 0,
+      "explanation": "Pretraining만 한 모델보다 instruction-response 데이터로 추가 학습한\n모델이 사용자 지시를 더 잘 따른다."
+    },
+    {
+      "id": 22,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "Instruction Tuning에서 일반적으로 사용하는 데이터 형태는?",
+      "choices": [
+        "지시문과 그에 대한 적절한 응답의 쌍",
+        "이미지 픽셀만",
+        "정답 없는 난수만",
+        "GPU 온도 로그만"
+      ],
+      "answerIndex": 0,
+      "explanation": "Instruction tuning에서는 instruction/input과 원하는 response의 쌍이 핵심\n데이터다."
+    },
+    {
+      "id": 23,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "Supervised Fine-Tuning(SFT)에 대한 설명으로 맞는 것은?",
+      "choices": [
+        "정답 예시를 이용해 지도 방식으로 모델을 추가 학습한다.",
+        "사람의 선호를 전혀 사용할 수 없다.",
+        "모델 가중치를 변경하지 않는다.",
+        "오직 추론 단계에서만 수행한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "SFT는 사람이 작성하거나 정제한 정답 응답을 target으로 하는 supervised\nfine-tuning이다."
+    },
+    {
+      "id": 24,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "Instruction Tuning의 결과로 기대할 수 있는 것은?",
+      "choices": [
+        "다양한 자연어 지시를 따르는 능력 향상",
+        "언어 이해 능력 완전 제거",
+        "모든 응답 길이 고정",
+        "토큰화 제거"
+      ],
+      "answerIndex": 0,
+      "explanation": "Instruction tuning의 핵심 목표는 자연어로 표현된 다양한 요청을 이해하고\n적절하게 수행하는 능력이다."
+    },
+    {
+      "id": 25,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "선호 학습(Preference Learning)의 목적과 가장 가까운 것은?",
+      "choices": [
+        "여러 가능한 응답 중 사람이 더 선호하는 응답을 생성하도록 모델을 정렬",
+        "모델의 vocabulary를 1개로 줄임",
+        "모든 출력을 무작위화",
+        "사전학습 데이터를 삭제"
+      ],
+      "answerIndex": 0,
+      "explanation": "Preference learning은 단순 모방을 넘어 어떤 응답이 더 좋은지를 학습한다."
+    },
+    {
+      "id": 26,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "RLHF의 전체 이름은?",
+      "choices": [
+        "Reinforcement Learning from Human Feedback",
+        "Recursive Learning from Hidden Features",
+        "Random Language Human Function",
+        "Representation Learning for High Frequency"
+      ],
+      "answerIndex": 0,
+      "explanation": "RLHF는 Reinforcement Learning from Human Feedback이다."
+    },
+    {
+      "id": 27,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "RLHF에서 인간 피드백이 활용되는 대표 방식은?",
+      "choices": [
+        "여러 모델 응답에 대한 사람의 선호 비교",
+        "GPU의 전력 소비만 측정",
+        "토큰을 무작위로 제거",
+        "모델 구조를 CNN으로 변경"
+      ],
+      "answerIndex": 0,
+      "explanation": "동일 prompt에 여러 응답을 보여주고 사람이 순위를 매기거나 더 좋은 응답을\n선택하는 방식이 대표적이다."
+    },
+    {
+      "id": 28,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "Reward Model의 역할로 가장 적절한 것은?",
+      "choices": [
+        "응답에 대한 인간 선호를 점수 형태로 근사",
+        "입력 문장을 토큰화하지 못하게 함",
+        "모델 파라미터 수를 세기만 함",
+        "이미지를 생성"
+      ],
+      "answerIndex": 0,
+      "explanation": "Reward Model은 인간 선호 데이터를 학습해 생성 응답의 선호도를 scalar\nreward로 근사한다."
+    },
+    {
+      "id": 29,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "RLHF에서 정책 모델을 학습하는 목적은?",
+      "choices": [
+        "보상 모델이 높은 점수를 주는, 인간 선호에 가까운 응답을 생성하도록 개선",
+        "무조건 가장 긴 문장을 생성",
+        "모든 답변을 동일하게 생성",
+        "언어 능력을 제거"
+      ],
+      "answerIndex": 0,
+      "explanation": "정책 모델은 높은 reward를 받는 방향, 즉 인간이 선호할 가능성이 높은\n응답을 생성하도록 최적화된다."
+    },
+    {
+      "id": 30,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "DPO(Direct Preference Optimization)의 핵심 아이디어와 가장 가까운 것은?",
+      "choices": [
+        "선호/비선호 응답 쌍을 이용해 별도의 복잡한 RL 과정 없이 직접 정책을 최적화",
+        "모델을 학습하지 않음",
+        "이미지만 이용",
+        "모든 선호 데이터를 무시"
+      ],
+      "answerIndex": 0,
+      "explanation": "DPO는 chosen/rejected preference pair로 정책을 직접 최적화해 별도 reward\nmodel + online RL 파이프라인을 단순화할 수 있다."
+    },
+    {
+      "id": 31,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "Preference dataset에 포함될 수 있는 대표적인 정보는?",
+      "choices": [
+        "동일한 프롬프트에 대한 chosen 응답과 rejected 응답",
+        "이미지의 RGB 값만",
+        "학습률 하나만",
+        "운영체제 버전만"
+      ],
+      "answerIndex": 0,
+      "explanation": "Preference dataset은 같은 prompt에 대한 chosen과 rejected 응답을 포함할\n수 있다."
+    },
+    {
+      "id": 32,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "Alignment의 의미로 가장 적절한 것은?",
+      "choices": [
+        "모델의 행동을 인간의 의도, 선호, 가치 및 안전 요구에 더 잘 맞추는 과정",
+        "모델의 파라미터를 모두 같은 값으로 만드는 과정",
+        "문장의 좌우 정렬",
+        "데이터 파일 이름 변경"
+      ],
+      "answerIndex": 0,
+      "explanation": "Alignment는 모델 행동을 인간의 의도, 선호, 안전 기준 등에 맞추는 문제다."
+    },
+    {
+      "id": 33,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "SFT와 Preference Learning의 차이로 가장 적절한 것은?",
+      "choices": [
+        "SFT는 정답 예시를 모방하도록 학습하고, Preference Learning은 응답 간 선호 정보를 활용한다.",
+        "두 방법은 완전히 동일하다.",
+        "SFT는 텍스트를 사용할 수 없다.",
+        "Preference Learning은 모델 출력을 사용하지 않는다."
+      ],
+      "answerIndex": 0,
+      "explanation": "SFT는 좋은 정답을 모방하는 학습이고 preference learning은 상대적으로\n어느 답이 더 선호되는지를 학습한다."
+    },
+    {
+      "id": 34,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "지시 학습 후 선호 학습을 추가하는 이유로 적절한 것은?",
+      "choices": [
+        "지시를 따르는 것뿐 아니라 더 도움이 되고 선호되는 응답을 만들기 위해",
+        "다음 토큰 예측을 완전히 금지하기 위해",
+        "모든 답변을 한 단어로 제한하기 위해",
+        "모델을 학습 전 상태로 되돌리기 위해"
+      ],
+      "answerIndex": 0,
+      "explanation": "지시를 형식적으로 따르는 것만으로는 부족할 수 있어 helpfulness,\nharmlessness 등의 선호를 추가로 반영한다."
+    },
+    {
+      "id": 35,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "지시 학습과 선호 학습"
+      },
+      "star": 0,
+      "stem": "인간 선호 데이터의 한계로 볼 수 있는 것은?",
+      "choices": [
+        "평가자 간 선호가 다를 수 있다.",
+        "언제나 객관적이고 완벽하다.",
+        "비용이 전혀 들지 않는다.",
+        "편향이 절대 없다."
+      ],
+      "answerIndex": 0,
+      "explanation": "인간 평가는 주관적일 수 있으며 평가자마다 기준이 달라질 수 있다."
+    },
+    {
+      "id": 36,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "LLM 추론에서 decoding이 의미하는 것은?",
+      "choices": [
+        "모델이 예측한 토큰 확률 분포에서 실제 출력 토큰을 선택해 문장을 생성하는 과정",
+        "학습 데이터를 수집하는 과정",
+        "파라미터 초기화",
+        "모델을 압축 파일로 만드는 과정"
+      ],
+      "answerIndex": 0,
+      "explanation": "Decoding은 매 시점 모델의 다음-token distribution으로부터 실제 출력\n토큰을 선택하는 과정이다."
+    },
+    {
+      "id": 37,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "Greedy Decoding의 특징은?",
+      "choices": [
+        "매 시점 가장 확률이 높은 토큰을 선택",
+        "모든 토큰을 동일 확률로 선택",
+        "항상 두 번째로 높은 토큰을 선택",
+        "모델을 재학습한 뒤 선택"
+      ],
+      "answerIndex": 0,
+      "explanation": "Greedy는 argmax 토큰을 반복 선택한다."
+    },
+    {
+      "id": 38,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "Greedy Decoding의 장점은?",
+      "choices": [
+        "구현이 단순하고 결정적이며 빠른 편이다.",
+        "항상 가장 창의적인 결과를 보장한다.",
+        "모든 후보 문장을 탐색한다.",
+        "반드시 최적 문장 전체를 찾는다."
+      ],
+      "answerIndex": 0,
+      "explanation": "Greedy는 단순하고 빠르며 같은 조건에서는 결과가 결정적인 장점이 있다."
+    },
+    {
+      "id": 39,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "Greedy Decoding의 한계는?",
+      "choices": [
+        "각 시점의 국소 최적 선택이 전체 시퀀스의 최적 결과를 보장하지 않는다.",
+        "계산이 불가능하다.",
+        "확률을 사용하지 않는다.",
+        "한 토큰도 생성할 수 없다."
+      ],
+      "answerIndex": 0,
+      "explanation": "현재 시점의 최고 확률 선택이 문장 전체 확률의 최적값을 보장하지는\n않는다."
+    },
+    {
+      "id": 40,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "Beam Search의 핵심 아이디어는?",
+      "choices": [
+        "여러 개의 유망한 후보 시퀀스를 동시에 유지하며 탐색",
+        "후보를 항상 하나만 유지",
+        "모든 토큰을 무작위로 선택",
+        "모델 가중치를 변경"
+      ],
+      "answerIndex": 0,
+      "explanation": "Beam Search는 beam width만큼 여러 부분 시퀀스를 유지한다."
+    },
+    {
+      "id": 41,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "Beam width가 커질 때 일반적으로 발생하는 현상은?",
+      "choices": [
+        "더 많은 후보를 탐색하지만 계산량도 증가한다.",
+        "후보 수가 줄어든다.",
+        "모델 파라미터가 자동 삭제된다.",
+        "학습 데이터가 감소한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "Beam이 커지면 탐색 범위는 넓어지지만 메모리와 계산량이 늘어난다."
+    },
+    {
+      "id": 42,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "Sampling 기반 디코딩의 특징은?",
+      "choices": [
+        "확률 분포를 바탕으로 토큰을 확률적으로 선택",
+        "항상 최대 확률 토큰만 선택",
+        "확률 분포를 사용하지 않음",
+        "모델을 반드시 fine-tuning"
+      ],
+      "answerIndex": 0,
+      "explanation": "Sampling은 확률 분포를 이용해 확률적으로 토큰을 뽑는다."
+    },
+    {
+      "id": 43,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "Temperature가 높아질수록 일반적으로 나타나는 효과는?",
+      "choices": [
+        "확률 분포가 상대적으로 평평해져 다양한 토큰이 선택될 가능성이 커진다.",
+        "출력이 항상 동일해진다.",
+        "vocabulary가 사라진다.",
+        "모델 파라미터가 증가한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "높은 temperature는 분포를 평평하게 만들어 낮은 확률 후보도 선택될\n가능성을 높인다."
+    },
+    {
+      "id": 44,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "Temperature가 매우 낮아질수록 일반적으로 나타나는 효과는?",
+      "choices": [
+        "높은 확률의 토큰에 선택이 더 집중된다.",
+        "완전히 무작위가 된다.",
+        "모델이 학습을 시작한다.",
+        "입력이 삭제된다."
+      ],
+      "answerIndex": 0,
+      "explanation": "낮은 temperature는 높은 logit의 토큰에 확률을 더 집중시켜 결정적인\n출력을 유도한다."
+    },
+    {
+      "id": 45,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "Top-k Sampling은 무엇인가?",
+      "choices": [
+        "확률이 높은 상위 k개 토큰만 후보로 제한해 샘플링",
+        "k개의 모델을 동시에 학습",
+        "입력의 처음 k개 토큰을 삭제",
+        "출력 길이를 반드시 k로 고정"
+      ],
+      "answerIndex": 0,
+      "explanation": "Top-k는 확률 상위 k개만 남긴 뒤 재정규화하여 샘플링한다."
+    },
+    {
+      "id": 46,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "Top-p(Nucleus) Sampling은 무엇인가?",
+      "choices": [
+        "누적 확률이 p에 도달하는 최소 후보 집합에서 샘플링",
+        "항상 p번째 토큰 선택",
+        "파라미터의 p%를 삭제",
+        "확률을 사용하지 않음"
+      ],
+      "answerIndex": 0,
+      "explanation": "Top-p는 확률이 높은 순서로 누적해 합이 p 이상이 되는 동적 후보 집합을\n만든다."
+    },
+    {
+      "id": 47,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "생성 다양성을 높이고 싶을 때 가장 직접적으로 조절할 수 있는 요소는?",
+      "choices": [
+        "Temperature, top-k, top-p 등 decoding hyperparameter",
+        "모델 파일명",
+        "GPU 제조사",
+        "운영체제 배경화면"
+      ],
+      "answerIndex": 0,
+      "explanation": "Temperature와 top-k/top-p는 randomness와 후보 범위를 직접 조절한다."
+    },
+    {
+      "id": 48,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "Autoregressive generation의 특징은?",
+      "choices": [
+        "이전까지 생성한 토큰을 조건으로 다음 토큰을 반복적으로 생성",
+        "모든 토큰을 입력과 무관하게 생성",
+        "출력 토큰을 한 번도 다시 사용하지 않음",
+        "언어 모델과 무관"
+      ],
+      "answerIndex": 0,
+      "explanation": "Autoregressive model은 이미 생성된 출력도 다음 토큰 생성의 조건으로 다시\n사용한다."
+    },
+    {
+      "id": 49,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "Stop token 또는 EOS token의 역할은?",
+      "choices": [
+        "생성 종료 시점을 나타낸다.",
+        "모델의 학습률을 증가시킨다.",
+        "입력을 이미지로 변환한다.",
+        "파라미터를 초기화한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "EOS는 시퀀스 생성의 종료를 표현하는 특별 토큰이다."
+    },
+    {
+      "id": 50,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "추론과 디코딩"
+      },
+      "star": 0,
+      "stem": "같은 프롬프트에서도 sampling 설정에 따라 결과가 달라질 수 있는 이유는?",
+      "choices": [
+        "확률적으로 다음 토큰을 선택할 수 있기 때문",
+        "모델이 매번 새로 학습되기 때문",
+        "입력 프롬프트가 자동 삭제되기 때문",
+        "vocabulary가 매번 바뀌기 때문"
+      ],
+      "answerIndex": 0,
+      "explanation": "Sampling에는 확률적 선택이 포함되므로 같은 입력에서도 출력이 달라질 수\n있다."
+    },
+    {
+      "id": 51,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "프롬프트 엔지니어링"
+      },
+      "star": 0,
+      "stem": "Prompt Engineering의 목적은?",
+      "choices": [
+        "모델이 원하는 작업을 더 정확히 이해하고 적절한 출력을 생성하도록 입력을 설계",
+        "모델의 파라미터를 직접 납땜",
+        "데이터베이스 테이블 생성",
+        "GPU를 교체"
+      ],
+      "answerIndex": 0,
+      "explanation": "Prompt Engineering은 모델 파라미터를 바꾸는 대신 입력 설계를 통해 원하는\n행동을 유도한다."
+    },
+    {
+      "id": 52,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "프롬프트 엔지니어링"
+      },
+      "star": 0,
+      "stem": "좋은 프롬프트의 요소로 가장 적절한 것은?",
+      "choices": [
+        "명확한 지시, 필요한 맥락, 출력 형식 및 조건",
+        "모호한 표현만 사용",
+        "서로 충돌하는 요구사항만 제공",
+        "목적을 숨김"
+      ],
+      "answerIndex": 0,
+      "explanation": "작업, 맥락, 제약, 출력 형식을 구체적으로 제시할수록 의도 전달이\n명확해진다."
+    },
+    {
+      "id": 53,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "프롬프트 엔지니어링"
+      },
+      "star": 0,
+      "stem": "Few-shot prompting에서 예시를 제공하는 주된 이유는?",
+      "choices": [
+        "모델이 작업 형식과 원하는 출력 패턴을 문맥에서 파악하도록 하기 위해",
+        "모델 파라미터를 직접 변경하기 위해",
+        "입력 길이를 무조건 줄이기 위해",
+        "모델을 삭제하기 위해"
+      ],
+      "answerIndex": 0,
+      "explanation": "Few-shot demonstration은 모델이 현재 context에서 task mapping과 답변\n형식을 파악하도록 돕는다."
+    },
+    {
+      "id": 54,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "프롬프트 엔지니어링"
+      },
+      "star": 0,
+      "stem": "Chain-of-Thought(CoT) prompting의 목적과 가장 가까운 것은?",
+      "choices": [
+        "복잡한 문제에서 중간 추론 과정을 활용하도록 유도",
+        "모든 문제를 한 글자로 답하게 함",
+        "모델 가중치를 제거",
+        "이미지를 압축"
+      ],
+      "answerIndex": 0,
+      "explanation": "CoT는 복잡한 문제에서 중간 reasoning을 활용하도록 유도하는 prompting\n접근이다."
+    },
+    {
+      "id": 55,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "프롬프트 엔지니어링"
+      },
+      "star": 0,
+      "stem": "Role prompting의 예로 가장 적절한 것은?",
+      "choices": [
+        "\"너는 데이터 분석 전문가다. 다음 결과를 해석하라.\"",
+        "\"...\"만 입력",
+        "빈 문자열만 입력",
+        "모델 이름만 입력"
+      ],
+      "answerIndex": 0,
+      "explanation": "역할을 명시하면 어떤 관점과 전문성으로 답할지 문맥을 제공할 수 있다."
+    },
+    {
+      "id": 56,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "프롬프트 엔지니어링"
+      },
+      "star": 0,
+      "stem": "출력 형식을 명시하는 프롬프트의 예는?",
+      "choices": [
+        "\"결과를 JSON 형식으로 반환하라.\"",
+        "\"알아서 해.\"",
+        "\"아무 형식이나.\"",
+        "\"입력을 무시해.\""
+      ],
+      "answerIndex": 0,
+      "explanation": "JSON, 표, 특정 항목 등 출력 schema를 명시하면 후처리와 일관성에 도움이\n된다."
+    },
+    {
+      "id": 57,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "프롬프트 엔지니어링"
+      },
+      "star": 0,
+      "stem": "프롬프트에 충분한 context를 제공하는 이유는?",
+      "choices": [
+        "모델이 작업에 필요한 배경과 조건을 더 정확히 파악할 수 있기 때문",
+        "모델 크기가 자동으로 증가하기 때문",
+        "GPU 메모리가 무한해지기 때문",
+        "hallucination이 이론적으로 완전히 사라지기 때문"
+      ],
+      "answerIndex": 0,
+      "explanation": "필요한 배경이 prompt에 포함되면 모델이 현재 문제의 조건을 더 잘 해석할\n수 있다."
+    },
+    {
+      "id": 58,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "프롬프트 엔지니어링"
+      },
+      "star": 0,
+      "stem": "프롬프트가 지나치게 모호할 때 발생할 수 있는 문제는?",
+      "choices": [
+        "모델이 사용자의 의도와 다른 방향으로 응답할 수 있다.",
+        "모델이 항상 완벽한 답을 한다.",
+        "출력이 반드시 짧아진다.",
+        "파라미터 수가 감소한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "모호한 instruction은 여러 해석을 허용해 사용자의 실제 의도와 다른 답을\n만들 수 있다."
+    },
+    {
+      "id": 59,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "프롬프트 엔지니어링"
+      },
+      "star": 0,
+      "stem": "프롬프트 엔지니어링과 Fine-tuning의 차이로 맞는 것은?",
+      "choices": [
+        "프롬프트 엔지니어링은 보통 가중치를 변경하지 않고 입력을 설계하며, Fine-tuning은 추가 학습으로 가중치를 변경할 수 있다.",
+        "둘은 항상 동일하다.",
+        "프롬프트 엔지니어링은 학습 데이터가 수백만 개 필요하다.",
+        "Fine-tuning은 모델을 전혀 학습하지 않는다."
+      ],
+      "answerIndex": 0,
+      "explanation": "Prompting은 inference-time context를 조절하고 fine-tuning은 학습을 통해\nparameter를 변경한다는 차이가 핵심이다."
+    },
+    {
+      "id": 60,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "프롬프트 엔지니어링"
+      },
+      "star": 0,
+      "stem": "LLM이 프롬프트의 예시를 활용해 작업을 수행하는 능력과 가장 관련 깊은\n것은?",
+      "choices": [
+        "In-Context Learning",
+        "K-means",
+        "PCA",
+        "Dropout"
+      ],
+      "answerIndex": 0,
+      "explanation": "프롬프트의 demonstration으로 새로운 mapping을 수행하는 것은 ICL과 직접\n관련된다."
+    },
+    {
+      "id": 61,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "평가, 응용과 한계"
+      },
+      "star": 0,
+      "stem": "LLM 평가에서 단일 지표만으로 모든 능력을 판단하기 어려운 이유는?",
+      "choices": [
+        "언어 모델 능력이 지식, 추론, 생성 품질, 안전성 등 여러 차원으로 구성되기 때문",
+        "모델에는 평가할 능력이 하나뿐이기 때문",
+        "모든 벤치마크 결과가 동일하기 때문",
+        "사람 평가는 불가능하기 때문"
+      ],
+      "answerIndex": 0,
+      "explanation": "LLM의 품질은 하나의 숫자로 완전히 표현하기 어렵다. 지식, reasoning,\ninstruction following, 안전성 등을 함께 봐야 한다."
+    },
+    {
+      "id": 62,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "평가, 응용과 한계"
+      },
+      "star": 0,
+      "stem": "Benchmark evaluation의 설명으로 맞는 것은?",
+      "choices": [
+        "정해진 데이터셋과 태스크를 이용해 모델 성능을 비교",
+        "모델의 외형만 비교",
+        "GPU 색상만 비교",
+        "학습 시간을 측정하지 못함"
+      ],
+      "answerIndex": 0,
+      "explanation": "Benchmark는 동일한 문제 집합과 metric을 사용해 모델 간 성능을 비교할 수\n있게 한다."
+    },
+    {
+      "id": 63,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "평가, 응용과 한계"
+      },
+      "star": 0,
+      "stem": "Human Evaluation이 필요한 이유로 가장 적절한 것은?",
+      "choices": [
+        "유창성, 도움됨, 선호도 등 자동 지표로 완전히 포착하기 어려운 품질을 평가하기 위해",
+        "자동 평가가 항상 불가능하기 때문에",
+        "모델 파라미터를 증가시키기 위해",
+        "텍스트를 이미지로 바꾸기 위해"
+      ],
+      "answerIndex": 0,
+      "explanation": "사람이 느끼는 유용성, 자연스러움, 선호는 자동 지표만으로 완벽히 측정하기\n어렵다."
+    },
+    {
+      "id": 64,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "평가, 응용과 한계"
+      },
+      "star": 0,
+      "stem": "Hallucination의 의미는?",
+      "choices": [
+        "모델이 사실과 다르거나 근거 없는 내용을 그럴듯하게 생성하는 현상",
+        "모델이 항상 답변을 거부하는 현상",
+        "모델이 파라미터를 잃는 현상",
+        "GPU가 고장 나는 현상"
+      ],
+      "answerIndex": 0,
+      "explanation": "Hallucination은 사실이 아니거나 근거가 부족한 내용을 자신 있게 생성하는\n문제다."
+    },
+    {
+      "id": 65,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "평가, 응용과 한계"
+      },
+      "star": 0,
+      "stem": "LLM의 대표적인 한계로 적절하지 않은 것은?",
+      "choices": [
+        "Hallucination",
+        "편향과 안전 문제",
+        "최신 정보 부족 가능성",
+        "모든 질문에서 100% 정확성 보장"
+      ],
+      "answerIndex": 3,
+      "explanation": "LLM은 모든 질문에서 100% 정확성을 보장하지 못한다는 점 자체가 중요한\n한계다."
+    },
+    {
+      "id": 66,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "평가, 응용과 한계"
+      },
+      "star": 0,
+      "stem": "LLM의 응용 사례로 가장 적절하지 않은 것은?",
+      "choices": [
+        "질의응답과 문서 요약",
+        "번역과 글쓰기 지원",
+        "코드 생성 및 보조",
+        "물리 법칙을 무시한 현실 세계의 무조건적 정확한 예측"
+      ],
+      "answerIndex": 3,
+      "explanation": "LLM은 요약, QA, 번역, 글쓰기, 코딩 등 다양한 분야에 활용되지만 현실을\n무조건 정확히 예측하는 장치는 아니다."
+    },
+    {
+      "id": 67,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "평가, 응용과 한계"
+      },
+      "star": 0,
+      "stem": "모델의 학습 시점 이후 최신 사실을 모를 수 있는 문제와 관련된 것은?",
+      "choices": [
+        "지식의 시의성/knowledge cutoff 문제",
+        "Beam width",
+        "LayerNorm",
+        "One-hot encoding"
+      ],
+      "answerIndex": 0,
+      "explanation": "사전학습 이후의 사건이나 변화는 모델 내부 지식에 반영되지 않았을 수\n있다."
+    },
+    {
+      "id": 68,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "평가, 응용과 한계"
+      },
+      "star": 0,
+      "stem": "LLM 평가에서 데이터 오염(Data Contamination)이 문제가 되는 이유는?",
+      "choices": [
+        "평가 문제가 학습 데이터에 포함되어 있었다면 실제 일반화 능력보다 성능이 높게 측정될 수 있기 때문",
+        "모델 크기가 줄기 때문",
+        "토큰화가 불가능해지기 때문",
+        "평가 데이터가 이미지로 변하기 때문"
+      ],
+      "answerIndex": 0,
+      "explanation": "평가 문항을 이미 학습에서 보았다면 benchmark 점수가 실제 unseen\ngeneralization을 과대평가할 수 있다."
+    },
+    {
+      "id": 69,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "평가, 응용과 한계"
+      },
+      "star": 0,
+      "stem": "LLM의 사회적·윤리적 한계를 고려할 때 중요한 것은?",
+      "choices": [
+        "편향, 개인정보, 유해 콘텐츠, 오정보 등의 위험을 함께 평가하는 것",
+        "정확도만 보면 충분함",
+        "안전성은 평가할 필요 없음",
+        "데이터 출처는 항상 무시"
+      ],
+      "answerIndex": 0,
+      "explanation": "실제 배포에서는 편향, 개인정보, 유해성, 오정보 등 기술적 정확도 이외의\n위험도 평가해야 한다."
+    },
+    {
+      "id": 70,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "평가, 응용과 한계"
+      },
+      "star": 0,
+      "stem": "거대 언어 모델을 실제 서비스에 적용할 때 가장 적절한 태도는?",
+      "choices": [
+        "모델의 강점뿐 아니라 오류 가능성과 한계를 고려하고 필요한 검증·안전장치를 함께 사용",
+        "모든 출력을 무조건 사실로 간주",
+        "사람의 검토를 항상 금지",
+        "평가 없이 바로 배포"
+      ],
+      "answerIndex": 0,
+      "explanation": "LLM은 확률적 생성 모델이므로 검증, 안전 정책, 사람의 감독 등 응용에 맞는\n안전장치가 필요하다."
+    },
+    {
+      "id": 71,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "대량의 데이터로 사전학습되어 다양한 작업에 범용적으로 활용되는 기반 AI\n모델을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "파운데이션 모델(Foundation Model)."
+    },
+    {
+      "id": 72,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "모델 크기, 데이터 크기, 연산량이 증가함에 따라 성능이 일정한 경향으로\n개선되는 법칙을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Scaling Law(규모의 법칙)."
+    },
+    {
+      "id": 73,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "모델 규모가 일정 수준을 넘으면서 이전에는 뚜렷하지 않던 새로운 능력이\n나타나는 현상을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Emergent Property 또는 창발성."
+    },
+    {
+      "id": 74,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "모델 가중치를 업데이트하지 않고 프롬프트의 설명과 예시를 이용해 새로운\n태스크를 수행하는 능력을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "In-Context Learning(ICL)."
+    },
+    {
+      "id": 75,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "예시 없이 지시만으로 태스크를 수행하게 하는 prompting 방식을 무엇이라고\n하는가?",
+      "choices": [],
+      "answerText": "Zero-shot prompting."
+    },
+    {
+      "id": 76,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "소수의 예시를 프롬프트에 제공하는 방식을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Few-shot prompting."
+    },
+    {
+      "id": 77,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "사람이 직접 모든 정답을 라벨링하지 않고 데이터 자체에서 학습 신호를\n구성하는 학습 방식을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Self-supervised Learning(자가/자기지도 학습)."
+    },
+    {
+      "id": 78,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "사용자의 자연어 지시를 잘 따르도록 지시-응답 데이터로 추가 학습하는 것을\n무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Instruction Tuning 또는 Instruction Fine-Tuning."
+    },
+    {
+      "id": 79,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "사람의 피드백을 활용하는 강화학습 기반 정렬 방법의 약어는 무엇인가?",
+      "choices": [],
+      "answerText": "RLHF."
+    },
+    {
+      "id": 80,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "RLHF에서 인간의 선호를 점수로 근사하는 모델을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Reward Model(보상 모델)."
+    },
+    {
+      "id": 81,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "선호 응답과 비선호 응답 쌍을 이용해 직접 모델을 최적화하는 대표 기법을\n무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "DPO(Direct Preference Optimization)."
+    },
+    {
+      "id": 82,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "매 시점 가장 확률이 높은 토큰 하나를 선택하는 디코딩 방식을 무엇이라고\n하는가?",
+      "choices": [],
+      "answerText": "Greedy Decoding."
+    },
+    {
+      "id": 83,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "여러 개의 유망한 후보 시퀀스를 유지하며 탐색하는 디코딩 방식을\n무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Beam Search."
+    },
+    {
+      "id": 84,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "확률 분포의 날카로움과 무작위성 정도를 조절하는 디코딩 하이퍼파라미터를\n무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Temperature."
+    },
+    {
+      "id": 85,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "확률이 높은 상위 k개 토큰만 후보로 사용하는 샘플링을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Top-k Sampling."
+    },
+    {
+      "id": 86,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "누적 확률이 p에 도달하는 후보 집합에서 샘플링하는 방식을 무엇이라고\n하는가?",
+      "choices": [],
+      "answerText": "Top-p Sampling 또는 Nucleus Sampling."
+    },
+    {
+      "id": 87,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "LLM이 원하는 작업을 더 잘 수행하도록 지시, 맥락, 예시, 출력 형식 등을\n설계하는 것을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Prompt Engineering."
+    },
+    {
+      "id": 88,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "복잡한 문제에서 중간 추론 단계를 활용하도록 유도하는 대표 prompting\n기법을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Chain-of-Thought(CoT) Prompting."
+    },
+    {
+      "id": 89,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "모델이 사실과 다르거나 근거 없는 내용을 그럴듯하게 생성하는 현상을\n무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Hallucination."
+    },
+    {
+      "id": 90,
+      "part": "short",
+      "section": null,
+      "star": 0,
+      "stem": "언어 모델이 다음 토큰을 얼마나 잘 예측하는지 나타내는 대표적인 확률 기반\n평가 지표를 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Perplexity(PPL)."
+    },
+    {
+      "id": 91,
+      "part": "essay",
+      "section": null,
+      "star": 1,
+      "stem": "파운데이션 모델의 개념을 설명하고, 빅데이터·자가학습·Transformer가 왜\n핵심 구성요소인지 서술하시오.",
+      "choices": [],
+      "answerText": "파운데이션 모델은 대규모 데이터로 사전학습하여 하나의 특정 태스크가\n아니라 다양한 작업에 재사용할 수 있도록 만든 기반 AI 모델이다. 첫째,\n빅데이터는 다양한 언어 패턴과 지식을 학습할 수 있는 재료를 제공한다.\n둘째, Self-supervised Learning은 사람이 모든 데이터에 정답을 붙이지\n않아도 원본 데이터 자체에서 예측 목표를 만들어 대규모 학습을 가능하게\n한다. 예를 들어 텍스트의 앞부분으로 다음 토큰을 예측할 수 있다. 셋째,\nTransformer와 Attention은 긴 텍스트 안의 토큰 관계를 효과적으로 학습하고\n대규모 병렬 학습에 적합하다. 이 세 요소의 결합이 현대 텍스트 파운데이션\n모델의 기반이 된다."
+    },
+    {
+      "id": 92,
+      "part": "essay",
+      "section": null,
+      "star": 2,
+      "stem": "Scaling Law와 Emergent Property의 개념을 각각 설명하고, 모델 규모 증가가\nIn-Context Learning 및 추론 능력과 어떤 관계를 가질 수 있는지\n서술하시오.",
+      "choices": [],
+      "answerText": "Scaling Law는 모델 파라미터, 학습 데이터, 연산량을 확대할수록 loss가\n감소하고 성능이 개선되는 경험적 규칙성을 말한다. 단순히 기존 능력이\n조금씩 좋아지는 것뿐 아니라 일정 규모를 넘어선 모델에서 작은 모델에서는\n뚜렷하지 않았던 능력이 나타날 수 있는데 이를 Emergent Property라고 한다.\n강의자료의 대표 사례가 In-Context Learning과 reasoning이다. 즉 대규모\n모델은 프롬프트에 주어진 예시만으로 새로운 태스크의 패턴을 파악하거나\n복잡한 문제를 추론하는 능력을 더 강하게 보일 수 있다."
+    },
+    {
+      "id": 93,
+      "part": "essay",
+      "section": null,
+      "star": 2,
+      "stem": "Pretraining, Instruction Tuning(SFT), Preference Learning의 목적과\n차이를 학습 데이터와 모델 행동의 관점에서 비교하시오.",
+      "choices": [],
+      "answerText": "Pretraining은 방대한 일반 텍스트에서 Next Token Prediction 등의 자기지도\n목표를 이용해 언어 패턴과 폭넓은 지식을 학습하는 단계다. Instruction\nTuning 또는 SFT는 지시와 좋은 응답의 쌍을 이용해 사용자의 요청을\n이해하고 따르는 행동을 학습한다. Preference Learning은 같은 프롬프트에\n대한 여러 응답 중 사람이 어떤 응답을 더 선호하는지를 이용해 helpfulness,\n적절성, 안전성 등의 방향으로 모델을 정렬한다. 따라서 Pretraining은 기본\n언어 능력, SFT는 지시 수행 능력, Preference Learning은 응답 품질과 인간\n선호 정렬에 초점이 있다."
+    },
+    {
+      "id": 94,
+      "part": "essay",
+      "section": null,
+      "star": 3,
+      "stem": "RLHF의 일반적인 과정을 SFT, 인간 선호 데이터 수집, Reward Model,\n강화학습의 흐름으로 설명하고 인간 피드백을 사용하는 이유를 서술하시오.",
+      "choices": [],
+      "answerText": "일반적인 RLHF 파이프라인에서는 먼저 instruction-response 데이터로 SFT를\n수행하여 기본적인 지시 수행 모델을 만든다. 다음으로 같은 프롬프트에 대해\n여러 응답을 생성하고 사람이 더 좋은 응답을 선택하거나 순위를 매겨\npreference data를 만든다. 이 데이터를 이용해 Reward Model을 학습하여\n인간의 선호를 보상 점수로 근사한다. 이후 정책 모델이 Reward Model에서\n높은 보상을 받는 응답을 생성하도록 강화학습으로 최적화한다. 인간\n피드백을 사용하는 이유는 단순한 다음 토큰 예측만으로는 '사람에게 도움이\n되는 답', '더 자연스러운 답', '안전한 답' 같은 복합적 기준을 충분히\n표현하기 어렵기 때문이다."
+    },
+    {
+      "id": 95,
+      "part": "essay",
+      "section": null,
+      "star": 2,
+      "stem": "RLHF와 DPO의 공통 목적과 차이를 설명하고, Preference Learning이 모델\nalignment에 어떤 역할을 하는지 서술하시오.",
+      "choices": [],
+      "answerText": "RLHF와 DPO 모두 인간의 선호 정보를 이용해 모델의 출력을 더 선호되는\n방향으로 정렬한다는 목적은 같다. 전형적인 RLHF는 preference data로\nReward Model을 학습하고 그 보상을 이용해 정책을 강화학습으로 최적화한다.\nDPO는 chosen/rejected 응답 쌍을 이용해 별도의 Reward Model 및 복잡한 RL\n과정 없이 정책을 직접 최적화하는 접근이다. 두 방식 모두 단순히 정답을\n모방하는 SFT를 넘어 응답 간 상대적 품질 정보를 학습한다는 점에서\nalignment에 중요하다."
+    },
+    {
+      "id": 96,
+      "part": "essay",
+      "section": null,
+      "star": 2,
+      "stem": "Greedy Decoding, Beam Search, Sampling의 차이를 설명하고 Temperature,\nTop-k, Top-p가 생성 결과의 다양성과 안정성에 어떤 영향을 주는지\n서술하시오.",
+      "choices": [],
+      "answerText": "Greedy Decoding은 매 단계 최고 확률 토큰을 선택하므로 빠르고\n결정적이지만 전체 시퀀스 최적을 보장하지 않는다. Beam Search는 여러 후보\n시퀀스를 동시에 유지해 Greedy보다 넓게 탐색하지만 beam width가 커질수록\n계산량이 증가한다. Sampling은 확률 분포에 따라 토큰을 뽑아 다양한 결과를\n만들 수 있다. Temperature가 높으면 분포가 평평해져 다양성이 커지고,\n낮으면 높은 확률 토큰에 집중한다. Top-k는 상위 k개 토큰만, Top-p는 누적\n확률 p를 만족하는 동적 후보 집합만 남긴다. 따라서 목적에 따라 안정성과\n다양성 사이의 균형을 조절한다."
+    },
+    {
+      "id": 97,
+      "part": "essay",
+      "section": null,
+      "star": 2,
+      "stem": "Zero-shot, One-shot, Few-shot, In-Context Learning의 관계를 설명하고\nFine-tuning과 어떤 차이가 있는지 서술하시오.",
+      "choices": [],
+      "answerText": "Zero-shot은 예시 없이 지시만 주고, One-shot은 하나의 예시, Few-shot은\n소수의 예시를 프롬프트에 제공한다. 이들은 모두 모델의 현재 context를\n이용한다는 점에서 In-Context Learning의 형태로 이해할 수 있다. 중요한\n점은 일반적인 ICL에서는 모델 파라미터를 업데이트하지 않는다는 것이다.\n반면 Fine-tuning은 별도의 학습 데이터를 이용해 gradient update를\n수행하고 모델 파라미터 자체를 특정 목적에 맞게 변경한다."
+    },
+    {
+      "id": 98,
+      "part": "essay",
+      "section": null,
+      "star": 2,
+      "stem": "효과적인 Prompt Engineering을 위해 지시의 명확성, context, 예시, 역할\n부여, 출력 형식을 어떻게 사용할 수 있는지 설명하고 Chain-of-Thought\nprompting의 목적을 함께 서술하시오.",
+      "choices": [],
+      "answerText": "효과적인 프롬프트는 먼저 해야 할 작업을 구체적으로 지시해야 한다. 필요한\n배경정보와 입력의 의미를 context로 제공하고, 원하는 행동이 모호하면 좋은\n입출력 예시를 추가할 수 있다. \"너는 보안 전문가다\"처럼 역할을 부여해\n관점을 명확히 할 수도 있으며, JSON·표·글자 수·항목 구성처럼 출력 형식을\n지정하면 결과의 일관성을 높일 수 있다. Chain-of-Thought prompting은\n복잡한 추론 문제에서 중간 사고 단계를 활용하도록 유도해 문제 해결 과정을\n구조화하는 접근이다."
+    },
+    {
+      "id": 99,
+      "part": "essay",
+      "section": null,
+      "star": 2,
+      "stem": "거대 언어 모델의 성능을 평가할 때 Perplexity, Benchmark, Human\nEvaluation을 각각 어떻게 활용할 수 있는지 설명하고 단일 평가 방식만\n사용할 때의 한계를 서술하시오.",
+      "choices": [],
+      "answerText": "Perplexity는 언어 모델이 실제 다음 토큰을 얼마나 높은 확률로\n예측하는지를 측정하며 낮을수록 일반적으로 예측력이 좋다. 그러나\nPPL만으로 지시 수행, 사실성, 추론 능력 등을 모두 평가할 수 없다.\nBenchmark는 QA, 추론, 지식 등 정해진 문제 집합에서 모델들을 비교하는 데\n유용하지만 데이터 오염과 특정 시험에 대한 편향을 주의해야 한다. Human\nEvaluation은 유용성, 자연스러움, 선호도처럼 자동 지표로 측정하기 어려운\n요소를 평가할 수 있지만 비용과 평가자 주관성이 존재한다. 따라서 여러\n평가 방식을 함께 사용하는 것이 중요하다."
+    },
+    {
+      "id": 100,
+      "part": "essay",
+      "section": null,
+      "star": 3,
+      "stem": "거대 언어 모델의 주요 응용 분야와 함께 Hallucination, 편향, 최신 지식\n부족, 데이터 오염, 안전성 등의 한계를 설명하고 실제 서비스에서 이를\n고려해야 하는 이유를 서술하시오.",
+      "choices": [],
+      "answerText": "LLM은 질의응답, 요약, 번역, 글쓰기, 검색 보조, 코딩, 교육 등 다양한\n분야에 활용될 수 있다. 그러나 사실이 아닌 내용을 생성하는 Hallucination,\n학습 데이터에서 유래한 사회적 편향, 개인정보와 안전 문제, 학습 시점 이후\n최신 지식의 부재, benchmark 문제가 학습 데이터에 포함되는 Data\nContamination 등의 한계가 있다. 또한 모델은 확률적으로 텍스트를\n생성하므로 유창한 답이 항상 정확한 답은 아니다. 따라서 실제 서비스에서는\n외부 근거 확인, 적절한 평가, 사람의 검토, 안전 정책과 가드레일 등 응용\n목적에 맞는 검증 장치를 함께 사용해야 한다."
+    }
+  ],
+  "studyGuide": "",
+  "appendix": "## 시험 직전 핵심 요약\n\n파운데이션 모델의 핵심은 **빅데이터 + Self-supervised Learning +\nTransformer**다. LLM은 대규모 텍스트에서 **Next Token Prediction**으로\n사전학습하며, 규모가 커질수록 **Scaling Law**에 따른 성능 향상과\n**Emergent Property**가 관찰될 수 있다. 대표 창발 능력은 **In-Context\nLearning과 reasoning**이다.\n\n학습 흐름은 **Pretraining → Instruction Tuning(SFT) → Preference\nLearning/Alignment**로 기억한다. RLHF는 **인간 선호 데이터 → Reward\nModel → 강화학습**, DPO는 **chosen/rejected 쌍으로 직접 preference\noptimization**한다.\n\n추론에서는 **Greedy = 최고 확률 하나**, **Beam Search = 여러 후보\n유지**, **Sampling = 확률적으로 선택**이다. Temperature가 높으면\n다양성이 커지고 낮으면 결정적이다. **Top-k = 상위 k개**, **Top-p =\n누적확률 p 후보군**이다.\n\n프롬프트는 **명확한 지시 + context + 예시 + 역할 + 출력 형식**이\n핵심이다. Zero-shot은 예시 0개, One-shot은 1개, Few-shot은 소수 예시다.\nCoT는 복잡한 문제의 중간 추론을 유도한다.\n\n평가는 **Perplexity + Benchmark + Human Evaluation**을 함께 본다. 한계는\n**Hallucination, 편향, 최신 지식 부족, Data Contamination, 안전성**을\n기억한다."
+}
