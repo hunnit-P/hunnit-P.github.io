@@ -22,13 +22,13 @@
     },
     {
       "id": "2-1",
-      "title": "",
+      "title": "원-핫 인코딩과 워드 임베딩 · 순차적 데이터 · RNN · LSTM · Self-Attention · Transformer · 사전학습 기반 언어모델",
       "counts": {
-        "mc": 0,
-        "short": 0,
-        "essay": 0
+        "mc": 70,
+        "short": 20,
+        "essay": 10
       },
-      "available": false
+      "available": true
     },
     {
       "id": "2-2",

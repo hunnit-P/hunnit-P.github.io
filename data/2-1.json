@@ -1,0 +1,1632 @@
+{
+  "id": "2-1",
+  "sections": [
+    {
+      "key": "A",
+      "name": "원-핫 인코딩과 워드 임베딩"
+    },
+    {
+      "key": "B",
+      "name": "순차적 데이터"
+    },
+    {
+      "key": "C",
+      "name": "RNN"
+    },
+    {
+      "key": "D",
+      "name": "LSTM"
+    },
+    {
+      "key": "E",
+      "name": "Self-Attention"
+    },
+    {
+      "key": "F",
+      "name": "Transformer"
+    },
+    {
+      "key": "G",
+      "name": "사전학습 기반 언어모델"
+    }
+  ],
+  "counts": {
+    "mc": 70,
+    "short": 20,
+    "essay": 10
+  },
+  "questions": [
+    {
+      "id": 1,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "원-핫 인코딩에서 단어를 표현하는 벡터의 특징으로 가장 적절한 것은?",
+      "choices": [
+        "모든 원소가 1이다.",
+        "한 원소만 1이고 나머지는 모두 0이다.",
+        "모든 단어가 같은 벡터를 갖는다.",
+        "단어의 의미에 따라 벡터 차원이 달라진다."
+      ],
+      "answerIndex": 1,
+      "explanation": "원-핫 표현은 단어 사전에서 해당 단어에 대응하는 한 위치만 1이고 나머지는 모두 0인 벡터다."
+    },
+    {
+      "id": 2,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "원-핫 벡터의 차원 수는 일반적으로 무엇에 의해 결정되는가?",
+      "choices": [
+        "문장의 길이",
+        "은닉층의 개수",
+        "단어 사전의 크기",
+        "배치 크기"
+      ],
+      "answerIndex": 2,
+      "explanation": "원-핫 벡터는 일반적으로 단어 사전의 각 항목에 하나의 차원을 할당하므로 차원 수가 vocabulary size와 같다."
+    },
+    {
+      "id": 3,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "서로 다른 두 단어의 원-핫 벡터 내적이 일반적으로 0이 되는 이유는?",
+      "choices": [
+        "두 벡터의 차원이 다르기 때문에",
+        "서로 다른 위치에만 1이 존재하여 두 벡터가 직교하기 때문에",
+        "모든 원소가 음수이기 때문에",
+        "정규화를 수행하기 때문에"
+      ],
+      "answerIndex": 1,
+      "explanation": "서로 다른 단어는 서로 다른 위치에 1을 가지므로 내적할 때 같은 위치에서 1이 겹치지 않아 0이 된다."
+    },
+    {
+      "id": 4,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "원-핫 인코딩의 문제점으로 가장 적절하지 않은 것은?",
+      "choices": [
+        "어휘가 커질수록 벡터 차원이 커진다.",
+        "고차원 희소 벡터가 되어 메모리 효율이 떨어질 수 있다.",
+        "의미적으로 비슷한 단어의 유사성을 표현하기 어렵다.",
+        "단어 간 의미적 유사성이 자동으로 잘 반영된다."
+      ],
+      "answerIndex": 3,
+      "explanation": "원-핫 벡터는 의미적 유사성을 자동으로 반영하지 못하는 것이 오히려 대표적인 한계다."
+    },
+    {
+      "id": 5,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "원-핫 인코딩에서 '은행'과 '금융'처럼 의미적으로 가까운 단어가 서로 무관한 벡터로 취급되는 문제는 무엇과 가장 관련 있는가?",
+      "choices": [
+        "의미적 정보 부족",
+        "과적합",
+        "데이터 누수",
+        "배치 정규화"
+      ],
+      "answerIndex": 0,
+      "explanation": "'은행'과 '금융'은 의미적으로 가깝지만 원-핫 공간에서는 독립적인 축에 놓이므로 의미 관계가 표현되지 않는다."
+    },
+    {
+      "id": 6,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "워드 임베딩의 핵심 설명으로 가장 적절한 것은?",
+      "choices": [
+        "단어를 고차원 희소 벡터로만 표현한다.",
+        "단어를 의미적 관계를 포착할 수 있는 밀집되고 연속적인 벡터로 표현한다.",
+        "모든 단어를 동일한 정수로 변환한다.",
+        "단어의 순서를 무조건 제거한다."
+      ],
+      "answerIndex": 1,
+      "explanation": "워드 임베딩은 단어를 저차원의 dense, continuous, distributed vector로 표현하여 단어 사이의 의미 관계를 벡터 공간에 반영한다."
+    },
+    {
+      "id": 7,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "분포 가설(distributional hypothesis)의 핵심 아이디어는?",
+      "choices": [
+        "단어의 의미는 철자의 길이만으로 결정된다.",
+        "단어는 함께 등장하는 주변 단어를 통해 그 의미를 파악할 수 있다.",
+        "모든 단어의 의미는 서로 독립적이다.",
+        "단어 빈도는 의미와 전혀 관계가 없다."
+      ],
+      "answerIndex": 1,
+      "explanation": "분포 가설은 단어의 의미가 그 단어와 함께 등장하는 주변 단어들에 의해 드러난다는 아이디어다."
+    },
+    {
+      "id": 8,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "워드 임베딩 공간에서 의미적으로 유사한 단어들은 일반적으로 어떻게 나타나는가?",
+      "choices": [
+        "서로 가까운 위치에 나타난다.",
+        "항상 직교한다.",
+        "반드시 같은 벡터가 된다.",
+        "차원이 서로 달라진다."
+      ],
+      "answerIndex": 0,
+      "explanation": "잘 학습된 임베딩에서는 비슷한 문맥에서 등장하는 의미적으로 유사한 단어들이 벡터 공간에서 가까워지는 경향이 있다."
+    },
+    {
+      "id": 9,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "Word2Vec에 대한 설명으로 맞는 것은?",
+      "choices": [
+        "2013년 Google에서 개발된 대표적 워드 임베딩 기법이다.",
+        "이미지 분할을 위한 모델이다.",
+        "순환 연결을 갖는 RNN의 한 종류이다.",
+        "Transformer의 decoder 구조이다."
+      ],
+      "answerIndex": 0,
+      "explanation": "Word2Vec은 2013년 Google 연구진이 제안한 대표적인 워드 임베딩 기법이다."
+    },
+    {
+      "id": 10,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "Word2Vec의 핵심 아이디어는?",
+      "choices": [
+        "각 단어와 주변 단어 간의 관계를 예측하면서 단어 표현을 학습한다.",
+        "문장 전체를 원-핫 벡터 하나로 만든다.",
+        "단어의 철자만 이용해 의미를 결정한다.",
+        "모든 단어의 벡터를 고정된 임의 값으로 둔다."
+      ],
+      "answerIndex": 0,
+      "explanation": "Word2Vec은 단어와 주변 문맥의 예측 관계를 학습하는 과정에서 의미 있는 단어 벡터를 얻는다."
+    },
+    {
+      "id": 11,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "Skip-gram 방식의 입력과 출력 관계로 맞는 것은?",
+      "choices": [
+        "주변 단어를 입력으로 받아 중심 단어를 예측한다.",
+        "중심 단어를 입력으로 받아 주변 단어를 예측한다.",
+        "문장 전체를 입력으로 받아 문장 길이를 예측한다.",
+        "이전 문장으로 다음 문장을 예측한다."
+      ],
+      "answerIndex": 1,
+      "explanation": "Skip-gram은 중심 단어가 주어졌을 때 주변 문맥 단어들을 예측한다."
+    },
+    {
+      "id": 12,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "CBOW 방식의 입력과 출력 관계로 맞는 것은?",
+      "choices": [
+        "중심 단어로 주변 단어들을 예측한다.",
+        "주변 단어들의 집합으로 중심 단어를 예측한다.",
+        "한 문장의 감정을 예측한다.",
+        "이전 hidden state로 다음 hidden state만 예측한다."
+      ],
+      "answerIndex": 1,
+      "explanation": "CBOW는 주변 단어들의 집합을 입력으로 받아 가운데 중심 단어를 예측한다."
+    },
+    {
+      "id": 13,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "Word2Vec에서 window size가 의미하는 것은?",
+      "choices": [
+        "임베딩 벡터의 차원",
+        "중심 단어 주변에서 문맥으로 고려할 단어의 범위",
+        "학습률",
+        "전체 어휘 수"
+      ],
+      "answerIndex": 1,
+      "explanation": "window size는 중심 단어의 앞뒤에서 몇 개의 단어를 문맥으로 볼지를 정한다."
+    },
+    {
+      "id": 14,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "Skip-gram의 장점으로 강의자료에서 제시된 것은?",
+      "choices": [
+        "학습 속도가 항상 CBOW보다 빠르다.",
+        "적은 데이터에서도 잘 동작하고 희귀 단어나 구 표현에 강하다.",
+        "희귀 단어 표현에 약하다.",
+        "주변 단어를 입력으로만 사용한다."
+      ],
+      "answerIndex": 1,
+      "explanation": "강의자료는 Skip-gram이 적은 데이터에서도 잘 동작하고 희귀 단어나 구 표현에 강한 대신 학습 속도가 느릴 수 있다고 정리한다."
+    },
+    {
+      "id": 15,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "CBOW의 장점으로 강의자료에서 제시된 것은?",
+      "choices": [
+        "희귀 단어에 특히 강하다.",
+        "학습 속도가 빠르고 자주 나오는 단어에 강하다.",
+        "중심 단어로 주변 단어를 예측한다.",
+        "순서 정보를 완벽하게 보존한다."
+      ],
+      "answerIndex": 1,
+      "explanation": "CBOW는 여러 주변 단어를 함께 사용하여 중심 단어를 예측하므로 학습이 빠르고 자주 등장하는 단어에 강한 편이다."
+    },
+    {
+      "id": 16,
+      "part": "mc",
+      "section": {
+        "key": "A",
+        "name": "원-핫 인코딩과 워드 임베딩"
+      },
+      "star": 0,
+      "stem": "CBOW의 한계로 가장 적절한 것은?",
+      "choices": [
+        "학습 속도가 매우 느리다.",
+        "희귀 단어 표현에 약할 수 있다.",
+        "단어 임베딩을 만들 수 없다.",
+        "주변 단어를 사용할 수 없다."
+      ],
+      "answerIndex": 1,
+      "explanation": "CBOW는 빈도가 낮은 단어의 표현을 충분히 세밀하게 학습하는 데 상대적으로 약할 수 있다."
+    },
+    {
+      "id": 17,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "순차적 데이터"
+      },
+      "star": 0,
+      "stem": "순차적 데이터의 정의로 가장 적절한 것은?",
+      "choices": [
+        "입력 순서와 데이터 간 관계가 중요하지 않은 데이터",
+        "데이터가 입력되는 순서와 그 순서를 통한 관계가 중요한 데이터",
+        "항상 길이가 동일한 데이터",
+        "이미지 데이터만을 의미한다."
+      ],
+      "answerIndex": 1,
+      "explanation": "순차적 데이터는 입력되는 순서와 그 순서를 통해 형성되는 데이터 사이의 관계가 중요한 데이터다."
+    },
+    {
+      "id": 18,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "순차적 데이터"
+      },
+      "star": 0,
+      "stem": "강의자료에서 순차적 데이터의 예로 제시되지 않은 것은?",
+      "choices": [
+        "오디오",
+        "텍스트",
+        "비디오",
+        "무작위로 섞인 독립 표본만으로 구성된 표"
+      ],
+      "answerIndex": 3,
+      "explanation": "강의자료는 오디오, 텍스트, 비디오 등을 대표적인 순차적 데이터로 제시한다."
+    },
+    {
+      "id": 19,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "순차적 데이터"
+      },
+      "star": 0,
+      "stem": "순차적 데이터에서 순서가 중요한 이유는?",
+      "choices": [
+        "순서가 바뀌면 의미나 관계가 달라질 수 있기 때문이다.",
+        "순서를 바꾸면 항상 데이터 크기가 줄어들기 때문이다.",
+        "순서가 있어야 원-핫 인코딩이 가능하기 때문이다.",
+        "순서가 모델의 파라미터 수를 0으로 만들기 때문이다."
+      ],
+      "answerIndex": 0,
+      "explanation": "자연어에서는 단어 순서가 바뀌면 주체와 객체, 의미 관계 등이 달라질 수 있으므로 순서가 중요하다."
+    },
+    {
+      "id": 20,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "순차적 데이터"
+      },
+      "star": 0,
+      "stem": "순차적 데이터의 장기 의존성(long-term dependency)에 대한 설명으로 맞는 것은?",
+      "choices": [
+        "멀리 떨어진 과거 정보가 현재 또는 미래의 판단에 영향을 줄 수 있다.",
+        "인접한 두 데이터 사이에는 관계가 없다.",
+        "모든 데이터는 이전 정보와 독립이다.",
+        "입력 길이가 항상 한 개라는 뜻이다."
+      ],
+      "answerIndex": 0,
+      "explanation": "장기 의존성은 멀리 떨어진 과거의 정보가 현재나 미래의 해석에 영향을 미치는 성질이다."
+    },
+    {
+      "id": 21,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "순차적 데이터"
+      },
+      "star": 0,
+      "stem": "순차적 데이터의 가변 길이(variable length) 특성을 설명한 것은?",
+      "choices": [
+        "모든 문장은 동일한 단어 수를 가진다.",
+        "순차 데이터는 샘플마다 길이가 다를 수 있다.",
+        "입력 차원은 반드시 1이다.",
+        "출력은 항상 하나이다."
+      ],
+      "answerIndex": 1,
+      "explanation": "문장, 음성, 영상 등은 샘플마다 길이가 서로 다를 수 있으므로 순차 모델은 가변 길이를 다룰 수 있어야 한다."
+    },
+    {
+      "id": 22,
+      "part": "mc",
+      "section": {
+        "key": "B",
+        "name": "순차적 데이터"
+      },
+      "star": 0,
+      "stem": "순차적 데이터를 처리하기 위한 모델의 예로 강의자료에서 제시된 조합은?",
+      "choices": [
+        "RNN, LSTM, Transformer",
+        "K-means, PCA, DBSCAN",
+        "CNN, SVM, KNN만",
+        "선형 회귀만"
+      ],
+      "answerIndex": 0,
+      "explanation": "강의자료는 순차적 데이터를 위한 대표적 Sequential Models로 RNN, LSTM, Transformer를 제시한다."
+    },
+    {
+      "id": 23,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "RNN"
+      },
+      "star": 0,
+      "stem": "RNN이 일반적인 MLP와 구별되는 핵심 특징은?",
+      "choices": [
+        "이전 시점의 정보를 hidden state를 통해 다음 시점으로 전달한다.",
+        "입력을 한 번만 처리한다.",
+        "가중치를 전혀 사용하지 않는다.",
+        "순서 정보를 제거한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "RNN은 이전 시점의 hidden state를 현재 시점의 계산에 다시 사용한다는 recurrent connection이 핵심이다."
+    },
+    {
+      "id": 24,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "RNN"
+      },
+      "star": 0,
+      "stem": "RNN에서 hidden state의 역할로 가장 적절한 것은?",
+      "choices": [
+        "이전까지 처리한 순차 정보의 요약을 유지한다.",
+        "단어 사전의 크기를 저장한다.",
+        "손실함수를 제거한다.",
+        "모든 출력을 원-핫 벡터로 만든다."
+      ],
+      "answerIndex": 0,
+      "explanation": "hidden state는 지금까지 들어온 입력의 문맥 정보를 요약하여 다음 시점으로 전달하는 내부 상태다."
+    },
+    {
+      "id": 25,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "RNN"
+      },
+      "star": 0,
+      "stem": "RNN의 현재 hidden state \\(h_t\\)를 계산할 때 일반적으로 사용하는 정보는?",
+      "choices": [
+        "현재 입력 \\(x_t\\)와 이전 hidden state \\(h_{t-1}\\)",
+        "현재 입력만",
+        "다음 시점의 출력만",
+        "전체 테스트 데이터의 정답"
+      ],
+      "answerIndex": 0,
+      "explanation": "현재 hidden state는 현재 입력 \\(x_t\\)와 이전 hidden state \\(h_{t-1}\\)를 함께 사용해 계산한다."
+    },
+    {
+      "id": 26,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "RNN"
+      },
+      "star": 0,
+      "stem": "기본 RNN의 hidden state를 나타내는 식으로 가장 적절한 것은?",
+      "choices": [
+        "\\(h_t=\\tanh(W_hh h_{t-1}+W_xh x_t)\\)",
+        "\\(h_t=x_t-h_{t-1}\\)만",
+        "\\(h_t=\\operatorname{softmax}(x_t)\\)만",
+        "\\(h_t=W\\)만"
+      ],
+      "answerIndex": 0,
+      "explanation": "기본 RNN에서는 일반적으로 \\(h_t=\\tanh(W_hh h_{t-1}+W_xh x_t)\\)와 같은 형태로 상태를 갱신한다."
+    },
+    {
+      "id": 27,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "RNN"
+      },
+      "star": 0,
+      "stem": "RNN 출력 \\(y_t\\)의 계산에 직접 활용될 수 있는 것은?",
+      "choices": [
+        "현재 hidden state \\(h_t\\)",
+        "단어 사전 크기만",
+        "window size만",
+        "배치 번호만"
+      ],
+      "answerIndex": 0,
+      "explanation": "현재 hidden state를 출력층에 전달하여 \\(y_t\\) 또는 그에 대응하는 확률 분포를 계산할 수 있다."
+    },
+    {
+      "id": 28,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "RNN"
+      },
+      "star": 0,
+      "stem": "RNN의 many-to-one 구조가 적합한 예는?",
+      "choices": [
+        "문장 감정 분류",
+        "기계 번역",
+        "각 단어마다 품사를 출력하는 태깅",
+        "이미지의 모든 픽셀 복원"
+      ],
+      "answerIndex": 0,
+      "explanation": "감정 분류는 여러 단어의 시퀀스를 입력받아 문장 전체에 대한 하나의 레이블을 출력하므로 many-to-one의 대표 사례다."
+    },
+    {
+      "id": 29,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "RNN"
+      },
+      "star": 0,
+      "stem": "RNN의 one-to-many 구조가 적합한 예로 볼 수 있는 것은?",
+      "choices": [
+        "하나의 입력으로 여러 시점의 출력을 생성하는 작업",
+        "문장 전체를 하나의 감정으로 분류",
+        "입력과 출력이 모두 하나",
+        "독립적인 표 데이터 회귀"
+      ],
+      "answerIndex": 0,
+      "explanation": "one-to-many는 하나의 입력에서 여러 시점의 출력을 생성하는 구조다."
+    },
+    {
+      "id": 30,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "RNN"
+      },
+      "star": 0,
+      "stem": "RNN의 many-to-many 구조가 적합한 예는?",
+      "choices": [
+        "기계 번역과 같이 입력과 출력이 모두 시퀀스인 작업",
+        "숫자 하나의 제곱 계산",
+        "단일 이미지 분류",
+        "K-means 군집화"
+      ],
+      "answerIndex": 0,
+      "explanation": "기계 번역은 입력 문장도 시퀀스이고 출력 번역문도 시퀀스이므로 many-to-many 형태로 볼 수 있다."
+    },
+    {
+      "id": 31,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "RNN"
+      },
+      "star": 0,
+      "stem": "기본 RNN의 중요한 문제로 강의자료에서 강조된 것은?",
+      "choices": [
+        "장기 의존성 학습의 어려움",
+        "임베딩을 전혀 사용할 수 없음",
+        "순차 데이터를 처리할 수 없음",
+        "hidden state가 존재하지 않음"
+      ],
+      "answerIndex": 0,
+      "explanation": "기본 RNN은 가까운 문맥은 처리할 수 있지만 긴 시퀀스에서 먼 과거 정보를 안정적으로 유지하기 어렵다."
+    },
+    {
+      "id": 32,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "RNN"
+      },
+      "star": 0,
+      "stem": "RNN에서 vanishing gradient가 발생하면 나타날 수 있는 현상은?",
+      "choices": [
+        "먼 과거 시점의 정보가 학습 과정에서 제대로 전달되지 않는다.",
+        "모든 gradient가 무조건 커진다.",
+        "모델의 입력 길이가 자동으로 증가한다.",
+        "출력 클래스 수가 증가한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "역전파 과정에서 gradient가 반복적으로 작은 값과 곱해지면 먼 시점으로 갈수록 거의 0이 되어 오래전 정보가 학습되지 않는다."
+    },
+    {
+      "id": 33,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "RNN"
+      },
+      "star": 0,
+      "stem": "RNN에서 gradient가 여러 시점을 거치며 역전파되는 학습 방식과 가장 관련 깊은 것은?",
+      "choices": [
+        "BPTT",
+        "PCA",
+        "KNN",
+        "Bagging"
+      ],
+      "answerIndex": 0,
+      "explanation": "RNN은 시간축으로 펼친 네트워크에 대해 역전파하는 Backpropagation Through Time(BPTT)을 사용한다."
+    },
+    {
+      "id": 34,
+      "part": "mc",
+      "section": {
+        "key": "C",
+        "name": "RNN"
+      },
+      "star": 0,
+      "stem": "RNN이 순차 데이터 처리에 적합한 이유는?",
+      "choices": [
+        "동일한 recurrent 구조를 시간축으로 반복하며 이전 상태를 다음 계산에 활용하기 때문이다.",
+        "모든 시점의 입력을 독립적으로만 처리하기 때문이다.",
+        "순서를 무작위로 섞기 때문이다.",
+        "hidden state를 사용하지 않기 때문이다."
+      ],
+      "answerIndex": 0,
+      "explanation": "RNN은 같은 recurrent cell과 가중치를 시간축에 반복 적용하면서 이전 상태를 다음 시점 계산에 활용한다."
+    },
+    {
+      "id": 35,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "LSTM"
+      },
+      "star": 0,
+      "stem": "LSTM이 제안된 주된 목적은?",
+      "choices": [
+        "RNN의 장기 의존성 문제를 완화하기 위해",
+        "워드 임베딩 차원을 무한대로 만들기 위해",
+        "이미지 분류만 수행하기 위해",
+        "attention을 제거하기 위해"
+      ],
+      "answerIndex": 0,
+      "explanation": "LSTM은 기본 RNN의 vanishing gradient와 장기 의존성 문제를 완화하기 위해 제안되었다."
+    },
+    {
+      "id": 36,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "LSTM"
+      },
+      "star": 0,
+      "stem": "LSTM이 기본 RNN과 비교해 추가로 유지하는 핵심 상태는?",
+      "choices": [
+        "cell state",
+        "vocabulary state",
+        "image state",
+        "batch state"
+      ],
+      "answerIndex": 0,
+      "explanation": "LSTM은 hidden state와 함께 장기 기억을 전달하는 cell state를 별도로 유지한다."
+    },
+    {
+      "id": 37,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "LSTM"
+      },
+      "star": 0,
+      "stem": "LSTM의 forget gate 역할은?",
+      "choices": [
+        "이전 cell state에서 무엇을 유지하고 무엇을 버릴지 결정한다.",
+        "최종 출력 클래스만 결정한다.",
+        "입력 문장의 길이를 결정한다.",
+        "임베딩 차원을 정한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "forget gate는 이전 cell state에서 어떤 정보를 얼마나 유지할지 결정한다. 0에 가까우면 버리고 1에 가까우면 유지하는 의미로 이해할 수 있다."
+    },
+    {
+      "id": 38,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "LSTM"
+      },
+      "star": 0,
+      "stem": "LSTM의 input gate 역할은?",
+      "choices": [
+        "새로운 정보 중 무엇을 cell state에 저장할지 조절한다.",
+        "과거 정보를 모두 무조건 삭제한다.",
+        "출력만 생성한다.",
+        "학습률을 정한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "input gate는 현재 입력과 이전 hidden state를 바탕으로 새 후보 정보 중 무엇을 cell state에 기록할지 조절한다."
+    },
+    {
+      "id": 39,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "LSTM"
+      },
+      "star": 0,
+      "stem": "LSTM의 output gate 역할은?",
+      "choices": [
+        "cell state를 바탕으로 현재 hidden state로 내보낼 정보를 조절한다.",
+        "단어 사전을 생성한다.",
+        "과거 cell state를 모두 삭제한다.",
+        "입력 임베딩을 원-핫으로 변환한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "output gate는 갱신된 cell state의 정보 중 어느 부분을 현재 hidden state로 노출할지 결정한다."
+    },
+    {
+      "id": 40,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "LSTM"
+      },
+      "star": 0,
+      "stem": "forget gate의 출력 범위를 0과 1 사이로 조절하는 데 일반적으로 사용되는 함수는?",
+      "choices": [
+        "sigmoid",
+        "ReLU만",
+        "argmax",
+        "k-means"
+      ],
+      "answerIndex": 0,
+      "explanation": "sigmoid는 0과 1 사이 값을 출력하므로 gate가 정보 통과 비율을 조절하는 데 적합하다."
+    },
+    {
+      "id": 41,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "LSTM"
+      },
+      "star": 0,
+      "stem": "LSTM에서 새로운 후보 cell content를 만들 때 주로 사용하는 활성화 함수는?",
+      "choices": [
+        "tanh",
+        "softmax만",
+        "step function만",
+        "PCA"
+      ],
+      "answerIndex": 0,
+      "explanation": "새로운 후보 cell content는 일반적으로 tanh를 이용해 생성한다."
+    },
+    {
+      "id": 42,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "LSTM"
+      },
+      "star": 0,
+      "stem": "LSTM의 새로운 cell state 계산 아이디어로 가장 적절한 것은?",
+      "choices": [
+        "이전 cell state 중 유지할 부분과 새로 추가할 정보를 결합한다.",
+        "이전 cell state를 항상 완전히 삭제한다.",
+        "hidden state와 무관하게 임의의 값으로 정한다.",
+        "단어 빈도만 저장한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "LSTM의 cell state는 forget gate가 선택한 이전 기억과 input gate가 선택한 새 후보 정보를 더해 갱신된다."
+    },
+    {
+      "id": 43,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "LSTM"
+      },
+      "star": 0,
+      "stem": "다음 식이 나타내는 LSTM 구성 요소는?\n\\(f_t=\\sigma(W_f[h_{t-1},x_t]+b_f)\\)",
+      "choices": [
+        "forget gate",
+        "input gate",
+        "output gate",
+        "positional encoding"
+      ],
+      "answerIndex": 0,
+      "explanation": "식의 첨자 \\(f\\)와 sigmoid를 이용한 게이트 계산은 forget gate를 나타낸다."
+    },
+    {
+      "id": 44,
+      "part": "mc",
+      "section": {
+        "key": "D",
+        "name": "LSTM"
+      },
+      "star": 0,
+      "stem": "다음 식의 의미로 가장 적절한 것은?\n\\(C_t=f_t*C_{t-1}+i_t*tilde(C_t)\\)",
+      "choices": [
+        "이전 기억을 선택적으로 유지하고 새로운 후보 정보를 선택적으로 더해 cell state를 갱신한다.",
+        "모든 기억을 삭제한다.",
+        "attention score를 계산한다.",
+        "단어를 원-핫 벡터로 만든다."
+      ],
+      "answerIndex": 0,
+      "explanation": "\\(f_t*C_{t-1}\\)는 이전 기억 중 유지할 부분이고, \\(i_t*tilde(C_t)\\)는 새롭게 기록할 부분이다."
+    },
+    {
+      "id": 45,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "Self-Attention"
+      },
+      "star": 0,
+      "stem": "Self-Attention이 RNN의 순차 처리 방식과 비교해 갖는 중요한 특징은?",
+      "choices": [
+        "문장 내 여러 위치의 관계를 직접 계산할 수 있다.",
+        "이전 시점 정보만 사용할 수 있다.",
+        "모든 토큰을 반드시 한 개씩만 순차 처리해야 한다.",
+        "단어 간 관계를 계산하지 않는다."
+      ],
+      "answerIndex": 0,
+      "explanation": "Self-Attention은 한 토큰이 문장 내 다른 여러 토큰과 직접 관계를 계산할 수 있어 먼 위치의 관계도 비교적 짧은 경로로 연결한다."
+    },
+    {
+      "id": 46,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "Self-Attention"
+      },
+      "star": 0,
+      "stem": "Attention에서 Query, Key, Value에 대한 설명으로 맞는 것은?",
+      "choices": [
+        "Query와 Key의 관련도를 이용해 Value들을 가중합한다.",
+        "Query만 사용하고 Key와 Value는 사용하지 않는다.",
+        "Key가 최종 정답 레이블이다.",
+        "Value는 항상 원-핫 벡터여야 한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "Query와 Key의 유사도를 계산해 attention weight를 만들고, 그 가중치를 Value에 적용하여 정보를 합친다."
+    },
+    {
+      "id": 47,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "Self-Attention"
+      },
+      "star": 0,
+      "stem": "Self-Attention에서 Query, Key, Value는 일반적으로 어디에서 만들어지는가?",
+      "choices": [
+        "같은 입력 시퀀스의 표현으로부터 서로 다른 선형 변환을 통해 만들어진다.",
+        "테스트 정답으로부터 만들어진다.",
+        "단어 사전의 크기로부터만 만들어진다.",
+        "이미지 픽셀에서만 만들어진다."
+      ],
+      "answerIndex": 0,
+      "explanation": "Self-Attention에서는 같은 입력 표현으로부터 서로 다른 학습 가능한 행렬을 적용해 Q, K, V를 만든다."
+    },
+    {
+      "id": 48,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "Self-Attention"
+      },
+      "star": 0,
+      "stem": "Attention score를 정규화하여 각 Value의 가중치를 얻는 데 주로 사용하는 함수는?",
+      "choices": [
+        "softmax",
+        "tanh만",
+        "ReLU만",
+        "sigmoid만"
+      ],
+      "answerIndex": 0,
+      "explanation": "softmax는 관련도 점수를 확률처럼 합이 1인 가중치로 정규화한다."
+    },
+    {
+      "id": 49,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "Self-Attention"
+      },
+      "star": 0,
+      "stem": "Scaled Dot-Product Attention에서 dot product 값을 \\(\\sqrt{d_k}\\)로 나누는 이유는?",
+      "choices": [
+        "차원이 커질 때 내적 값이 지나치게 커져 softmax가 극단적으로 되는 현상을 완화하기 위해",
+        "모델 파라미터를 제거하기 위해",
+        "입력 순서를 무작위화하기 위해",
+        "단어 수를 줄이기 위해"
+      ],
+      "answerIndex": 0,
+      "explanation": "Key 차원이 커지면 dot product의 크기도 커질 수 있어 softmax가 지나치게 포화될 수 있다. 이를 완화하기 위해 \\(\\sqrt{d_k}\\)로 나눈다."
+    },
+    {
+      "id": 50,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "Self-Attention"
+      },
+      "star": 0,
+      "stem": "Self-Attention만으로는 토큰의 순서를 자연스럽게 알기 어려운 이유는?",
+      "choices": [
+        "attention 계산 자체는 위치 순서를 내장하지 않기 때문이다.",
+        "Query가 존재하지 않기 때문이다.",
+        "Value가 존재하지 않기 때문이다.",
+        "모든 단어가 원-핫이기 때문이다."
+      ],
+      "answerIndex": 0,
+      "explanation": "Self-Attention의 기본 계산은 입력 위치를 별도로 알려주지 않으면 순서 자체를 인식하지 못하므로 위치 정보가 필요하다."
+    },
+    {
+      "id": 51,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "Self-Attention"
+      },
+      "star": 0,
+      "stem": "Transformer에서 토큰 순서 정보를 제공하기 위해 사용하는 것은?",
+      "choices": [
+        "Positional Encoding",
+        "Negative Sampling",
+        "Dropout만",
+        "One-hot decoding"
+      ],
+      "answerIndex": 0,
+      "explanation": "Transformer는 임베딩에 Positional Encoding을 더해 토큰의 위치 정보를 제공한다."
+    },
+    {
+      "id": 52,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "Self-Attention"
+      },
+      "star": 0,
+      "stem": "강의자료에서 positional encoding의 방법으로 제시된 것은?",
+      "choices": [
+        "Sinusoidal Position Encoding과 Learned Absolute Position Embedding",
+        "K-means와 PCA",
+        "CBOW와 Skip-gram",
+        "RNN과 LSTM"
+      ],
+      "answerIndex": 0,
+      "explanation": "강의자료는 sinusoidal 방식과 학습 가능한 absolute position embedding을 대표적인 위치 표현 방법으로 제시한다."
+    },
+    {
+      "id": 53,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "Self-Attention"
+      },
+      "star": 0,
+      "stem": "Self-Attention 블록에 Feed-Forward Network를 추가하는 이유로 가장 적절한 것은?",
+      "choices": [
+        "attention으로 관계를 반영한 각 위치의 표현에 비선형 변환 능력을 추가하기 위해",
+        "토큰 순서를 제거하기 위해",
+        "attention을 사용하지 않기 위해",
+        "모든 파라미터를 공유하지 않기 위해"
+      ],
+      "answerIndex": 0,
+      "explanation": "Feed-Forward Network는 attention으로 관계가 반영된 각 위치의 표현을 추가로 비선형 변환하여 표현력을 높인다."
+    },
+    {
+      "id": 54,
+      "part": "mc",
+      "section": {
+        "key": "E",
+        "name": "Self-Attention"
+      },
+      "star": 0,
+      "stem": "Masked Self-Attention의 목적은?",
+      "choices": [
+        "현재 위치가 미래 토큰 정보를 미리 보지 못하도록 가린다.",
+        "과거 토큰을 모두 삭제한다.",
+        "모든 attention score를 1로 만든다.",
+        "encoder에서만 미래 토큰을 보게 한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "autoregressive decoder는 현재 토큰을 예측할 때 미래 정답 토큰을 보면 안 되므로 미래 위치의 attention을 mask한다."
+    },
+    {
+      "id": 55,
+      "part": "mc",
+      "section": {
+        "key": "F",
+        "name": "Transformer"
+      },
+      "star": 0,
+      "stem": "Transformer가 처음 제안된 대표 논문은?",
+      "choices": [
+        "Attention Is All You Need",
+        "Word2Vec Is All You Need",
+        "ImageNet Classification",
+        "AlexNet Revisited"
+      ],
+      "answerIndex": 0,
+      "explanation": "Transformer는 2017년 논문 'Attention Is All You Need'에서 제안되었다."
+    },
+    {
+      "id": 56,
+      "part": "mc",
+      "section": {
+        "key": "F",
+        "name": "Transformer"
+      },
+      "star": 0,
+      "stem": "Transformer의 기본 구조로 맞는 것은?",
+      "choices": [
+        "encoder와 decoder",
+        "CNN만",
+        "RNN만",
+        "KNN과 SVM"
+      ],
+      "answerIndex": 0,
+      "explanation": "원래 Transformer는 Encoder와 Decoder를 함께 갖는 구조다."
+    },
+    {
+      "id": 57,
+      "part": "mc",
+      "section": {
+        "key": "F",
+        "name": "Transformer"
+      },
+      "star": 0,
+      "stem": "Multi-Head Attention을 사용하는 주된 이유는?",
+      "choices": [
+        "서로 다른 표현 공간에서 다양한 관계를 동시에 학습하기 위해",
+        "attention을 한 번도 계산하지 않기 위해",
+        "모델의 모든 head가 반드시 같은 관계만 보게 하기 위해",
+        "순서 정보를 제거하기 위해"
+      ],
+      "answerIndex": 0,
+      "explanation": "여러 head가 서로 다른 관계나 표현 하위공간에 집중할 수 있어 하나의 attention보다 다양한 관계를 포착할 수 있다."
+    },
+    {
+      "id": 58,
+      "part": "mc",
+      "section": {
+        "key": "F",
+        "name": "Transformer"
+      },
+      "star": 0,
+      "stem": "Residual Connection의 목적과 가장 가까운 것은?",
+      "choices": [
+        "깊은 네트워크에서 정보와 gradient의 흐름을 돕는다.",
+        "단어를 원-핫으로 바꾼다.",
+        "vocabulary를 줄인다.",
+        "masking을 제거한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "Residual Connection은 층의 입력을 출력에 더하는 skip connection으로, 깊은 모델에서 정보 및 gradient 흐름을 돕는다."
+    },
+    {
+      "id": 59,
+      "part": "mc",
+      "section": {
+        "key": "F",
+        "name": "Transformer"
+      },
+      "star": 0,
+      "stem": "Layer Normalization의 역할로 가장 적절한 것은?",
+      "choices": [
+        "각 층의 표현을 정규화하여 학습 안정성을 높이는 데 도움을 준다.",
+        "문장 길이를 모두 같게 만든다.",
+        "모든 attention head를 제거한다.",
+        "gradient 계산을 중단한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "Layer Normalization은 층 내부 표현의 분포를 안정화하여 깊은 Transformer의 학습을 돕는다."
+    },
+    {
+      "id": 60,
+      "part": "mc",
+      "section": {
+        "key": "F",
+        "name": "Transformer"
+      },
+      "star": 0,
+      "stem": "Transformer decoder의 첫 번째 attention에서 사용하는 핵심 방식은?",
+      "choices": [
+        "Masked Multi-Head Self-Attention",
+        "CBOW",
+        "K-means",
+        "단순 선형회귀"
+      ],
+      "answerIndex": 0,
+      "explanation": "Transformer Decoder는 미래 토큰을 보지 않도록 Masked Multi-Head Self-Attention을 사용한다."
+    },
+    {
+      "id": 61,
+      "part": "mc",
+      "section": {
+        "key": "F",
+        "name": "Transformer"
+      },
+      "star": 0,
+      "stem": "Encoder-Decoder Transformer에서 Cross-Attention의 역할은?",
+      "choices": [
+        "decoder의 Query가 encoder 출력의 Key와 Value를 참조하도록 한다.",
+        "encoder와 decoder를 완전히 독립적으로 만든다.",
+        "미래 토큰을 정답으로 직접 제공한다.",
+        "단어 임베딩을 제거한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "Cross-Attention에서는 Decoder의 상태가 Query가 되고 Encoder의 출력이 Key와 Value가 되어 입력 시퀀스 정보를 참조한다."
+    },
+    {
+      "id": 62,
+      "part": "mc",
+      "section": {
+        "key": "F",
+        "name": "Transformer"
+      },
+      "star": 0,
+      "stem": "Transformer가 RNN에 비해 학습 병렬화에 유리한 이유는?",
+      "choices": [
+        "self-attention은 여러 토큰 위치를 동시에 계산할 수 있기 때문이다.",
+        "hidden state를 한 시점씩 반드시 전달해야 하기 때문이다.",
+        "모든 입력 길이가 1이기 때문이다.",
+        "recurrent connection이 더 많기 때문이다."
+      ],
+      "answerIndex": 0,
+      "explanation": "RNN은 이전 hidden state가 계산되어야 다음 시점 계산이 가능하지만 Self-Attention은 한 층에서 여러 위치의 관계를 병렬로 계산할 수 있다."
+    },
+    {
+      "id": 63,
+      "part": "mc",
+      "section": {
+        "key": "G",
+        "name": "사전학습 기반 언어모델"
+      },
+      "star": 0,
+      "stem": "사전학습(pretraining)의 핵심 아이디어는?",
+      "choices": [
+        "대규모 데이터로 일반적인 언어 능력을 먼저 학습한 뒤 다양한 downstream task에 활용한다.",
+        "각 태스크마다 항상 무작위 초기화한다.",
+        "학습 데이터를 사용하지 않는다.",
+        "모델 가중치를 고정된 0으로 둔다."
+      ],
+      "answerIndex": 0,
+      "explanation": "사전학습은 대규모 일반 데이터에서 언어 패턴을 먼저 학습하고 그 표현을 다양한 downstream task에 재사용하는 패러다임이다."
+    },
+    {
+      "id": 64,
+      "part": "mc",
+      "section": {
+        "key": "G",
+        "name": "사전학습 기반 언어모델"
+      },
+      "star": 0,
+      "stem": "BERT의 기본 구조는 무엇인가?",
+      "choices": [
+        "Transformer Encoder",
+        "Transformer Decoder만",
+        "LSTM Decoder",
+        "CNN Encoder만"
+      ],
+      "answerIndex": 0,
+      "explanation": "BERT는 Transformer Encoder를 여러 층 쌓은 encoder-only 모델이다."
+    },
+    {
+      "id": 65,
+      "part": "mc",
+      "section": {
+        "key": "G",
+        "name": "사전학습 기반 언어모델"
+      },
+      "star": 0,
+      "stem": "BERT의 대표적 사전학습 과제 중 Masked Language Model(MLM)은 무엇을 하는가?",
+      "choices": [
+        "입력의 일부 토큰을 가리고 원래 토큰을 예측한다.",
+        "다음 이미지를 생성한다.",
+        "전체 문장을 삭제한다.",
+        "단어 순서를 무작위로 정답으로 사용한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "MLM은 입력 일부를 [MASK] 등으로 가리고 양쪽 문맥을 이용해 원래 토큰을 예측하도록 학습한다."
+    },
+    {
+      "id": 66,
+      "part": "mc",
+      "section": {
+        "key": "G",
+        "name": "사전학습 기반 언어모델"
+      },
+      "star": 0,
+      "stem": "BERT의 Next Sentence Prediction(NSP)의 기본 아이디어는?",
+      "choices": [
+        "두 문장이 실제로 이어지는 관계인지 예측한다.",
+        "한 단어의 품사만 예측한다.",
+        "이미지와 텍스트의 유사도를 계산한다.",
+        "다음 글자 하나만 예측한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "NSP는 두 문장이 실제 문서에서 연속적으로 이어지는 관계인지 판단하는 BERT의 사전학습 과제로 제안되었다."
+    },
+    {
+      "id": 67,
+      "part": "mc",
+      "section": {
+        "key": "G",
+        "name": "사전학습 기반 언어모델"
+      },
+      "star": 0,
+      "stem": "Encoder 기반 모델이 특히 적합한 작업은?",
+      "choices": [
+        "문장 분류, 자연어 추론, 질의응답, 토큰 분류 등 입력 이해 중심 작업",
+        "왼쪽에서 오른쪽으로 장문을 생성하는 작업만",
+        "이미지 생성만",
+        "음성 합성만"
+      ],
+      "answerIndex": 0,
+      "explanation": "Encoder 모델은 전체 입력을 양방향으로 이해하는 데 강점이 있어 분류, NLI, QA, NER 같은 이해 태스크에 잘 활용된다."
+    },
+    {
+      "id": 68,
+      "part": "mc",
+      "section": {
+        "key": "G",
+        "name": "사전학습 기반 언어모델"
+      },
+      "star": 0,
+      "stem": "T5의 구조와 학습 관점으로 가장 적절한 것은?",
+      "choices": [
+        "Encoder-Decoder 구조를 사용하며 다양한 NLP 문제를 Text-to-Text 형태로 통일한다.",
+        "Encoder만 사용하며 MLM만 수행한다.",
+        "Decoder만 사용하며 이미지 생성만 한다.",
+        "RNN만 사용한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "T5는 Transformer Encoder-Decoder를 사용하며 NLP 문제를 모두 text-to-text 문제로 통일하는 관점을 사용한다."
+    },
+    {
+      "id": 69,
+      "part": "mc",
+      "section": {
+        "key": "G",
+        "name": "사전학습 기반 언어모델"
+      },
+      "star": 0,
+      "stem": "GPT 계열의 기본 구조로 가장 적절한 것은?",
+      "choices": [
+        "Transformer Decoder 기반 autoregressive language model",
+        "Transformer Encoder만 사용하는 bidirectional classifier",
+        "Word2Vec 기반 군집 모델",
+        "CNN 기반 객체 탐지 모델"
+      ],
+      "answerIndex": 0,
+      "explanation": "GPT는 Transformer Decoder를 기반으로 왼쪽 문맥에서 다음 토큰을 순차적으로 예측하는 autoregressive language model이다."
+    },
+    {
+      "id": 70,
+      "part": "mc",
+      "section": {
+        "key": "G",
+        "name": "사전학습 기반 언어모델"
+      },
+      "star": 0,
+      "stem": "GPT의 Next Token Prediction 학습에서 모델이 수행하는 것은?",
+      "choices": [
+        "이전까지의 토큰을 바탕으로 다음 토큰을 예측한다.",
+        "미래의 모든 정답 토큰을 동시에 입력으로 본다.",
+        "단어의 위치를 제거한다.",
+        "두 문장이 이어지는지만 예측한다."
+      ],
+      "answerIndex": 0,
+      "explanation": "GPT는 이전까지의 토큰을 조건으로 다음 토큰의 확률을 예측하는 Next Token Prediction 방식으로 학습한다."
+    },
+    {
+      "id": 71,
+      "part": "short",
+      "section": {
+        "key": "A",
+        "name": "워드 임베딩과 순차 모델"
+      },
+      "star": 0,
+      "stem": "한 원소만 1이고 나머지가 0인 벡터로 단어를 표현하는 방법을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "원-핫 인코딩(One-hot encoding)."
+    },
+    {
+      "id": 72,
+      "part": "short",
+      "section": {
+        "key": "A",
+        "name": "워드 임베딩과 순차 모델"
+      },
+      "star": 0,
+      "stem": "단어를 의미적 관계를 반영할 수 있는 밀집 연속 벡터로 표현하는 방법을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "워드 임베딩(Word Embedding)."
+    },
+    {
+      "id": 73,
+      "part": "short",
+      "section": {
+        "key": "A",
+        "name": "워드 임베딩과 순차 모델"
+      },
+      "star": 0,
+      "stem": "중심 단어로 주변 단어를 예측하는 Word2Vec 알고리즘을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Skip-gram."
+    },
+    {
+      "id": 74,
+      "part": "short",
+      "section": {
+        "key": "A",
+        "name": "워드 임베딩과 순차 모델"
+      },
+      "star": 0,
+      "stem": "주변 단어들로 중심 단어를 예측하는 Word2Vec 알고리즘을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "CBOW(Continuous Bag of Words)."
+    },
+    {
+      "id": 75,
+      "part": "short",
+      "section": {
+        "key": "A",
+        "name": "워드 임베딩과 순차 모델"
+      },
+      "star": 0,
+      "stem": "중심 단어 주변 몇 개 단어까지 문맥으로 사용할지를 나타내는 값을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Window size."
+    },
+    {
+      "id": 76,
+      "part": "short",
+      "section": {
+        "key": "A",
+        "name": "워드 임베딩과 순차 모델"
+      },
+      "star": 0,
+      "stem": "이전 시점의 정보를 hidden state에 담아 다음 시점으로 전달하는 순환 신경망을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "RNN(Recurrent Neural Network)."
+    },
+    {
+      "id": 77,
+      "part": "short",
+      "section": {
+        "key": "A",
+        "name": "워드 임베딩과 순차 모델"
+      },
+      "star": 0,
+      "stem": "RNN에서 먼 과거의 정보가 학습 과정에서 점차 사라지는 대표적 문제를 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Vanishing gradient 문제. 이로 인해 장기 의존성을 학습하기 어려워질 수 있다."
+    },
+    {
+      "id": 78,
+      "part": "short",
+      "section": {
+        "key": "A",
+        "name": "워드 임베딩과 순차 모델"
+      },
+      "star": 0,
+      "stem": "RNN의 장기 의존성 문제를 완화하기 위해 cell state와 gate 구조를 도입한 모델은 무엇인가?",
+      "choices": [],
+      "answerText": "LSTM(Long Short-Term Memory)."
+    },
+    {
+      "id": 79,
+      "part": "short",
+      "section": {
+        "key": "A",
+        "name": "워드 임베딩과 순차 모델"
+      },
+      "star": 0,
+      "stem": "LSTM에서 이전 cell state의 정보를 얼마나 유지할지 결정하는 gate는 무엇인가?",
+      "choices": [],
+      "answerText": "Forget gate."
+    },
+    {
+      "id": 80,
+      "part": "short",
+      "section": {
+        "key": "A",
+        "name": "워드 임베딩과 순차 모델"
+      },
+      "star": 0,
+      "stem": "LSTM에서 새 정보를 cell state에 얼마나 기록할지 결정하는 gate는 무엇인가?",
+      "choices": [],
+      "answerText": "Input gate."
+    },
+    {
+      "id": 81,
+      "part": "short",
+      "section": {
+        "key": "A",
+        "name": "워드 임베딩과 순차 모델"
+      },
+      "star": 0,
+      "stem": "LSTM에서 cell state를 바탕으로 현재 hidden state에 얼마나 출력할지 결정하는 gate는 무엇인가?",
+      "choices": [],
+      "answerText": "Output gate."
+    },
+    {
+      "id": 82,
+      "part": "short",
+      "section": {
+        "key": "B",
+        "name": "Attention과 Transformer"
+      },
+      "star": 0,
+      "stem": "Attention에서 현재 토큰이 무엇을 찾고 있는지를 나타내는 벡터를 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Query."
+    },
+    {
+      "id": 83,
+      "part": "short",
+      "section": {
+        "key": "B",
+        "name": "Attention과 Transformer"
+      },
+      "star": 0,
+      "stem": "Attention에서 Query와의 관련도를 비교하기 위한 벡터를 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Key."
+    },
+    {
+      "id": 84,
+      "part": "short",
+      "section": {
+        "key": "B",
+        "name": "Attention과 Transformer"
+      },
+      "star": 0,
+      "stem": "Attention 가중치를 적용하여 최종적으로 합산되는 정보 벡터를 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Value."
+    },
+    {
+      "id": 85,
+      "part": "short",
+      "section": {
+        "key": "B",
+        "name": "Attention과 Transformer"
+      },
+      "star": 0,
+      "stem": "Transformer에서 토큰의 순서 정보를 추가하기 위해 사용하는 기법을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Positional Encoding 또는 Position Embedding."
+    },
+    {
+      "id": 86,
+      "part": "short",
+      "section": {
+        "key": "B",
+        "name": "Attention과 Transformer"
+      },
+      "star": 0,
+      "stem": "여러 개의 attention head를 병렬로 사용하여 다양한 관계를 학습하는 구조를 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Multi-Head Attention."
+    },
+    {
+      "id": 87,
+      "part": "short",
+      "section": {
+        "key": "B",
+        "name": "Attention과 Transformer"
+      },
+      "star": 0,
+      "stem": "Decoder가 미래 토큰을 미리 보지 못하게 하는 attention 방식을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Masked Self-Attention 또는 Causal Self-Attention."
+    },
+    {
+      "id": 88,
+      "part": "short",
+      "section": {
+        "key": "B",
+        "name": "Attention과 Transformer"
+      },
+      "star": 0,
+      "stem": "BERT의 대표적인 사전학습 방식으로 일부 토큰을 가린 뒤 원래 토큰을 맞히는 과제를 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "Masked Language Model(MLM)."
+    },
+    {
+      "id": 89,
+      "part": "short",
+      "section": {
+        "key": "B",
+        "name": "Attention과 Transformer"
+      },
+      "star": 0,
+      "stem": "다양한 NLP 문제를 입력 텍스트에서 출력 텍스트로 변환하는 하나의 형식으로 통일한 Encoder-Decoder 모델은 무엇인가?",
+      "choices": [],
+      "answerText": "T5(Text-to-Text Transfer Transformer)."
+    },
+    {
+      "id": 90,
+      "part": "short",
+      "section": {
+        "key": "B",
+        "name": "Attention과 Transformer"
+      },
+      "star": 0,
+      "stem": "GPT-3에서 모델의 파라미터를 업데이트하지 않고 프롬프트 안의 예시를 이용해 새로운 태스크를 수행하는 현상을 무엇이라고 하는가?",
+      "choices": [],
+      "answerText": "In-Context Learning(ICL)."
+    },
+    {
+      "id": 91,
+      "part": "essay",
+      "section": null,
+      "star": 1,
+      "stem": "원-핫 인코딩과 워드 임베딩의 차이를 벡터 차원, 희소성, 의미적 유사성 표현의 관점에서 비교하여 설명하시오.",
+      "choices": [],
+      "answerText": "원-핫 인코딩은 단어 사전 크기만큼의 고차원 벡터를 만들고 한 위치만 1인 희소 표현을 사용한다. 따라서 vocabulary가 커질수록 차원이 커지고 대부분의 원소가 0이라 메모리 효율이 낮다. 또한 서로 다른 단어의 벡터가 직교하므로 '은행'과 '금융'처럼 의미적으로 가까운 단어도 유사하게 표현하지 못한다. 반면 워드 임베딩은 상대적으로 낮은 차원의 dense하고 연속적인 벡터를 학습한다. 주변 문맥이 비슷한 단어들이 가까운 위치에 배치될 수 있어 의미적 유사성과 관계를 벡터 공간에 반영할 수 있다."
+    },
+    {
+      "id": 92,
+      "part": "essay",
+      "section": null,
+      "star": 1,
+      "stem": "Word2Vec의 Skip-gram과 CBOW를 입력과 출력, 학습 속도, 희귀 단어 표현의 관점에서 비교하여 설명하시오.",
+      "choices": [],
+      "answerText": "Skip-gram은 중심 단어를 입력으로 받아 주변 문맥 단어들을 예측한다. 적은 데이터에서도 비교적 잘 동작하고 희귀 단어나 구 표현을 학습하는 데 강한 편이지만 CBOW보다 학습 속도가 느릴 수 있다. CBOW는 주변 단어들의 집합을 입력으로 받아 중심 단어를 예측한다. 여러 문맥 정보를 평균적 또는 집합적으로 사용하므로 학습이 빠르고 자주 등장하는 단어에 강하지만 희귀 단어의 세밀한 표현에는 상대적으로 약할 수 있다."
+    },
+    {
+      "id": 93,
+      "part": "essay",
+      "section": null,
+      "star": 1,
+      "stem": "순차적 데이터의 세 가지 주요 특징인 순서의 중요성, 장기 의존성, 가변 길이를 각각 설명하고 자연어 처리에서 왜 중요한지 서술하시오.",
+      "choices": [],
+      "answerText": "첫째, 순서가 중요하다. 자연어에서는 같은 단어라도 순서를 바꾸면 주체와 객체 또는 문장의 의미가 달라질 수 있다. 둘째, 장기 의존성이 존재한다. 문장 앞부분의 정보가 여러 단어 뒤의 해석에 영향을 줄 수 있으므로 모델은 먼 과거의 정보를 기억해야 한다. 셋째, 가변 길이이다. 문장마다 단어 수가 다르기 때문에 입력 길이가 고정되어 있지 않다. 따라서 자연어 모델은 순서를 보존하고 이전 문맥을 활용하면서 서로 다른 길이의 입력을 처리할 수 있어야 한다."
+    },
+    {
+      "id": 94,
+      "part": "essay",
+      "section": null,
+      "star": 2,
+      "stem": "기본 RNN에서 hidden state가 어떻게 계산되고 문맥 정보를 어떻게 전달하는지 설명한 뒤, 장기 의존성과 vanishing gradient 문제가 발생하는 이유를 서술하시오.",
+      "choices": [],
+      "answerText": "기본 RNN은 현재 입력 \\(x_t\\)와 이전 hidden state \\(h_{t-1}\\)를 결합해 현재 hidden state를 계산한다. 대표적으로 \\(h_t=\\tanh(W_hh h_{t-1}+W_xh x_t)\\)와 같이 표현할 수 있다. 이 hidden state가 다음 시점으로 전달되므로 과거 문맥이 순차적으로 누적된다. 학습에서는 시간축으로 펼친 네트워크에 BPTT를 적용한다. 이때 여러 시점을 거치며 미분값과 가중치가 반복 곱셈되는데, 값이 1보다 작은 방향으로 반복되면 gradient가 매우 작아지는 vanishing gradient가 발생할 수 있다. 그 결과 먼 과거 시점의 정보에 대한 학습 신호가 사라져 장기 의존성을 학습하기 어려워진다."
+    },
+    {
+      "id": 95,
+      "part": "essay",
+      "section": null,
+      "star": 2,
+      "stem": "LSTM의 cell state, forget gate, input gate, output gate의 역할을 설명하고 LSTM이 기본 RNN보다 장기 의존성을 더 잘 다룰 수 있는 이유를 서술하시오.",
+      "choices": [],
+      "answerText": "LSTM은 hidden state 외에 장기 기억 통로인 cell state를 유지한다. Forget gate는 이전 cell state에서 무엇을 유지하거나 버릴지 결정한다. Input gate는 현재 입력에서 얻은 새 후보 정보 중 무엇을 cell state에 기록할지 결정한다. 따라서 cell state는 \\(C_t=f_t*C_{t-1}+i_t*tilde(C_t)\\)처럼 이전 기억의 선택적 유지와 새 정보의 선택적 추가로 갱신된다. Output gate는 갱신된 cell state 중 어느 정보를 현재 hidden state로 내보낼지 결정한다. 이러한 gate와 비교적 직접적인 cell state 경로 덕분에 정보와 gradient가 긴 시간 간격을 지나 더 안정적으로 전달될 수 있어 기본 RNN의 장기 의존성 문제를 완화한다."
+    },
+    {
+      "id": 96,
+      "part": "essay",
+      "section": null,
+      "star": 2,
+      "stem": "Self-Attention에서 Query, Key, Value가 각각 어떤 역할을 하는지 설명하고 attention score, softmax, Value의 가중합을 통해 출력이 생성되는 과정을 서술하시오.",
+      "choices": [],
+      "answerText": "Self-Attention에서 Query는 현재 위치가 어떤 정보를 찾고 있는지를 나타내고, Key는 각 위치가 어떤 특징을 가지고 있는지를 나타내며, Value는 실제로 전달할 내용 정보를 담는다. 입력 표현에 서로 다른 선형 변환을 적용해 Q, K, V를 만든다. 각 Query와 Key의 내적을 계산하여 관련도 점수를 구하고, Scaled Dot-Product Attention에서는 이를 \\(\\sqrt{d_k}\\)로 나눈다. 그 점수에 softmax를 적용하여 attention weight를 얻은 뒤 각 Value에 가중치를 곱해 합산한다. 결과적으로 한 토큰의 새로운 표현에는 문장 내 관련 있는 다른 토큰들의 정보가 중요도에 따라 반영된다."
+    },
+    {
+      "id": 97,
+      "part": "essay",
+      "section": null,
+      "star": 2,
+      "stem": "Transformer에서 Positional Encoding, Multi-Head Attention, Feed-Forward Network, Residual Connection, Layer Normalization이 각각 필요한 이유를 설명하시오.",
+      "choices": [],
+      "answerText": "Positional Encoding은 Self-Attention 자체가 순서를 내장하지 않기 때문에 토큰의 위치 정보를 제공한다. Multi-Head Attention은 여러 head가 서로 다른 관계나 표현 공간을 동시에 학습하도록 한다. Feed-Forward Network는 attention 이후 각 위치의 표현에 비선형 변환을 적용해 모델의 표현력을 높인다. Residual Connection은 층의 입력을 출력에 직접 더하여 깊은 네트워크에서 정보와 gradient 흐름을 돕는다. Layer Normalization은 각 층의 표현을 정규화해 학습을 안정화한다. 이 요소들이 결합되어 Transformer가 깊고 안정적으로 학습되면서 다양한 토큰 관계를 포착할 수 있다."
+    },
+    {
+      "id": 98,
+      "part": "essay",
+      "section": null,
+      "star": 2,
+      "stem": "Transformer Encoder와 Decoder의 구조 차이를 설명하고, Decoder의 Masked Self-Attention과 Encoder-Decoder Cross-Attention이 각각 어떤 역할을 하는지 서술하시오.",
+      "choices": [],
+      "answerText": "Transformer Encoder는 일반적으로 Multi-Head Self-Attention과 Feed-Forward Network를 반복하며 입력 시퀀스 전체를 양방향으로 이해한다. Decoder는 Masked Multi-Head Self-Attention, Encoder-Decoder Cross-Attention, Feed-Forward Network를 사용한다. Masked Self-Attention은 현재 토큰을 생성할 때 미래 정답 토큰을 미리 보지 못하게 해 autoregressive 생성 조건을 지킨다. Cross-Attention에서는 Decoder의 표현이 Query가 되고 Encoder의 출력이 Key와 Value가 되어 Decoder가 원문 입력의 필요한 부분을 참조하면서 출력 시퀀스를 생성한다."
+    },
+    {
+      "id": 99,
+      "part": "essay",
+      "section": null,
+      "star": 2,
+      "stem": "BERT, T5, GPT를 Encoder 모델, Encoder-Decoder 모델, Decoder 모델이라는 구조적 관점과 대표 학습 목표 및 적합한 작업의 관점에서 비교하시오.",
+      "choices": [],
+      "answerText": "BERT는 Transformer Encoder 기반 모델이다. 대표 사전학습 목표로 Masked Language Model과 초기 BERT에서는 Next Sentence Prediction을 사용하며, 전체 입력을 양방향으로 이해하기 때문에 문장 분류, 자연어 추론, 질의응답, 개체명 인식 같은 이해 태스크에 강하다. T5는 Encoder-Decoder 구조이며 다양한 NLP 문제를 모두 Text-to-Text 형태로 통일하여 입력 텍스트를 출력 텍스트로 변환하도록 학습한다. GPT는 Transformer Decoder 기반 autoregressive 모델이며 이전 토큰들로 다음 토큰을 예측하는 Next Token Prediction을 사용한다. 따라서 자연스러운 텍스트 생성과 이어쓰기, 프롬프트 기반 생성 작업에 특히 적합하다."
+    },
+    {
+      "id": 100,
+      "part": "essay",
+      "section": null,
+      "star": 3,
+      "stem": "사전학습 기반 언어모델에서 pretraining과 downstream adaptation의 관계를 설명하고, GPT-3에서 나타난 In-Context Learning과 zero-shot, one-shot, few-shot prompting, Chain-of-Thought prompting의 의미를 함께 설명하시오.",
+      "choices": [],
+      "answerText": "사전학습은 대규모 일반 텍스트에서 언어의 통계적 패턴과 지식을 먼저 학습하는 단계다. 이후 특정 태스크에 fine-tuning하거나 프롬프트만으로 사전학습된 능력을 활용할 수 있다. GPT-3에서는 모델 가중치를 추가로 업데이트하지 않고 프롬프트 내부의 설명과 예시만으로 새로운 태스크를 수행하는 In-Context Learning이 두드러졌다. Zero-shot은 예시 없이 지시만 제공하고, one-shot은 하나의 예시를, few-shot은 소수의 예시를 프롬프트에 제공한다. Chain-of-Thought prompting은 복잡한 문제에서 중간 추론 단계를 예시 또는 지시 형태로 유도하여 최종 답에 도달하도록 하는 프롬프팅 기법이다. 즉 사전학습으로 넓은 능력을 확보한 모델이 프롬프트 문맥에 따라 새로운 작업 방식에 적응한다는 것이 핵심이다."
+    }
+  ],
+  "studyGuide": "",
+  "appendix": "### 시험 직전 요약\n\n원-핫은 고차원·희소·의미 관계 표현 불가, 워드 임베딩은 저차원·밀집·의미 관계 표현 가능이다. Word2Vec은 Skip-gram이 중심→주변, CBOW가 주변→중심이다. 순차 데이터는 순서, 장기 의존성, 가변 길이가 핵심이다. RNN은 hidden state로 문맥을 전달하지만 vanishing gradient 때문에 장기 기억에 약하다. LSTM은 cell state와 forget/input/output gate로 이를 완화한다. Self-Attention은 Q-K 관련도로 V를 가중합하며 Transformer는 Positional Encoding, Multi-Head Attention, FFN, Residual, LayerNorm을 사용한다. BERT는 Encoder, T5는 Encoder-Decoder, GPT는 Decoder 기반이다. GPT-3의 핵심 확장 개념은 In-Context Learning이며 zero-shot, one-shot, few-shot 및 CoT prompting을 함께 기억한다."
+}

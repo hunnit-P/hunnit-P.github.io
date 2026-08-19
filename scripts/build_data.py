@@ -19,6 +19,7 @@ data/{chapter}.json 을 생성하고 data/manifest.json 을 갱신한다.
 import json
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -257,6 +258,37 @@ def join_math_block(lines):
     return result
 
 
+SQRT_PAREN_RE = re.compile(r"(?<!\\)\bsqrt\(([^()]*)\)")
+FUNC_NAME_RE = re.compile(
+    r"(?<!\\)\b(tanh|sigma|sigmoid|softmax|argmax|exp|log|ln|cos|sin)\b"
+)
+FUNC_MACRO = {
+    "tanh": "\\tanh",
+    "sigma": "\\sigma",
+    "exp": "\\exp",
+    "log": "\\log",
+    "ln": "\\ln",
+    "cos": "\\cos",
+    "sin": "\\sin",
+    "sigmoid": "\\operatorname{sigmoid}",
+    "softmax": "\\operatorname{softmax}",
+    "argmax": "\\operatorname{argmax}",
+}
+
+
+def fix_bare_math_functions(s):
+    """
+    일부 소스는 \\tanh, \\sigma 대신 백슬래시 없이 tanh, sigma, sqrt(d_k) 처럼
+    적어놓는다. 그대로 두면 KaTeX가 이걸 이름 있는 함수가 아니라 그냥 붙어있는
+    변수들의 곱(예: 's*q*r*t')으로 렌더링해 sqrt(d_k)가 루트 기호 없이 깨진다.
+    자주 쓰이는 함수 이름을 LaTeX 명령으로 보정한다. 이미 '\\'가 붙어있으면
+    건드리지 않는다.
+    """
+    s = SQRT_PAREN_RE.sub(lambda m: "\\sqrt{" + m.group(1) + "}", s)
+    s = FUNC_NAME_RE.sub(lambda m: FUNC_MACRO[m.group(1)], s)
+    return s
+
+
 def convert_inline_parens(line):
     """
     괄호로 감싼 인라인 수식 '(...)' 을 KaTeX가 인식하는 '\\(...\\)' 로 바꾼다.
@@ -286,7 +318,7 @@ def convert_inline_parens(line):
                     MATH_SIGNAL_RE.search(inner) or not WORD_RE.search(inner)
                 )
                 if looks_like_math:
-                    result.append("\\(" + inner + "\\)")
+                    result.append("\\(" + fix_bare_math_functions(inner) + "\\)")
                 else:
                     result.append(line[i:j])
                 i = j
@@ -313,7 +345,7 @@ def normalize_math(text):
             while j < len(lines) and lines[j].strip() != "]":
                 block_lines.append(lines[j])
                 j += 1
-            out.append("\\[" + join_math_block(block_lines) + "\\]")
+            out.append("\\[" + fix_bare_math_functions(join_math_block(block_lines)) + "\\]")
             i = j + 1
         else:
             out.append(convert_inline_parens(lines[i]))
@@ -366,18 +398,30 @@ def build_chapter(chapter_id: str, problem_path: Path, answer_path: Path):
     return chapter
 
 
+def _nfc(s):
+    return unicodedata.normalize("NFC", s)
+
+
 def main():
     DATA_DIR.mkdir(exist_ok=True)
-    problem_files = sorted(SOURCE_DIR.glob("*문제.md"))
+
+    # macOS(APFS)는 한글 파일명을 NFD(자모 분리형)로 저장하는 경우가 많아서,
+    # 파이썬 문자열 리터럴(NFC)로 만든 glob 패턴이 조용히 매칭에 실패할 수
+    # 있다. 실제 디렉토리 항목을 그대로 훑고 NFC로 정규화해 비교한다.
+    files_by_nfc_name = {_nfc(p.name): p for p in SOURCE_DIR.iterdir() if p.is_file()}
+    problem_files = sorted(
+        (p for name, p in files_by_nfc_name.items() if name.endswith("문제.md")),
+        key=lambda p: _nfc(p.name),
+    )
 
     manifest_chapters = []
 
     for problem_path in problem_files:
-        chapter_id_raw = problem_path.name.replace("문제.md", "")
+        chapter_id_raw = _nfc(problem_path.name).replace("문제.md", "")
         chapter_id = chapter_id_raw.replace("_", "-")
-        answer_path = SOURCE_DIR / f"{chapter_id_raw}해설.md"
-        if not answer_path.exists():
-            print(f"[skip] {chapter_id}: 해설 파일 없음 ({answer_path.name})")
+        answer_path = files_by_nfc_name.get(_nfc(f"{chapter_id_raw}해설.md"))
+        if answer_path is None:
+            print(f"[skip] {chapter_id}: 해설 파일 없음 ({chapter_id_raw}해설.md)")
             continue
 
         chapter = build_chapter(chapter_id, problem_path, answer_path)
