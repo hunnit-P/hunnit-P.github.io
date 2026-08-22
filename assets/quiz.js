@@ -34,9 +34,8 @@ function questionStatus(q, progress) {
   return p && p.reviewed ? "reviewed" : "unrevealed";
 }
 
-function matchesFilter(filter, q, status, sessionTouched) {
+function matchesFilter(filter, q, status) {
   if (filter === "all") return true;
-  if (sessionTouched.has(q.id)) return true; // 이번 방문에서 이미 확인한 문제는 계속 보여준다
   if (filter === "review") {
     if (q.part === "mc") return status !== "correct";
     return status !== "reviewed";
@@ -53,7 +52,9 @@ function renderChoice(q, idx, text) {
 }
 
 function questionCardHtml(q) {
-  const secTag = q.section ? `<span class="tag">${escapeHtml(q.section.key)}. ${escapeHtml(q.section.name)}</span>` : "";
+  const secTag = q.section
+    ? `<span class="tag">${escapeHtml(q.section.key)}. ${escapeHtml(q.section.name)}</span>`
+    : "";
   const star = q.star ? `<span class="star">${starText(q.star)}</span>` : "";
   const note = q.note ? `<div class="note">${formatText(q.note)}</div>` : "";
 
@@ -152,7 +153,6 @@ async function main() {
   document.title = `${chapterId} · 문제풀이`;
 
   let progress = loadProgress(chapterId);
-  const sessionTouched = new Set();
   let filter = "all";
 
   const sectionSummary = chapter.sections.map((s) => `${s.key}. ${s.name}`).join(" · ");
@@ -169,8 +169,8 @@ async function main() {
         <span class="score" id="score-text"></span>
         <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
         <div class="controls">
-          <button class="filter-btn" data-filter="all">전체</button>
-          <button class="filter-btn" data-filter="review">복습 모드(오답·미확인)</button>
+          <button class="filter-btn" data-filter="all" type="button" aria-pressed="true">전체</button>
+          <button class="filter-btn" data-filter="review" type="button" aria-pressed="false">복습 모드(오답·미확인)</button>
           <button class="reset-btn" id="reset-btn" type="button">진행 초기화</button>
         </div>
       </div>
@@ -197,11 +197,16 @@ async function main() {
       if (qs.length === 0) return "";
       const meta = PART_META[part];
       return `
-        <div class="part-heading" id="${meta.anchor}">${meta.label} <span class="count">${qs.length}문항</span></div>
+        <div class="part-heading" id="${meta.anchor}" data-part="${part}">${meta.label} <span class="count">${qs.length}문항</span></div>
         ${qs.map(questionCardHtml).join("")}
       `;
     })
     .join("");
+
+  partsEl.insertAdjacentHTML(
+    "beforeend",
+    '<div class="empty-state review-empty" hidden>복습할 오답이나 미확인 문제가 없습니다.</div>',
+  );
 
   renderMath(root); // 학습 가이드/부록 등 카드 밖 수식 렌더링 (카드 안 수식은 renderCardState에서 처리)
 
@@ -225,16 +230,27 @@ async function main() {
     document.getElementById("score-text").textContent =
       `객관식 ${mcAnswered}/${mcTotal} · 정답 ${mcCorrect}` +
       (reviewTotal ? ` · 단답/서술 확인 ${reviewed}/${reviewTotal}` : "");
-    document.getElementById("progress-fill").style.width = mcTotal ? `${(mcAnswered / mcTotal) * 100}%` : "0%";
+    document.getElementById("progress-fill").style.width = mcTotal
+      ? `${(mcAnswered / mcTotal) * 100}%`
+      : "0%";
   }
 
   function applyFilter() {
+    let visibleCount = 0;
     document.querySelectorAll(".card").forEach((card) => {
       const q = chapter.questions.find((x) => x.id === Number(card.dataset.id));
       const status = questionStatus(q, progress);
-      const show = matchesFilter(filter, q, status, sessionTouched);
+      const show = matchesFilter(filter, q, status);
       card.classList.toggle("hidden-by-filter", !show);
+      if (show) visibleCount++;
     });
+    document.querySelectorAll(".part-heading").forEach((heading) => {
+      const hasVisibleCard = document.querySelector(
+        `.card[data-part="${heading.dataset.part}"]:not(.hidden-by-filter)`,
+      );
+      heading.classList.toggle("hidden-by-filter", !hasVisibleCard);
+    });
+    document.querySelector(".review-empty").hidden = filter !== "review" || visibleCount > 0;
   }
 
   function renderCardState(card) {
@@ -256,9 +272,9 @@ async function main() {
           const idx = Number(btn.dataset.idx);
           progress[qid] = { selected: idx, correct: idx === q.answerIndex };
           saveProgress(chapterId, progress);
-          sessionTouched.add(qid);
           renderCardState(card);
           updateScore();
+          applyFilter();
         });
       });
     } else {
@@ -266,9 +282,9 @@ async function main() {
         const current = progress[qid] && progress[qid].reviewed;
         progress[qid] = { reviewed: !current };
         saveProgress(chapterId, progress);
-        sessionTouched.add(qid);
         renderCardState(card);
         updateScore();
+        applyFilter();
       });
     }
 
@@ -278,7 +294,11 @@ async function main() {
   document.querySelectorAll(".filter-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       filter = btn.dataset.filter;
-      document.querySelectorAll(".filter-btn").forEach((b) => b.classList.toggle("active", b === btn));
+      document.querySelectorAll(".filter-btn").forEach((b) => {
+        const active = b === btn;
+        b.classList.toggle("active", active);
+        b.setAttribute("aria-pressed", String(active));
+      });
       applyFilter();
     });
   });
@@ -288,7 +308,6 @@ async function main() {
     if (!confirm(`${chapterId}의 풀이 기록을 모두 초기화할까요?`)) return;
     progress = {};
     saveProgress(chapterId, progress);
-    sessionTouched.clear();
     document.querySelectorAll(".card").forEach(renderCardState);
     updateScore();
     applyFilter();
