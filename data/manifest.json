@@ -2,13 +2,13 @@
   "chapters": [
     {
       "id": "1-1",
-      "title": "",
+      "title": "AI·ML·DL / 데이터와 학습 · 지도학습 / 회귀·분류 / 손실 · 분류 평가 / 일반화·오버피팅 · 검증·교차검증 / 비지도학습 · 핵심 개념 단답형 · 개념 설명·응용 서술형",
       "counts": {
-        "mc": 0,
-        "short": 0,
-        "essay": 0
+        "mc": 70,
+        "short": 15,
+        "essay": 15
       },
-      "available": false
+      "available": true
     },
     {
       "id": "1-2",

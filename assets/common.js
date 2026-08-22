@@ -1,10 +1,7 @@
 // 여러 페이지에서 공용으로 쓰는 유틸
 
 function escapeHtml(s) {
-  return String(s)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 // **bold**, `code`, 줄바꿈만 가볍게 처리한다 (원본 md의 깨진 LaTeX 표기는
