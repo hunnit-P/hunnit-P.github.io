@@ -1,6 +1,16 @@
 {
   "chapters": [
     {
+      "id": "Spring",
+      "title": "Spring 핵심 원리와 IoC/DI 컨테이너 · Spring Boot, 로깅, 테스트 · Spring AOP와 트랜잭션 · Spring MVC와 웹 계층 · MyBatis 연동과 동적 SQL · Spring Security 기초 · 핵심 개념 단답형 · 비교 서술형",
+      "counts": {
+        "mc": 21,
+        "short": 9,
+        "essay": 2
+      },
+      "available": true
+    },
+    {
       "id": "최종 범위(핵심키워드)2",
       "title": "머신러닝 기초와 평가 · RLHF와 최적화 · CNN 계산과 표현 · 파운데이션 모델과 에이전트 · 경량화와 프롬프트 · 언어 모델과 순차 모델 · CNN 구조와 효율 · VLM과 검색 증강 · 평가와 적응 · 배포, 강건성, 에이전트",
       "counts": {
