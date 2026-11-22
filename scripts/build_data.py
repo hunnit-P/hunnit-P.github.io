@@ -557,7 +557,7 @@ def main():
         "중간 범위 1", "중간 범위 2", "중간 범위 3",
         "4-1", "4-2", "5-1", "5-2",
         "최종 범위(핵심키워드)1", "최종 범위(핵심키워드)2",
-        "Spring", "Spring2",
+        "Spring", "Spring2", "Spring3",
     ]
     order = {cid: i for i, cid in enumerate(reversed(display_order))}
     manifest_chapters.sort(key=lambda c: order.get(c["id"], 999))

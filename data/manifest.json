@@ -1,6 +1,16 @@
 {
   "chapters": [
     {
+      "id": "Spring3",
+      "title": "Spring 주요 특징과 로깅 · Bean과 DI, Spring Boot · Spring MVC · MyBatis · 트랜잭션, AOP, Interceptor · 핵심 개념 단답형 · 개념 서술형",
+      "counts": {
+        "mc": 21,
+        "short": 9,
+        "essay": 2
+      },
+      "available": true
+    },
+    {
       "id": "Spring2",
       "title": "Spring 개요, 로깅, 테스트 · DI와 Bean 관리 · Spring MVC 요청 처리 · MyBatis · AOP, Interceptor, 요청 흐름 · 핵심 개념 단답형 · 비교 서술형",
       "counts": {
